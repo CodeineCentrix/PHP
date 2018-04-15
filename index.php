@@ -13,9 +13,10 @@ and open the template in the editor.
         <div>
         <?php
         include 'DBhelper.php';
-        
-       $employees= DBhelper::run_simple_select();
-       print_r($employees)
+        $emps = new DBhelper();
+       $employees = $emps ->run_simple_select();
+       echo $employees[0]["empNum"];
+       echo $emps->is_connected_to_DB;
         ?>
         </div>
     </body>
