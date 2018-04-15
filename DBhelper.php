@@ -59,16 +59,23 @@ $this->connectToDB();
      while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
          $table[] = $row;
      }
+     sqlsrv_free_stmt($statement);
+     sqlsrv_close($this->connection_object);
      return $table;
+ 
+     //Method is done.
  }
  
- public function sp_SelectWithParams($procedure,$parameters) {
+ public function sp_SelectWithParams($procedure,$parameters,$paramCount) {
     /* Gets a stored procedure including parameters 
      * Runs a Select statement and returns a table to the method calling it.
      */ 
       $this->connectToDB();
      $this->KillErrorThread($this->is_connected_to_DB);
-     $call_procedure ="{ call $procedure}";
+     $question_marks = $this->createQuestionMarks($paramCount); 
+     $call_procedure ="{ call $procedure($question_marks)}";
+     
+     
      $statement = sqlsrv_query($this->connection_object,$call_procedure);
      $this->KillErrorThread($statement);
      $table = array();
@@ -76,6 +83,8 @@ $this->connectToDB();
          $this->count++;
          $table[] = $row;
      }
+     sqlsrv_free_stmt($statement);
+     sqlsrv_close($this->connection_object);
      return $table;
  }
  
@@ -88,6 +97,18 @@ $this->connectToDB();
      if (!$isValid) {
          die(print_r("Error occured, Sorry!",TRUE));
      }
+ }
+ 
+ function createQuestionMarks($paramCount){
+     $message = "";
+     for($i = 1;$i<$paramCount;$i++){
+         if ($i==$paramCount) {
+             $message."?";
+         }else{
+         $message."?,";
+         }
+     }
+     return $message;
  }
 }
 
