@@ -14,15 +14,18 @@ and open the template in the editor.
         <?php
         include 'DBhelper.php';
         $emps = new DBhelper();
-       $employees = $emps ->run_simple_select();
-       $records = count($employees);     
-       for($i =0;$i<$records;$i++){
-           $columns = count($employees[$i]);
-           for($a =0;$a<$columns;$a++){
-    echo $employees[$i][$a]."   ";    
-           }
-           echo " <br/> <br/>";
-    }
+//       $employees = $emps ->run_simple_select();
+//       $records = count($employees);     
+//       for($i =0;$i<$records;$i++){
+//           $columns = count($employees[$i]);
+//           for($a =0;$a<$columns;$a++){
+//    echo $employees[$i][$a]."   ";    
+//           }
+//           echo " <br/> <br/>";
+//    }
+        $tabs = $emps->sp_SelectStatement("uspGetEmps");
+        print_r($tabs);
+        echo $emps->count;
        
         ?>
         </div>

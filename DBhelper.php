@@ -25,9 +25,7 @@ private function connectToDB(){
    }
 }
 
-public function runNonQuery(){
-    
-}
+
 
 public function run_simple_select() {
  $sql = "SELECT EmployeeID, LastName+' '+ FirstName AS Name, Title FROM Employees"; 
@@ -45,6 +43,50 @@ $this->connectToDB();
        }  
      }else{
          die(print_r("Query Failed",TRUE));
+     }
+ }
+ 
+ public function sp_SelectStatement($procedure) {
+     /* Gets a stored procedure to run with no parameters for the stored procedure
+      * Runs Selects statements and returns a table to the method calling it.
+      */
+     $this->connectToDB();
+     $this->KillErrorThread($this->is_connected_to_DB);
+     $call_procedure ="{ call $procedure}";
+     $statement = sqlsrv_query($this->connection_object,$call_procedure);
+     $this->KillErrorThread($statement);
+     $table = array();
+     while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
+         $table[] = $row;
+     }
+     return $table;
+ }
+ 
+ public function sp_SelectWithParams($procedure,$parameters) {
+    /* Gets a stored procedure including parameters 
+     * Runs a Select statement and returns a table to the method calling it.
+     */ 
+      $this->connectToDB();
+     $this->KillErrorThread($this->is_connected_to_DB);
+     $call_procedure ="{ call $procedure}";
+     $statement = sqlsrv_query($this->connection_object,$call_procedure);
+     $this->KillErrorThread($statement);
+     $table = array();
+     while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
+         $this->count++;
+         $table[] = $row;
+     }
+     return $table;
+ }
+ 
+ public function sp_NonQueryStatementsParams($procedure,$parameters) {
+     /* Gets a stored procedure including parameters 
+      * Runs a none select such as INSERT, UPDATE... etc, and returns an  int indicating success or failure.
+      */
+ }
+ function KillErrorThread($isValid){
+     if (!$isValid) {
+         die(print_r("Error occured, Sorry!",TRUE));
      }
  }
 }
