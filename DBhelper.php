@@ -12,6 +12,7 @@ private $server_address = "localhost"; //Use 127.0.0.1 or localhost if using you
 private $database_name="Northwind"; //name of the database we would like to connect to
 private $connection_object;
 public $is_connected_to_DB = FALSE;
+public $count=0;
 
 private function connectToDB(){
     $connection_params = array("Database" => $this->database_name);
@@ -29,19 +30,16 @@ public function runNonQuery(){
 }
 
 public function run_simple_select() {
- $sql = "SELECT EmployeeID, LastName+' ' FirstName AS Name, Title FROM Employees"; 
-$table = array(
-    "empNum"=> array(),
-    "name"=>array(),
-    "ocupation"=> array()
-); 
+ $sql = "SELECT EmployeeID, LastName+' '+ FirstName AS Name, Title FROM Employees"; 
+$table = array(); 
 $this->connectToDB();
  if ($this->is_connected_to_DB) {
      $statement_object = sqlsrv_query($this->connection_object,$sql);
      if ($statement_object) {
          
-       while ($row = sqlsrv_fetch_array($sql,SQLSRV_FETCH_NUMERIC)) {
-    $table[] = array("empNum"=>$row[0],"name"=> $row[1],"ocupation"=>$row[2]);
+       while ($row = sqlsrv_fetch_array($statement_object,SQLSRV_FETCH_NUMERIC)) {
+    $table[] = array($row[0], $row[1],$row[2]);
+    $this->count++;
            }
        return $table;
        }  
