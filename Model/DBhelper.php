@@ -79,6 +79,8 @@ private function connectToDB(){
      $call_procedure = "{call $procedureName}";
      $result = sqlsrv_query($this->connection_object,$call_procedure,$parameters);
      $this->KillErrorThread($result);
+     sqlsrv_free_stmt($result);
+     sqlsrv_close($this->connection_object);
      return sqlsrv_rows_affected($result)>0;
      //Method is done.
  }//End sp_NonQueeyStatementsParams
