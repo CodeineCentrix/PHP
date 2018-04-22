@@ -9,7 +9,7 @@ When using this class specifically it is really important to note:
 
 class DBhelper{
 private $server_address = "localhost"; //Use 127.0.0.1 or localhost if using your own machine for testing
-private $database_name="Northwind"; //name of the database we would like to connect to
+private $database_name="HaichDB"; //name of the database we would like to connect to
 private $connection_object;
 public $is_connected_to_DB = FALSE;
 public $count=0;
@@ -27,34 +27,24 @@ private function connectToDB(){
 
 
 
-public function run_simple_select() {
- $sql = "SELECT EmployeeID, LastName+' '+ FirstName AS Name, Title FROM Employees"; 
-$table = array(); 
-$this->connectToDB();
- if ($this->is_connected_to_DB) {
-     $statement_object = sqlsrv_query($this->connection_object,$sql);
-     if ($statement_object) {
-         
-       while ($row = sqlsrv_fetch_array($statement_object,SQLSRV_FETCH_NUMERIC)) {
-    $table[] = array($row[0], $row[1],$row[2]);
-    $this->count++;
-           }
-       return $table;
-       }  
-     }else{
-         die(print_r("Query Failed",TRUE));
-     }
- }
+/*    *****Dear fellow Group Member*****
+ *  This Class is designed to be dynamic and doesn't tie itself to one purpose. 
+ *  it's a tiered layer(Final layer communicating with DB), meaning the layers before this should provide values in the form of parameters to the method.
+ *  if you ever find the need to modify this class -> you're using it wrong!!And will damage the entire system
+ */
  
- public function sp_SelectStatement($procedure) {
+ public function sp_SelectStatement($procedureName = null) {
      /* Gets a stored procedure to run with no parameters for the stored procedure
       * Runs Selects statements and returns a table to the method calling it.
       */
      $this->connectToDB();
      $this->KillErrorThread($this->is_connected_to_DB);
-     $call_procedure ="{ call $procedure}";
+     $call_procedure ="{ call $procedureName}";
      $statement = sqlsrv_query($this->connection_object,$call_procedure);
-     $this->KillErrorThread($statement);
+     if ($statement===FALSE) {
+         die(print_r(sqlsrv_errors(),TRUE)); 
+     }
+    // $this->KillErrorThread($statement);
      $table = array();
      while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
          $table[] = $row;
@@ -64,19 +54,17 @@ $this->connectToDB();
      return $table;
  
      //Method is done.
- }
+ } //End sp_SelectStatement
  
- public function sp_SelectWithParams($procedure,$parameters,$paramCount) {
+ public function sp_SelectWithParams($procedureName = null,$parameters=null) {
     /* Gets a stored procedure including parameters 
      * Runs a Select statement and returns a table to the method calling it.
      */ 
       $this->connectToDB();
      $this->KillErrorThread($this->is_connected_to_DB);
-     $question_marks = $this->createQuestionMarks($paramCount); 
-     $call_procedure ="{ call $procedure($question_marks)}";
-     
-     
-     $statement = sqlsrv_query($this->connection_object,$call_procedure);
+   // Build the Query
+     $call_procedure ="{ $procedureName}";
+     $statement = sqlsrv_query($this->connection_object,$call_procedure,$parameters);
      $this->KillErrorThread($statement);
      $table = array();
      while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
@@ -86,16 +74,24 @@ $this->connectToDB();
      sqlsrv_free_stmt($statement);
      sqlsrv_close($this->connection_object);
      return $table;
- }
+     //Method is done
+ }//End sp_SelectWithParams
  
- public function sp_NonQueryStatementsParams($procedure,$parameters) {
+ public function sp_NonQueryStatementsParams($procedureName,$parameters) {
      /* Gets a stored procedure including parameters 
-      * Runs a none select such as INSERT, UPDATE... etc, and returns an  int indicating success or failure.
+      * Runs a none select such as INSERT, UPDATE... etc, and returns an  bool indicating success or failure.
       */
+     $this->connectToDB();
+     $this->KillErrorThread($this->connection_object);
+     $call_procedure = "{call $procedureName}";
+     $result = sqlsrv_query($this->connection_object,$call_procedure,$parameters);
+     $this->KillErrorThread($result);
+     return sqlsrv_rows_affected($result)>0;
  }
  function KillErrorThread($isValid){
+     $this->count++;
      if (!$isValid) {
-         die(print_r("Error occured, Sorry!",TRUE));
+         die(print_r("Error occured, Sorry!".$this->count,TRUE));
      }
  }
  
