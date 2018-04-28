@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="../Stylesheets/animate.css">
         <script src="../Scripts/jquery.min.js"></script>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Droplit</title>
     </head>
     <body>
@@ -72,7 +73,7 @@
     </svg>
                 <div class="login_section ">  
                     <a href="../View/Login.php">Login</a> 
-                    <a href="">Register</a> 
+                    <a href="../View/Register.php">Register</a> 
                 </div>
                 </div>
                 

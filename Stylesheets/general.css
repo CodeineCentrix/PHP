@@ -9,15 +9,16 @@ could create one stylesheet  for all but that will confuse the hell outa us.
 /*
 Login page style BEGIN ============
 */
-.bgRegister{
+.bgLogin{
 
-    background-image: url('../Images/bgregister.jpg');
+    background-image: url('../Images/bglogin.jpg');
     background-repeat: no-repeat;
     background-position: right top;
     background-attachment: fixed;
     background-position: 50% 50%;
     background-size: cover;
     overflow: hidden;
+    
 /*    opacity: 0.3;*/
 }
 
@@ -143,12 +144,15 @@ p-t-136 {
 }
 
 .limiter {
-  width: 100%;
+  width: 100% !important;
+  height: 100%;
+  overflow: hidden;
   margin: 0 auto;
 }
 .login_container {
   width: 100%;  
-  min-height: 100vh;
+  height: 100% !important;
+  overflow: hidden;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -162,4 +166,90 @@ p-t-136 {
 }
 /*
 End Login Page 
+*/
+
+/*===================================================================================================================================================================*/
+
+/*
+Begin Register Page
+*/
+
+.bgRegister{
+
+    background-image: url('../Images/bgregister.jpg');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+    height: 100% !important;
+/*    opacity: 0.3;*/
+}
+
+.r_main_content{
+    width: 50%;
+   min-height:100% !important;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 80px 130px 33px 95px;
+}
+.basic_info{
+    width: 100%;
+    height: 100% !important;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.input_box_r {
+ font-family:"Century Gothic";
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+ margin: 5px;
+  width: 80%;
+  background: #e6e6e6;
+  height: 30px;
+  border-radius: 15px;
+padding:10px;
+}
+.input_box_r:focus{  
+  outline: none;
+}
+.main_resident_info{
+    display: none;
+     width: 100%;
+    overflow: hidden;
+}
+.basic_info label{
+    font-family:"Century Gothic";
+  font-size: 15px;
+}
+
+.basic_info input[type="radio"]{
+  display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+    -moz-border-radius:  50%;
+    border-radius:  50%;
+}
+
+.register_btn_container{
+     width: 100%;
+     height: 100%!important;
+    overflow: hidden;
+}
+/*
+End Register Page
 */

@@ -6,10 +6,11 @@ too many pages, we can rename this file name to something that will incorporate 
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Register or Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login to Driplit</title>
         <link rel="stylesheet" href="../Stylesheets/general.css">
     </head>
-    <body class="bgRegister">
+    <body class="bgLogin">
         <div class="limiter">
             <div class="login_container"> 
         <div class="login_content">
@@ -21,7 +22,7 @@ too many pages, we can rename this file name to something that will incorporate 
                         Member Login
                 </span>
 
-                <div class="login_input">
+                <div class="login_input" validate="Provide a valid username with a '@' ">
                         <input class="input_box" type="text" name="email" placeholder="Email">
                 </div>
 
@@ -30,9 +31,7 @@ too many pages, we can rename this file name to something that will incorporate 
                 </div>
 
                 <div class="login_button_con">
-                        <button class="login_button">
-                                Login
-                        </button>
+                    <input type="submit" value="Login" class="login_button">
                 </div>
 
                 <div class="text-center p-t-12">
@@ -45,7 +44,7 @@ too many pages, we can rename this file name to something that will incorporate 
                 </div>
 
                 <div class="text-center p-t-136">
-                        <a class="txt2" href="#">
+                    <a class="txt2" href="../View/Register.php">
                                 Create your Account
                                 <i><img src="../Images/right-arrow.png" alt="---->" width="15" height="15"></i>
                         </a>
