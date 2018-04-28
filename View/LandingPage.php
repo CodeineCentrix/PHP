@@ -71,7 +71,7 @@
             </g>
     </svg>
                 <div class="login_section ">  
-                    <a href="">Login</a> 
+                    <a href="../View/Login.php">Login</a> 
                     <a href="">Register</a> 
                 </div>
                 </div>

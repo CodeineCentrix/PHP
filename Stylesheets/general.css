@@ -1,0 +1,165 @@
+/*
+Try to make a base CSS so that pages with similar functionality can use these features instead of creating multiple stylesheets for the same functionality
+could create one stylesheet  for all but that will confuse the hell outa us. 
+*/
+/* 
+    Created on : 27 Apr 2018, 11:51:22 PM
+    Author     : s217057098
+*/
+/*
+Login page style BEGIN ============
+*/
+.bgRegister{
+
+    background-image: url('../Images/bgregister.jpg');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+/*    opacity: 0.3;*/
+}
+
+.login_content {
+  width: 50%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 80px 130px 33px 95px;
+}
+
+.login_pic {
+  max-width:  316px;
+}
+
+
+ .login_form {
+  width: 400px;
+}
+
+.login_title {
+  font-family:"Century Gothic";
+  font-size: 36px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+
+  width: 100%;
+  display: block;
+  padding-bottom: 54px;
+}
+.login_input{
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+.input_box {
+ font-family:"Century Gothic";
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666666;
+/*  display: block;*/
+  width: 100%;
+  background: #e6e6e6;
+  height: 30px;
+  border-radius: 15px;
+padding:10px;
+}
+.input_box:focus{  
+  outline: none;
+}
+.login_button_con {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.login_button {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  width: 80%;
+  height: 50px;
+  border-radius: 15px;
+  background: #57b846;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+}
+.login_button:focus{
+    outline: none;
+}
+
+
+.text-center {
+    text-align: center;
+    margin-top: 25px;
+}
+.text-center a{
+    text-decoration: none;
+}
+
+.text-center a:hover{
+    color: green;
+}
+p-t-136 {
+    padding-top: 136px;
+}
+.txt1 {
+  font-family:"Century Gothic";
+  font-size: 13px;
+  line-height: 1.5;
+  color: #999999;
+}
+
+.txt2 {
+  font-family:"Century Gothic";
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666666;
+}
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+.login_container {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+ 
+}
+/*
+End Login Page 
+*/
