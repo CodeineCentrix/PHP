@@ -9,11 +9,11 @@
         <title>Welcome to Droplit</title>
     </head>
     <body>
-<!-- <div class="fullscreen-bg">
+ <div class="fullscreen-bg">
      <video loop muted autoplay poster="../Images/post.png" class="fullscreen-bg__video">
         <source src="../Videos/rain.mp4" type="video/mp4">
     </video>
-        </div>-->
+        </div>
 <div style="width: 2%;" class="card">
   <svg class="icon-menu" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 250 250">
   <title>Menu</title>
