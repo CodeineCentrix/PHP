@@ -25,10 +25,8 @@ private function connectToDB(){
    }
 }
 
-
-
 /*    *****Dear fellow Group Member*****
- *  This Class is designed to be dynamic and doesn't tie itself to one purpose. 
+ *  These methods is designed to be dynamic and doesn't tie itself to one purpose. 
  *  it's a tiered layer(Final layer communicating with DB), meaning the layers before this should provide values in the form of parameters to the method.
  *  if you ever find the need to modify this class -> you're using it wrong!!And will damage the entire system
  */
@@ -41,18 +39,14 @@ private function connectToDB(){
      $this->KillErrorThread($this->is_connected_to_DB);
      $call_procedure ="{ call $procedureName}";
      $statement = sqlsrv_query($this->connection_object,$call_procedure);
-     if ($statement===FALSE) {
-         die(print_r(sqlsrv_errors(),TRUE)); 
-     }
-    // $this->KillErrorThread($statement);
+     $this->KillErrorThread($statement);
      $table = array();
      while ($row = sqlsrv_fetch_array($statement,SQLSRV_FETCH_NUMERIC)) {
          $table[] = $row;
      }
      sqlsrv_free_stmt($statement);
      sqlsrv_close($this->connection_object);
-     return $table;
- 
+     return $table; 
      //Method is done.
  } //End sp_SelectStatement
  
@@ -62,7 +56,6 @@ private function connectToDB(){
      */ 
       $this->connectToDB();
      $this->KillErrorThread($this->is_connected_to_DB);
-   // Build the Query
      $call_procedure ="{ $procedureName}";
      $statement = sqlsrv_query($this->connection_object,$call_procedure,$parameters);
      $this->KillErrorThread($statement);
@@ -86,25 +79,23 @@ private function connectToDB(){
      $call_procedure = "{call $procedureName}";
      $result = sqlsrv_query($this->connection_object,$call_procedure,$parameters);
      $this->KillErrorThread($result);
-     return sqlsrv_rows_affected($result)>0;
- }
+     $affected_rows =sqlsrv_rows_affected($result);
+     sqlsrv_free_stmt($result);
+     sqlsrv_close($this->connection_object);
+     return $affected_rows> 0;
+     //Method is done.
+ }//End sp_NonQueeyStatementsParams
+ 
  function KillErrorThread($isValid){
+     /*
+      * This method is purely to provide undescriptive error messages- can also be used to redirect to error pages.
+      * but users shouldn't know what the errors are mapped to. 
+      */
      $this->count++;
      if (!$isValid) {
          die(print_r("Error occured, Sorry!".$this->count,TRUE));
      }
  }
  
- function createQuestionMarks($paramCount){
-     $message = "";
-     for($i = 1;$i<$paramCount;$i++){
-         if ($i==$paramCount) {
-             $message."?";
-         }else{
-         $message."?,";
-         }
-     }
-     return $message;
- }
 }
 
