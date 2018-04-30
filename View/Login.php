@@ -14,8 +14,8 @@ too many pages, we can rename this file name to something that will incorporate 
         <div class="limiter">
             <div class="login_container"> 
         <div class="login_content">
-        <div class="login_pic">
-            <img src="../Images/complogo.png" alt="IMG" height="400"width="400">
+            <div class="login_pic" style="background-color:rgb(240,240,240);">
+                <img src="../Images/companylogo.png" alt="IMG" >
         </div>
         <form class="login_form">
                 <span class="login_title">

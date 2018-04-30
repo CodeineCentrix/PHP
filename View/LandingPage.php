@@ -7,6 +7,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Droplit</title>
+        
+        <style>
+            html {
+            cursor: url('../Images/cursor.png'), auto;
+            }
+        </style>
     </head>
     <body>
  <div class="fullscreen-bg">

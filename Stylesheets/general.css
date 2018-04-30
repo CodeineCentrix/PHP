@@ -40,6 +40,11 @@ Login page style BEGIN ============
 .login_pic {
   max-width:  316px;
 }
+.login_pic img{
+    max-height: 100%;
+    max-width: 100%;
+   
+}
 
 
  .login_form {
@@ -255,3 +260,12 @@ End Register Page
 */
 
 /* Thuli was here 2018/04/30*/
+/*
+*
+Begin View news article web page
+*/
+
+
+/*
+End view news article web page
+*/

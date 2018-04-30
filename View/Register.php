@@ -10,25 +10,20 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register on Driplit</title>
         <link rel="stylesheet" href="../Stylesheets/general.css">
-        <script>
-                    function isMainResident(){
-                        document.getElementById('main_resident').style.display = "block";
-                    }
-                    function isNormalResident(){
-                        document.getElementById('main_resident').style.display = "none";
-                    }
-        </script>
+        <script src="../Scripts/centrixScript.js"></script>
         <style>
             html{
                 overflow-y: scroll;
+                
             }
         </style>
     </head>
-    <body class="bgRegister">\
+    <body class="bgRegister">
         <div class="limiter">
             <div class="login_container">
         <div class="r_main_content">
             <h1 class="login_title">Register to continue</h1>
+            <label>Add more decorations here</label>
             
             <div class="basic_info">
                 <input type="text" placeholder="Username" class="input_box_r"><br>
