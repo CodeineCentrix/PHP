@@ -167,21 +167,6 @@ transform: rotate(45deg) translateY(0) translateX(0);
   transform-origin: 15px 140px;
   -webkit-transform-origin: left;
 }
-.line.active {
-  stroke: #1ad1fc;
-}
-.line--2.clicked {
-  opacity: 0;
-}
-.line--1.clicked {
-  transform: rotate(45deg) translateY(0) translateX(0);
-}
-.line--3.clicked {
-  transform: rotate(-45deg) translateY(0) translateX(0);
-}
-/*End Burger*/
-
-/*Menu tray*/
 .card {
   background: #1ad1fc;
   box-shadow: 0 0 5em rgba(0, 0, 0, 0.4);
@@ -189,8 +174,8 @@ transform: rotate(45deg) translateY(0) translateX(0);
   height: 30em;
   position: absolute;
   left: 0%;
-  top: 30%;
-  transform: translate(-50%, -50%);
+  top: 0%;
+  transform: translate(0%, 0%);
 }
 
 .drawer {
