@@ -8,19 +8,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Droplit</title>
         
-        <style>
-            html {
-            cursor: url('../Images/cursor.png'), auto;
-            }
-        </style>
     </head>
     <body>
+        <div class="content_holder">
  <div class="fullscreen-bg">
      <video loop muted autoplay poster="../Images/post.png" class="fullscreen-bg__video">
         <source src="../Videos/rain.mp4" type="video/mp4">
     </video>
         </div>
-<div style="width: 2%;" class="card">
+<div  class="card">
   <svg class="icon-menu" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 250 250">
   <title>Menu</title>
   <g>
@@ -53,16 +49,18 @@
 
   </div>
 </div>
-<div>
             
 
-            <div class="middlise" style="padding-top: 0; height: 100% !important;">
-                <div style="width: 50%;" class="middlise">
-                     <ul>
+            <div class="middlise" style="padding: 0; height: 100% !important;">
+                <div style="width: 100%;" class="middlise">
+                    
+                    <ul style="padding:0;">
                          <li class="slideInDown">W  a  t  e  r</li>
                          <li class="slideInLeft">i  s</li>
                          <li class="slideInDown">L  i  f  e</li>
             </ul>
+                        
+                    
     <svg version="1.1" id="Layer_1" class="slideInUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="200px" height="200px" viewBox="0 0 141.667 126.334" enable-background="new 0 0 141.667 126.334"
      xml:space="preserve">
@@ -77,41 +75,18 @@
             </g>
             </g>
     </svg>
-                <div class="login_section ">  
+                    
+                    
+                <div class="login_section middliseV2 ">  
                     <a href="../View/Login.php">Login</a> 
                     <a href="../View/Register.php">Register</a> 
                 </div>
+                   
                 </div>
                 
                 
-            </div>         
-        <?php
-//       $ms_server_name = "HAICH-HUB96";
-//       $ms_conInfo = array("Database"=>"AVIACO");
-//       $con= sqlsrv_connect($ms_server_name,$ms_conInfo);        
-//       if(!$con){
-//            echo 'Couldnt\'t connect' ;
-//        }else{
-//           //echo '<h1>Connection Esthablished</h1> </br>';
-//           sqlsrv_begin_transaction($con);
-//           $SqlStatement = "SELECT CUS_LNAME + '  '+ CUS_FNAME AS Names
-//                  , CUS_BALANCE AS Owing
-//                   FROM CUSTOMER WHERE CUS_BALANCE > 10;";
-//                   
-//           $myresults = sqlsrv_query($con,$SqlStatement);
-//           //sqlsrv_prepare($con,$myresults);
-//           if(!$myresults){
-//               echo 'Results return issue!';
-//           }else{
-//               while ($row = sqlsrv_fetch_array($myresults, SQLSRV_FETCH_NUMERIC)) {
-//                   echo "<label>Customer Name: $row[0]</label>"."<br/><br/>"."<label>Amount Due: R$row[1] </label>"."<hr/></br>";
-//               }
-//               sqlsrv_free_stmt($myresults);
-//           }
-//        }
-      // die(print_r(sqlsrv_errors(),true));
-        ?>
-        </div>
+            </div>
+        </div>            
 <script>
 $('.icon-menu').on('click', function() {
  $(this).toggleClass('clicked');
