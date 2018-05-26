@@ -78,8 +78,8 @@
                     
                     
                 <div class="login_section middliseV2 ">  
-                    <a href="../View/Login.php">Login</a> 
-                    <a href="../View/Register.php">Register</a> 
+                    <a href="../Controller/MainController.php?action=login_page">Login</a> 
+                    <a href="../Controller/MainController.php?action=register_page">Register</a> 
                 </div>
                    
                 </div>
