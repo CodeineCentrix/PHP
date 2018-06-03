@@ -7,26 +7,21 @@
  */
 
 /**
- * Description of Register
- * Allows a main resident or normal resident to register onto the site.
+ * Description of WaterUsage
+ *
  * @author Haich
  */
-class Register {
+class WaterUsage {
     //put your code here
     private $username;
-    private $password;
-    private $name;
-    private $postal_code;
-    
-    function __construct() {
+    private $user_usage;
+    private  $date;
+            function __construct() {
         
     }
     
-    function CheckIfUserExists() {
+    function AddRecord($param) {
         
     }
     
-    function AddUserToDatabase() {
-        
-    }
 }
