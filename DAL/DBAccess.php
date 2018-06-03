@@ -13,4 +13,18 @@
  */
 class DBAccess {
     //put your code here
+    
+    function __construct() {
+        
+    }
+    
+    public function get_news_items($to, $from) {
+        $param = array(
+            $to,
+            $from
+                
+        );        
+        return DBhelper::sp_SelectWithParams("stored_procedure", $param);
+    }
+    
 }

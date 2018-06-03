@@ -6,6 +6,8 @@
  * @author s217057098
  */
 include '../DAL/DBhelper.php';
+include '../DAL/DBHandler.php';
+include'../Model/Login.php';
 $action = filter_input(INPUT_POST, 'action');
 if ($action==NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -25,20 +27,34 @@ switch ($action){
         include '../View/Register.php';
         break;
     // End Page displaying/ request  section 
+    
+    
+    
+    
     case 'login':
         $username = filter_input(INPUT_POST, 'placeholder_username');
         $password = filter_input(INPUT_POST, 'placeholder_password');
-        $stored_procedure = "usp_DBStored_procedure(?, ?)";
-        $credentials = array(
-            "DBcolum_name"=> $username,
-            "DBcolumn_name"=> $password
-        );
-        $user_details = DBhelper::sp_SelectWithParams($stored_procedure, $credentials);
-        
+        $creds = new Login($username,$password);
+        if ($creds==FALSE) {
+           //Logic for catching a invalid login   
+        }
         break;
+        
+        
+        
+        
     case 'register_resident':
         break;
+    
+    
+    
     case 'register_owner':
+        break;
+    
+    
+    
+    case 'news':
+        
         break;
     
         
