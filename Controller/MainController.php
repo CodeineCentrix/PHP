@@ -44,6 +44,7 @@ switch ($action){
         
         
     case 'register_resident':
+        
         break;
     
     
