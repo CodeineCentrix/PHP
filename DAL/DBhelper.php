@@ -7,7 +7,7 @@ When using this class specifically it is really important to note:
  * As of SQLSRV3.0 prebuilt methods use the sqlsrv_connect syntax, that is sqlsrv_'method_name'
  *  */
 
-class DBhelper{
+class  DBhelper{
 private $server_address = "localhost"; //Use 127.0.0.1 or localhost if using your own machine for testing
 private $database_name="HaichDB"; //name of the database we would like to connect to
 private $connection_object;
@@ -31,7 +31,7 @@ private function connectToDB(){
  *  if you ever find the need to modify this class -> you're using it wrong!!And will damage the entire system
  */
  
- public function sp_SelectStatement($procedureName = null) {
+ public static function sp_SelectStatement($procedureName = null) {
      /* Gets a stored procedure to run with no parameters for the stored procedure
       * Runs Selects statements and returns a table to the method calling it.
       */
@@ -50,7 +50,7 @@ private function connectToDB(){
      //Method is done.
  } //End sp_SelectStatement
  
- public function sp_SelectWithParams($procedureName = null,$parameters=null) {
+ public static function sp_SelectWithParams($procedureName = null,$parameters=null) {
     /* Gets a stored procedure including parameters 
      * Runs a Select statement and returns a table to the method calling it.
      */ 
@@ -70,7 +70,7 @@ private function connectToDB(){
      //Method is done
  }//End sp_SelectWithParams
  
- public function sp_NonQueryStatementsParams($procedureName,$parameters) {
+ public static function sp_NonQueryStatementsParams($procedureName,$parameters) {
      /* Gets a stored procedure including parameters 
       * Runs a none select such as INSERT, UPDATE... etc, and returns an  bool indicating success or failure.
       */

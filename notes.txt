@@ -1,0 +1,33 @@
+
+<--Entire Project Structure-->
+
+1) It all begins in the UI where someone performs an action ...
+
+2) Track what the action is... Using UI Javascript or UI native languages
+
+3) Send the action to the controller.. via a post or get then controller will decide what is being requested
+
+4) Let the controller get the data if there is data required for the action to be complete
+
+5) Let the controller make appropriate objects and call methods.. 
+5a) Map the objects to relevant Model classes
+5b) Let the Model send or retrieve the data to the database via the dedicated DAL chain 
+
+6) Let the controller return the result or result set
+
+7) Let the controller include the web page also providing data for that web page
+
+8) In the web page use the data requested from the Controller to fill controls  
+
+<-- End project structure --> 
+
+<--- Approach for new articles -->
+Multiple records in database but only want to display a few? 
+then use offset fetch inside of your stored procedure Eg: 
+Skip first 10 rows from the sorted result set and return the remaining rows.
+SELECT First Name + ' ' + Last Name FROM Employees ORDER BY First Name OFFSET 10 ROWS; 
+Version 2  of the above 
+ Skip first 10 rows from the sorted resultset and return next 5 rows.
+SELECT First Name + ' ' + Last Name FROM Employees ORDER BY First Name OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY;
+<--- End of news article approach -->
+

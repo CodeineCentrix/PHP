@@ -39,6 +39,7 @@ Login page style BEGIN ============
 
 .login_pic {
   max-width:  316px;
+  border-radius: 10px;
 }
 .login_pic img{
     max-height: 100%;
@@ -264,8 +265,95 @@ End Register Page
 *
 Begin View news article web page
 */
+.news_header{
+    max-height: 150px !important;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    overflow: hidden;
+}
+
+ #header_pic{
+    height: 100%;
+    width: 45% !important;
+   float: left;
+   overflow: hidden;
+/*   background-image: url('../Images/companylogo.png');
+     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+}
+#header_pic img{
+    max-height: 10%;
+    max-width: 30%;
+}
 
 
+.page_headings{
+    font-family: "Century Gothic";
+    font-size: 45px;
+    text-align: left;
+}
+
+.center_tag{
+    margin: auto;
+/*    width: 50%;*/
+    padding: 10px;
+}
+
+.news_main_image{
+    width: 100%;
+    height: 5%;
+    overflow: hidden;
+    padding-left: 10%;
+}
+
+.news_main_image img{
+    max-height: 600px;
+    width: 80%;
+}
+
+.news_items_holder{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.news_item{
+    width:70%;
+    height: auto;
+    border-style: solid;
+    border-color: rgb(224,224,224);
+    border-radius: 3px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.news_item_image{
+ width: 30%;
+ height: inherit;
+ margin: 0;
+ float: left;
+}
+
+.news_item_details{
+    width: 65%;
+    height: inherit;
+    float: left;
+}
+
+.news_item_title{
+    width: 100%;
+}
+
+.news_item_creds{
+    width: 100%;
+}
+.news_item:hover{
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
 /*
 End view news article web page
 */

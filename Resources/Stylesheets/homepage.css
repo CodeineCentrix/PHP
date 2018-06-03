@@ -8,6 +8,31 @@ and open the template in the editor.
     Author     : Haich
 */
 
+
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.content_holder{
+    width: 100%;
+    height: 100%;
+   overflow: hidden;
+   margin: 0;
+   padding: 0;
+}
+html {
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            }
+            
+.fullscreen-bg  {
+                cursor: url('../Images/cursor.png'), auto;
+            }
 label{
     font-family: 'Century Gothic';
     color:black;
@@ -31,9 +56,19 @@ ul {
 }
 .middlise{
     margin: auto;
-    padding: 30px;
+    padding: 0px;
     overflow: hidden;
     width: 100%;
+    height: 100% !important;
+    cursor: url('../Images/cursor.png'), auto;
+}
+
+.middliseV2{
+    margin: auto;   
+    overflow: hidden;
+    width: 100%;
+    height: 100% !important;
+    cursor: url('../Images/cursor.png'), auto; 
 }
 /*The drawable heart*/
 path,
@@ -64,12 +99,16 @@ polyline {
 /*Background Videos*/
 .fullscreen-bg {
     position: fixed;
-    top: 0;
+/*    top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 0;*/
+width: 100% !important;
+height: 100% !important;
     overflow: hidden;
     z-index: -100;
+    margin: 0;
+   padding: 0;
 }
 .fullscreen-bg__video {
     position: absolute;
@@ -106,7 +145,8 @@ polyline {
     padding: 1%;
 }
 .login_section{
-    width: 100%;
+    width: 50%;
+    height: 33%; 
 }
 .login_section a:hover{
     background-color: lightcyan;
@@ -167,30 +207,17 @@ transform: rotate(45deg) translateY(0) translateX(0);
   transform-origin: 15px 140px;
   -webkit-transform-origin: left;
 }
-.line.active {
-  stroke: #1ad1fc;
-}
-.line--2.clicked {
-  opacity: 0;
-}
-.line--1.clicked {
-  transform: rotate(45deg) translateY(0) translateX(0);
-}
-.line--3.clicked {
-  transform: rotate(-45deg) translateY(0) translateX(0);
-}
-/*End Burger*/
-
-/*Menu tray*/
 .card {
   background: #1ad1fc;
-  box-shadow: 0 0 5em rgba(0, 0, 0, 0.4);
-  width: 18em;
-  height: 30em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  width: 5%;
+  height: 100%;
   position: absolute;
   left: 0%;
-  top: 30%;
-  transform: translate(-50%, -50%);
+  top: 0%;
+  transform: translate(0%, 0%);
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .drawer {
@@ -203,10 +230,11 @@ transform: rotate(45deg) translateY(0) translateX(0);
   top: 0;
   bottom: 0;
   overflow: hidden;
-  width: 1.5em;
-  padding: 1em;
+  width: 100%;
+  padding: 5px;
   transition: all .5s linear;
   height: 100%;
+  padding-top: 0;
 }
 
 
@@ -268,7 +296,7 @@ div.link_con:nth-of-type(4) {
   transform: translateY(0);
 }
 
-.menu {
+/*.menu {
   color: #fff;
   z-index: 999;
   position: absolute;
@@ -281,11 +309,11 @@ div.link_con:nth-of-type(4) {
 .menu.clicked {
   color: #1ad1fc;
   left: 2em;
-}
+}*/
 
 .drawer.clicked {
   opacity: 1;
-  width: 3em;
+  width: 100%;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.45);
 }
 
