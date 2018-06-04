@@ -50,14 +50,26 @@ and open the template in the editor.
         </div>
         
         <?php 
-          // print_r($news);
-            if ($news==NULL) {
-                echo 'Looks like we\'re out of news!';
-            } else {
-                echo '<a href="">Previous</a> | <a href="">Next</a>'; 
-             }
+            if ($news==NULL):?>
+        <div class="news_none center_tag">
+            <div class="center_tag">
+                <img src="../Resources/Images/nerd.png">               
+            </div>
+            <h1>Looks as if you've ran out of news items to read</h1>
+            <a a href='../Controller/MainController.php?action=home'>Other cool things to do?</a>
+        </div>
+            <?php else: ?>
+        <form method="POST" action="."> 
+            <?php if($to>0): ?>
+        <div class="pgn_holder center_tag">
+        <a href="<?php echo "../Controller/MainController.php?action=news&to=".$to-=$from."&from=5";?>" class="news_prev">
+            <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
+        <?php  endif;?>
             
-            ?>
-   
+         <a href="<?php echo "../Controller/MainController.php?action=news&to=".$to-=$from."&from=5";?>" class="news_next">
+            Forward<span class="img_next"><img src="../Resources/Images/next.png"></span></a>
+        </div>
+        </form>
+        <?php endif;?>
     </body>
 </html>

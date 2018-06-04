@@ -74,7 +74,11 @@ switch ($action){
     case 'news':
         $to = filter_input(INPUT_POST, 'to_placeholder');
         $from = filter_input(INPUT_POST, 'from_placeholder');
-        $news = $dataAceess->get_news_items(5, 0);
+        if (!isset($to)&& !isset($from)) {
+            $to = 0;
+            $from = 5;
+        }
+        $news = $dataAceess->get_news_items($from, $to);
         if ($news==NULL) {
             $news_message ="Looks like you've reached the end of our news feed!";
         } else {

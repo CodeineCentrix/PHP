@@ -30,4 +30,4 @@ Version 2  of the above
  Skip first 10 rows from the sorted resultset and return next 5 rows.
 SELECT First Name + ' ' + Last Name FROM Employees ORDER BY First Name OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY;
 <--- End of news article approach -->
-
+https://assets.mozilla.net/video/web-demystified/episode-0-the-web.webm
