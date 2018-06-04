@@ -6,18 +6,17 @@
  * @author s217057098
  */
 include '../DAL/DBhelper.php';
-include '../DAL/DBHandler.php';
 include '../DAL/DBAccess.php';
 include'../Model/Login.php';
-$action = filter_input(INPUT_POST, 'action');
-if ($action==NULL) {
-    $action = filter_input(INPUT_GET, 'action');
-    if ($action==NULL) {
-        include "../Resources/View/LandingPage.php";
-        exit();
-    }
-}
-
+//$action = filter_input(INPUT_POST, 'action');
+//if ($action==NULL) {
+//    $action = filter_input(INPUT_GET, 'action');
+//    if ($action==NULL) {
+//        include "../Resources/View/LandingPage.php";
+//        exit();
+//    }
+//}
+$action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
 switch ($action){
@@ -75,11 +74,11 @@ switch ($action){
     case 'news':
         $to = filter_input(INPUT_POST, 'to_placeholder');
         $from = filter_input(INPUT_POST, 'from_placeholder');
-        $news = $dataAceess->get_news_items($to, $from);
+        $news = $dataAceess->get_news_items(5, 0);
         if ($news==NULL) {
             $news_message ="Looks like you've reached the end of our news feed!";
         } else {
-            //Include webpage and loop through news articles to display them inside of webpage in a div manner
+            include_once '../Resources/View/view_news.php';
         }        
         break;
     
@@ -100,5 +99,47 @@ switch ($action){
     case 'add_reading':
         $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
         $date_recorded = filter_input(INPUT_POST, 'date_placeholder');
+        $reading = filter_input(INPUT_POST, 'reading_placeholder');
+        $results = $dataAceess->add_reading($user_id, $date_recorded, $reading);
+        break;
+    
+    
+    case 'graph_data':
+      $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
+      $graph_data = $dataAceess->graph_data($user_id);
+    break;
+
+
+    case 'custom_graph_data':
+        $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
+        $start_date = filter_input(INPUT_POST, 'start_date_placeholder');
+        $end_date = filter_input(INPUT_POST, 'end_date_placeholder');
+        $graph_data = $dataAceess->custom_graph_data($user_id, $start_date, $end_date);
+        break;
+    
+    case'area_stats':
+         $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
+        $area_stats = $dataAceess->area_stats($user_id);
+        $combobox_data = $dataAceess->area_stats_combobox();
+        break;
+    
+    
+    case'area_stats_custom':
+         $to = filter_input(INPUT_POST, 'to_placeholder');
+        $from = filter_input(INPUT_POST, 'from_placeholder');
+         $area_stats_custom = $dataAceess->area_stats_custom($user_id, $surburb);
+         $combobox_data = $dataAceess->area_stats_combobox();
+        break;
+    
+    case 'tips_tricks':
+        $to = filter_input(INPUT_POST, 'to_placeholder');
+        $from = filter_input(INPUT_POST, 'from_placeholder');
+        $tips_tricks = $dataAceess->view_tips_tricks($to, $from);
+        break;
+    
+    case 'tips_tricks_add':
+         $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
+        $comment = filter_input(INPUT_POST, 'start_date_placeholder');
+        $tips_trick_feedback = $dataAceess->add_tip_tricks($user_id, $comment);
         break;
 }

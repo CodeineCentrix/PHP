@@ -319,7 +319,7 @@ Begin View news article web page
 }
 .news_item{
     width:70%;
-    height: auto;
+    height: 50%;
     border-style: solid;
     border-color: rgb(224,224,224);
     border-radius: 3px;
@@ -330,8 +330,8 @@ Begin View news article web page
 }
 
 .news_item_image{
- width: 30%;
- height: inherit;
+ max-width: 30% ;
+ height: 100%;
  margin: 0;
  float: left;
 }
@@ -339,13 +339,18 @@ Begin View news article web page
 .news_item_details{
     width: 65%;
     height: inherit;
-    float: left;
+    float: right;
 }
 
 .news_item_title{
     width: 100%;
+    
 }
 
+.news_item_desc{
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    display: none;
+}
 .news_item_creds{
     width: 100%;
 }
@@ -353,6 +358,10 @@ Begin View news article web page
     -moz-box-shadow: 0 0 10px #ccc;
     -webkit-box-shadow: 0 0 10px #ccc;
     box-shadow: 0 0 10px #ccc;
+}
+
+.acord{
+    
 }
 /*
 End view news article web page

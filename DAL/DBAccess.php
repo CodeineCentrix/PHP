@@ -19,10 +19,10 @@ class DBAccess {
     }
     
     public function get_news_items($to =5, $from=0) {
-        $stored_procedure ="";
+        $stored_procedure ="uspWEBViewNews(?, ?) ";
         $param = array(
-            $to,
-            $from
+             $to,
+             $from
                 
         );        
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
@@ -80,6 +80,73 @@ class DBAccess {
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
+    public function add_reading($user_id, $date_recorded,$reading) {
+       $stored_procedure ="";
+       $param = array(
+            $user_id,
+            $date_recorded,
+            $reading
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
     
+    public function custom_graph_data($user_id, $start_date,$end_date) {
+         $stored_procedure="";
+        $param = array(
+            $user_id,
+            $start_date,
+            $end_date
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
     
+     public function graph_data($user_id) {
+        $stored_procedure="";
+        $param = array(
+            $user_id
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function area_stats($user_id) {
+       $stored_procedure=""; 
+       $param = array(
+            $user_id
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function area_stats_custom($user_id, $surburb) {
+        $stored_procedure="";
+        $param = array(
+            $user_id,
+            $surburb
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function area_stats_combobox(){
+        $stored_procedure="";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function view_tips_tricks($to, $from) {
+        $stored_procedure ="";
+        $param = array(
+            $to,
+            $from
+                
+        );        
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function add_tip_tricks($user_id, $comment) {
+        $stored_procedure ="";
+        $param = array(
+            $user_id,
+            $comment
+                
+        );  
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
 }

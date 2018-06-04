@@ -61,7 +61,7 @@ private static function connectToDB(){
     self::connectToDB();
      
     self::KillErrorThread(self::$is_connected_to_DB);
-     $call_procedure ="{ $procedureName}";
+     $call_procedure ="{call $procedureName}";
      $statement = sqlsrv_query(self::$connection_object,$call_procedure,$parameters);
      self::KillErrorThread($statement);
      $table = array();
