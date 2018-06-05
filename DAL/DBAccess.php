@@ -149,4 +149,9 @@ class DBAccess {
         );  
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
+    
+    public function AllNewsRecords(){
+        $stored_procedure ="uspWEBNewsCount";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
 }

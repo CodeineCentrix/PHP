@@ -389,13 +389,18 @@ Begin View news article web page
 }
 
 .news_none a {
-    text-decoration: none;
+    
     color: greenyellow;
 }
 
 .pgn_holder{
-    width: 80%;
+    width: 50%;
     overflow: hidden;
+}
+
+.pgn_holder a {
+    text-decoration: none;
+    color: grey;
 }
 .news_prev{
    float: left; 
@@ -407,6 +412,7 @@ Begin View news article web page
 .img_next .img_prev{
    max-width: 100% !important;
    object-fit: contain;
+   
 }
 /*
 End view news article web page

@@ -13,7 +13,7 @@ and open the template in the editor.
         <div>
         <?php
         include '../../DAL/DBhelper.php';
-        $emps = new DBhelper();
+        
 /*
  * How to use the methods in the DBhelper class, this one below is an example of how to pass parameters to a stored procedure
  * this is just for test purposes, we'll later move the code to the relevant class
@@ -32,10 +32,11 @@ and open the template in the editor.
         * The code below uses the DBhelper to call a stored procedure with no parameters. But should return an array. 
         * this is just for test purposes, we'll later move the code to the relevant class 
         */
-//        $emps = new DBhelper();
-//        $tabs = $emps->sp_SelectStatement(" usp_testProcedure");
-//        print_r($tabs);
-        echo '</br></br></br>';
+        
+        $tabs = DBhelper::sp_SelectStatement(" uspWEBNewsCount");
+        $water = implode($tabs['0']);
+        //print_r($water);
+        echo "$water";
         /*------------------------------------------------END REGION--------------------------------------------------------------------*/
         /*
          * The code below is intended to add a new customer to the database! Using stored procedures. We seriously need to consider PHP and MS SQL Datatypes. Convert when neccessary

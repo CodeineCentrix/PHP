@@ -8,14 +8,14 @@
 include '../DAL/DBhelper.php';
 include '../DAL/DBAccess.php';
 include'../Model/Login.php';
-//$action = filter_input(INPUT_POST, 'action');
-//if ($action==NULL) {
-//    $action = filter_input(INPUT_GET, 'action');
-//    if ($action==NULL) {
-//        include "../Resources/View/LandingPage.php";
-//        exit();
-//    }
-//}
+$action = filter_input(INPUT_POST, 'action');
+if ($action==NULL) {
+    $action = filter_input(INPUT_GET, 'action');
+    if ($action==NULL) {
+        include "../Resources/View/LandingPage.php";
+        exit();
+    }
+}
 $action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
@@ -72,18 +72,18 @@ switch ($action){
     
     
     case 'news':
-        $to = filter_input(INPUT_POST, 'to_placeholder');
-        $from = filter_input(INPUT_POST, 'from_placeholder');
+        $to = filter_input(INPUT_GET, 'to');
+        $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
             $to = 0;
             $from = 5;
         }
+        $previous = $to - $from;
         $news = $dataAceess->get_news_items($from, $to);
-        if ($news==NULL) {
-            $news_message ="Looks like you've reached the end of our news feed!";
-        } else {
-            include_once '../Resources/View/view_news.php';
-        }        
+        $total_records_count = $dataAceess->AllNewsRecords();
+        $total_records = implode($total_records_count[0]);
+        $to += $from;
+            include '../Resources/View/view_news.php';   
         break;
     
         

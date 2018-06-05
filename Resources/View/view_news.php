@@ -1,29 +1,18 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">
+        <link rel="stylesheet" type="text/css" href="../Resources/Stylesheets/myStyles.css">
+<!--        <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <script src="../Scripts/jquery.min.js"></script>-->
         <title>News </title>
     </head>
     <body>
-        <div class="news_header">
-            <div id="header_pic"> 
-                <img src="../Resources/Images/companylogo.png" alt="Company Logo">
-            </div>
-            <h1 class="page_headings"> Droplit with the news </h1>
-        </div>
-        <h2 style="text-align: center; font-family: 'Century Gothic'">Take a read on custom created news items sourced from multiple sources.</h2>
-      
-        <div class="news_items_holder">
-            <h3 style="text-align:center;">Top Stories: </h3>
-            
-            
+       <?php include '../Resources/View/header.php'; ?>    
+       <?php //include '../Resources/View/Menu.php'; ?>     
             
             <?php foreach ($news as $value): ?>
             
@@ -45,7 +34,7 @@ and open the template in the editor.
                     </div>
             </div>
                 
-            </div><br><br><hr><br>
+            </div><br><br>
             <?php endforeach; ?> 
         </div>
         
@@ -60,14 +49,16 @@ and open the template in the editor.
         </div>
             <?php else: ?>
         <form method="POST" action="."> 
-            <?php if($to>0): ?>
-        <div class="pgn_holder center_tag">
-        <a href="<?php echo "../Controller/MainController.php?action=news&to=".$to-=$from."&from=5";?>" class="news_prev">
+            <div class="pgn_holder center_tag">
+            <?php /*if($previous>0)*/if(1==1): ?>
+        <a href="<?php echo "../Controller/MainController.php?action=news&to=$previous&from=5";?>" class="news_prev">
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>
             
-         <a href="<?php echo "../Controller/MainController.php?action=news&to=".$to-=$from."&from=5";?>" class="news_next">
-            Forward<span class="img_next"><img src="../Resources/Images/next.png"></span></a>
+            <?php /*if($to<=$total_records)*/if(1==1):?>
+                <a href="<?php echo "../Controller/MainController.php?action=news&to=$to&from=5&records=$total_records";?>" class="news_next">
+                    <span class="img_next"> <label>next</label><img  src="../Resources/Images/next.png"></span></a>
+            <?php endif; ?>
         </div>
         </form>
         <?php endif;?>

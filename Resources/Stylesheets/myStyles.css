@@ -1,0 +1,148 @@
+h1{
+	text-align:center;
+}
+header{
+	background-color:#264d73;
+	
+}
+#header{
+	
+	font-family:"Courier New", Courier, monospace;
+	color:gray;
+}
+/*footer*/
+footer {
+    clear: both;
+    border-top: 2px solid black;
+}
+footer p {
+    text-align: right;
+    font-size: 80%;
+}
+.print:hover {
+	cursor: pointer;
+   
+}
+.displayInfoToUser
+{
+	font-family:"Courier New", Courier, monospace;
+	color:gray;
+}
+.required
+{
+	color: red;
+}
+
+body.recordReadings {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0 2em;
+    background-color: white;
+    border: 1px solid #006699;
+}
+body.MainRes {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 2em;
+    background-color: white;
+    border: 1px solid #006699;
+}
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=date], input[type=number] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text], input[type=password], input[type=date],input[type=number] {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.7;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+button:hover {
+  opacity:1;
+}
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+	 opacity: 0.7
+}
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+	  opacity: 0.7;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), 
+and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    /* background-color: #ccc; */
+	 opacity: 1;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}

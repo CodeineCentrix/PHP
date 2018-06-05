@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../Stylesheets/homepage.css">
-        <link rel="stylesheet" href="../Stylesheets/animate.css">
-        <script src="../Scripts/jquery.min.js"></script>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to Droplit</title>
-        
-    </head>
-    <body>
-        <div class="content_holder">
- <div class="fullscreen-bg">
-     <video loop muted autoplay poster="../Images/post.png" class="fullscreen-bg__video">
-        <source src="../Videos/rain.mp4" type="video/mp4">
-    </video>
-        </div>
+
    <div  class="card">
   <svg class="icon-menu" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 250 250">
   <title>Menu</title>
@@ -46,69 +29,7 @@
         <p class="para">TIPS AND TRICKS</p>
       </div>
     </div>
+        <?php
+        // put your code here
+        ?>
 
-  </div>
-</div>
-            
-
-            <div class="middlise" style="padding: 0; height: 100% !important;">
-                <div style="width: 100%;" class="middlise">
-                    
-                    <ul style="padding:0;">
-                         <li class="slideInDown">W  a  t  e  r</li>
-                         <li class="slideInLeft">i  s</li>
-                         <li class="slideInDown">L  i  f  e</li>
-            </ul>
-                        
-                    
-    <svg version="1.1" id="Layer_1" class="slideInUp" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="200px" height="200px" viewBox="0 0 141.667 126.334" enable-background="new 0 0 141.667 126.334"
-     xml:space="preserve">
-            <g>
-            <g>
-        <path class="path" fill="none" stroke="#000" stroke-width="2" stroke-miterlimit="10" d="M126.274,15.18l-0.091-0.091
-            c-13.42-13.42-35.517-13.08-49.354,0.756l-6.158,6.158l-6.159-6.159C50.677,2.006,28.579,1.669,15.158,15.088l-0.091,0.092
-            C1.646,28.6,1.985,50.698,15.822,64.536l29.793,29.793c0.006,0.006,0.013,0.012,0.019,0.019l0.639,0.639
-            c0.002,0.003,0.005,0.005,0.007,0.008l0.091,0.091c0.002,0.003,0.005,0.005,0.008,0.008l24.291,24.291l24.278-24.278
-            c0.008-0.008,0.016-0.015,0.023-0.022l0.073-0.074l0.667-0.667c0.005-0.005,0.01-0.01,0.015-0.015l29.791-29.791
-            C139.356,50.698,139.694,28.6,126.274,15.18z"/>
-            </g>
-            </g>
-    </svg>
-                    
-                    
-                <div class="login_section middliseV2 ">  
-                    <a href="../Controller/MainController.php?action=login_page">Login</a> 
-                    <a href="../Controller/MainController.php?action=register_page">Register</a> 
-                </div>
-                   
-                </div>
-                
-                
-            </div>
-        </div>            
-<script>
-$('.icon-menu').on('click', function() {
- $(this).toggleClass('clicked');
-  $('.line').toggleClass('active');
-  $('.line--2').toggleClass('clicked');
-  $('.line--1').toggleClass('clicked');
-  $('.line--3').toggleClass('clicked');
-  
-   $('.drawer').toggleClass('clicked');
-  $('.link_con').toggleClass('clicked');
-  $('.card').toggleClass('clicked');
-
-});
-
-$('.menu').on('click', function() {
-
-  $(this).toggleClass('clicked');
-  $('.drawer').toggleClass('clicked');
-  $('.link_con').toggleClass('clicked');
-  $('.card').toggleClass('clicked');
-
-});
-</script>
-    </body>
-</html>
