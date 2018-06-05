@@ -1,27 +1,28 @@
+<?php?>
 <!DOCTYPE html>
 <html>
-<head lang="php" >
+<head>
 <title>Register</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css"
+          href="myStyles.css">
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="MainRes">
+<body class="MainRes" >
 <form action="" method="post">
-  <div>
+  <div class="MainRescontainer">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
- <!--   <hr><span class="required">*</span>
+    <hr><span class="required">*</span>
 	<label><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="name" required><span class="required">*</span>
 
 	<label><b>Last Name</b></label>
     <input type="text" placeholder="Enter Last Name" name="lastname" required><span class="required">*</span>
-	 -->
+	
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-
- <span class="required">*</span>
+    <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
 
     <label for="psw"><b>Password</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
@@ -38,9 +39,9 @@
 	<span class="required">*</span>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" class="required"
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat"required
 	title="Must match above entered password">
-	<br/>
+	</br>
    
    <span class="required">*</span>
 
@@ -57,8 +58,7 @@
   <option value="">Uitenhage</option>
 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span>
 	<label><b>Suburb</b></label>&nbsp;&nbsp;
- <span class="required">*</span>
-   <select name="Suburbs">
+ <select name="Suburbs"><span class="required">*</span>
   <option value="">Green Acres</option>
   <option value="">Summerstrand</option>
   <option value="">Walmer</option>
@@ -70,7 +70,7 @@
 	<label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
 	<br>
-	<label></label>
+	<label name="cant be main"></label>
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
 	<!--<button class="accordion">Register As Main Resident?</button>-->
@@ -107,6 +107,6 @@ Reports and Recording Meter Readings.</p>
   </div>
 </form>
 
- <script src="../Resources/Scripts/Scripts.js"></script>
+ <script src="Scripts.js"></script>
 </body>
 </html>
