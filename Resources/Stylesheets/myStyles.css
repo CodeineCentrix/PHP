@@ -10,6 +10,45 @@ header{
 	font-family:"Courier New", Courier, monospace;
 	color:gray;
 }
+
+/*Password validation style*/
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 5px 20px;
+    font-size: 15px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    
+}
+
 /*footer*/
 footer {
     clear: both;
@@ -19,7 +58,7 @@ footer p {
     text-align: right;
     font-size: 80%;
 }
-.print:hover {
+.click:hover {
 	cursor: pointer;
    
 }
@@ -33,17 +72,17 @@ footer p {
 	color: red;
 }
 
-body.recordReadings {
+body .recordReadings {
     font-family: Arial, Helvetica, sans-serif;
-    width: 600px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2em;
     background-color: white;
     border: 1px solid #006699;
 }
-body.MainRes {
+body .MainRes {
     font-family: Arial, Helvetica, sans-serif;
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2em;
     background-color: white;
@@ -55,7 +94,11 @@ body.MainRes {
 .container {
   padding: 16px;
 }
-
+input[type=password]
+{
+	pattern:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}
+	title:Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters>
+}
 /* Full-width input fields */
 input[type=text], input[type=password],input[type=date], input[type=number] {
   width: 100%;
@@ -64,12 +107,11 @@ input[type=text], input[type=password],input[type=date], input[type=number] {
   display: inline-block;
   border: none;
   background: #f1f1f1;
-}
-
-input[type=text], input[type=password], input[type=date],input[type=number] {
-  background-color: #ddd;
+  
   outline: none;
 }
+
+
 
 /* Overwrite default styles of hr */
 hr {
