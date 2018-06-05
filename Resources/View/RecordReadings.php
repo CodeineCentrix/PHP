@@ -13,20 +13,21 @@
 </head>
 
 <body class="MainRes">
-
+<div class="MainRes">
 <main>
 <h1>Record Meter Readings</h1>
 
 <h2 class="displayInfoToUser">Mkhwanazis' Residence</h2>
 
 <iframe id="iframe" src="../Images/gauge.png" name="iframe_a"></iframe><br>
-<a href="../Resources/View/meterReadingHelp.html" target="iframe_a">Help me read my meter?</a>
+<a href="meterReadingHelp.html" target="iframe_a">Help me read my meter?</a>
 
 
 <form action="" method="post">
-<div class="container"><span class="required">*</span>
+    <br>
+<span class="required">*</span>
 
-<label> <strong>Date:</strong></label><br>
+<label> <strong>Date:</strong></label><br><br>
 <input type="date" name="readingDate" required ><span class="required">*</span>
 
 <label> <strong>Reading:</strong></label><br>
