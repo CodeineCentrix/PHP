@@ -43,7 +43,7 @@ class DBAccess {
     }
     
     public function Register($fullname, $phone_number, $email, $password, $deleted=0 ){
-         $stored_procedure ="";
+         $stored_procedure ="uspWEBRegisterUser(?,?,?,?,?)";
         $param = array(
            $fullname,
            $phone_number,
