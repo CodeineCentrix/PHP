@@ -72,6 +72,10 @@ footer p {
 	color: red;
 }
 
+#iframe{
+    height:330px;
+    width:80%;
+}
 body .recordReadings {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
@@ -96,8 +100,8 @@ body .MainRes {
 }
 input[type=password]
 {
-	pattern:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}
-	title:Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters>
+/*	pattern:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}
+	title:Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters>*/
 }
 /* Full-width input fields */
 input[type=text], input[type=password],input[type=date], input[type=number] {
