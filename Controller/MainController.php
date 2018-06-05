@@ -7,7 +7,6 @@
  */
 include '../DAL/DBhelper.php';
 include '../DAL/DBAccess.php';
-include'../Model/Login.php';
 $action = filter_input(INPUT_POST, 'action');
 if ($action==NULL) {
     $action = filter_input(INPUT_GET, 'action');
