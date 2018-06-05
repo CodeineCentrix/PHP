@@ -72,6 +72,10 @@ footer p {
 	color: red;
 }
 
+#iframe{
+    height:330px;
+    width:80%;
+}
 body .recordReadings {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
