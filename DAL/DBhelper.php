@@ -8,16 +8,17 @@ When using this class specifically it is really important to note:
  *  */
 
 class   DBhelper{
-private static $server_address = "10.103.137.7"; //Use 127.0.0.1 or localhost if using your own machine for testing
+private static $server_address ="localhost"; //"10.103.137.7"; //Use 127.0.0.1 or localhost if using your own machine for testing
 private static $database_name="Codecentrix"; //name of the database we would like to connect to
 private static $connection_object;
 public static $is_connected_to_DB = FALSE;
 public static $count=0;
 
 private static function connectToDB(){
+//    "UID" => "codecentrix" ,
+//    "PWD" => "password", 
     $connection_params = array(	
-	"UID" => "codecentrix" ,
-	"PWD" => "password", 
+	
 	"Database" => self::$database_name
 	);
         self::$connection_object =sqlsrv_connect(self::$server_address,$connection_params);   
