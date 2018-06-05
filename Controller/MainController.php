@@ -48,10 +48,10 @@ switch ($action){
         
         
     case 'register_resident':
-         $fullname = filter_input(INPUT_POST, 'placeholder_username');
-         $phone_number = filter_input(INPUT_POST, 'placeholder_username');
-         $email = filter_input(INPUT_POST, 'placeholder_username');
-         $password = filter_input(INPUT_POST, 'placeholder_username');
+         $fullname = filter_input(INPUT_POST, 'fullname');
+         $phone_number = filter_input(INPUT_POST, 'phoneNumber');
+         $email = filter_input(INPUT_POST, 'email');
+         $password = filter_input(INPUT_POST, 'password');
          $deleted = 0;
          $is_existant = $dataAceess->check_user_existant($email);
          if ($is_existant==FALSE) {
