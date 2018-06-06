@@ -15,7 +15,7 @@ if ($action==NULL) {
         exit();
     }
 }
-$action = 'news';
+//$action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
 switch ($action){
@@ -23,8 +23,9 @@ switch ($action){
     case 'login_page':
         include '../Resources/View/Login.php';
         break;
+    
     case 'register_page':
-        include '../Resources/View/Register.php';
+        include '../Resources/View/register_1.php';
         break;
     // End Page displaying/ request  section 
     
@@ -47,24 +48,19 @@ switch ($action){
         
         
     case 'register_resident':
-         $fullname = filter_input(INPUT_POST, 'fullname');
-         $phone_number = filter_input(INPUT_POST, 'phoneNumber');
+         $fullname = filter_input(INPUT_POST, 'lastname');       
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
          $is_existant = $dataAceess->check_user_existant($email);
-         if ($is_existant==FALSE) {
-            $is_user_registered = $dataAceess->Register($fullname, $phone_number, $email, $password, $deleted);
-          if ($is_user_registered==TRUE) {
-              //Inform user that the have registered successfully. 
-          }else{
-             //Tell user an error occured and that they should try again.. 
-              $register_errors = "An Internal error occured, Please try again";
-          }
-         } else {
-             //Tell user to pick another email address or recommend logging in rather, because they already exist!!
-             $register_errors = "The email picked already exists within the database please select another one!";
-         } 
+         if ($is_existant==NULL) {
+            $is_user_registered = $dataAceess->Register($fullname, $email, $password, $deleted);
+            include '../Resources/View/register_1.php';
+         }
+         else{
+            include '../Resources/View/register_1.php';
+         }
+          
         break;
       
     

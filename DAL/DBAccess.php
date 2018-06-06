@@ -42,11 +42,10 @@ class DBAccess {
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function Register($fullname, $phone_number, $email, $password, $deleted=0 ){
-         $stored_procedure ="uspWEBRegisterUser(?,?,?,?,?)";
+    public function Register($fullname,  $email, $password, $deleted=0 ){
+         $stored_procedure ="uspWEBRegisterUser(?,?,?,?)";
         $param = array(
-           $fullname,
-           $phone_number,
+           $fullname,          
            $email,
            $password,
            $deleted
@@ -54,10 +53,10 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    public function check_user_existant($username) {
-         $stored_procedure ="";
+    public function check_user_existant($email) {
+         $stored_procedure ="uspWEBCheckExistance(?)";
         $param = array(
-            $username
+            $email
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }

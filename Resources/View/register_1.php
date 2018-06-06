@@ -8,22 +8,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
-     
-<form action="" method="post">
+<form action="MainController.php?action=register_resident" method="post">
+    
    <div class="MainRes">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
     <span class="required">*</span>
 	<label><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="fullname" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Name" name="name" required><span class="required">*</span>
 
 	<label><b>Last Name</b></label>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required>
+    <span class="required">*</span>
 	
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
 
-    <label for="psw"><b>Password</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
 	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 	title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
@@ -44,29 +46,29 @@
    
    <span class="required">*</span>
 
-	<label><b>Province</b></label>&nbsp;&nbsp;
+	<label><b>Province</b></label>
     <select name="Provinces">
   <option value="">Eastern Cape</option>
   <option value="">Gauteng</option>
   <option value="">Mpumalanga</option>
-  </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span>
-	<label><b>City</b></label>&nbsp;&nbsp;
+  </select><span class="required">*</span>
+	<label><b>City</b></label>
    <select name="Cities">
   <option value="">Port Elizabeth</option>
   <option value="">Port Alfred</option>
   <option value="">Uitenhage</option>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="required">*</span>
-	<label><b>Suburb</b></label>&nbsp;&nbsp;
+</select><span class="required">*</span>
+	<label><b>Suburb</b></label>
  <select name="Suburbs"><span class="required">*</span>
   <option value="">Green Acres</option>
   <option value="">Summerstrand</option>
   <option value="">Walmer</option>
   </select>
-    <hr><span class="required">*</span>
+    <span class="required">*</span>
 	<label><b>House Number</b></label>
     <input type="text" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
 
-	<label><b>Street Name</b></label>
+   <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
 	<br>
 	<label name="cant be main"></label><!--
@@ -108,8 +110,11 @@ Reports and Recording Meter Readings.</p>
  </div>
 </form>
 
-  <script src="../Scripts/Scripts.js"></script>
+  <script src="../Resources/Scripts/Scripts.js"></script>
+  
+  <?php 
+  print_r($is_existant);
+  echo "$fullname".$email;
+  ?>
 </body>
 </html>
-
-    <script src="../Scripts/Scripts.js"></script>
