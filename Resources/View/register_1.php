@@ -5,6 +5,7 @@
 <title>Register</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
+<script src="../Scripts/Scripts.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
@@ -15,8 +16,9 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 <!--    <span class="required">*</span>
-	<label><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required><span class="required">*</span>
+-->	<label><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" >
+<!--    <span class="required">*</span>
 
 	<label><b>Last Name</b></label>
     <input type="text" placeholder="Enter Last Name" name="lastname" required>-->
@@ -44,25 +46,25 @@
 	title="Must match above entered password">
 	</br>
    
-   <span class="required">*</span>
+<!--   <span class="required">*</span>
 
 	<label><b>Province</b></label>
     <select name="Provinces">
   <option value="">Eastern Cape</option>
   <option value="">Gauteng</option>
-  <option value="">Mpumalanga</option>
+  <option value="">Mpumalanga</option>-->
   </select><span class="required">*</span>
 	<label><b>City</b></label>
    <select name="Cities">
-  <option value="">Port Elizabeth</option>
-  <option value="">Port Alfred</option>
-  <option value="">Uitenhage</option>
+       <?php foreach ($cities as $city): ?>
+       <option value="<?php echo "$city[0]"; ?>"> <?php echo"$city[1]";?> </option>  
+  <?php endforeach; ?>
 </select><span class="required">*</span>
 	<label><b>Suburb</b></label>
  <select name="Suburbs"><span class="required">*</span>
-  <option value="">Green Acres</option>
-  <option value="">Summerstrand</option>
-  <option value="">Walmer</option>
+     <?php foreach ($suburbs as $suburb):?>
+     <option value="<?php echo "$suburb[0]";?>"> <?php echo "$suburb[1]"?> </option>
+  <?php endforeach; ?>
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
@@ -71,7 +73,7 @@
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
     <br>
-	<label name="cant be main"></label>
+<!--	<label name="cant be main"></label>-->
   
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
@@ -100,7 +102,7 @@ Reports and Recording Meter Readings.</p>
  <input type="radio" name="ResType" id="res" value="res" onclick="DisplayGroup()"> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
- <button type="submit" class="registerbtn">Register</button>
+ <button type="submit" class="registerbtn" id="registerbtn">Register</button>
 <br>
   </div>
   
@@ -108,8 +110,11 @@ Reports and Recording Meter Readings.</p>
     <button type="button" class="cancelbtn">Cancel</button> <span>Already have an account? <a href="#">Sign in</a>.</span>
   </div>
  </div>
+ 
+ 
+
 </form>
 
-  <script src="../Scripts/Scripts.js"></script>
+  
 </body>
 </html>

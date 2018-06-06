@@ -41,7 +41,7 @@ class DBAccess {
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
-    
+   
     public function Register($fullname, $phone_number, $email, $password, $deleted=0 ){
          $stored_procedure ="uspWEBRegisterUser(?,?,?,?,?)";
         $param = array(
@@ -152,6 +152,16 @@ class DBAccess {
     
     public function AllNewsRecords(){
         $stored_procedure ="uspWEBNewsCount";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function  Get_Cities(){
+        $stored_procedure="uspWEBCities";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function  Get_Suburbs(){
+        $stored_procedure="uspWEBSuburbs";
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
 }

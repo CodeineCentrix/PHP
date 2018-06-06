@@ -33,10 +33,10 @@ and open the template in the editor.
         * this is just for test purposes, we'll later move the code to the relevant class 
         */
         
-        $tabs = DBhelper::sp_SelectStatement(" uspWEBNewsCount");
-        $water = implode($tabs['0']);
-        //print_r($water);
-        echo "$water";
+        $tabs = DBhelper::sp_SelectStatement(" uspWEBCities");
+        
+        print_r($tabs);
+     
         /*------------------------------------------------END REGION--------------------------------------------------------------------*/
         /*
          * The code below is intended to add a new customer to the database! Using stored procedures. We seriously need to consider PHP and MS SQL Datatypes. Convert when neccessary

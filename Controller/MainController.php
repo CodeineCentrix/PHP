@@ -15,7 +15,7 @@ if ($action==NULL) {
         exit();
     }
 }
-$action = 'news';
+//$action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
 switch ($action){
@@ -24,7 +24,9 @@ switch ($action){
         include '../Resources/View/Login.php';
         break;
     case 'register_page':
-        include '../Resources/View/Register.php';
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        include '../Resources/View/register_1.php';
         break;
     // End Page displaying/ request  section 
     
