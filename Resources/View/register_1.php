@@ -108,9 +108,7 @@ Reports and Recording Meter Readings.</p>
  </div>
 </form>
 
-    <input type="text" placeholder="Enter Last Name" name="phonenumber" required><span class="required">*</span>
-    <input type="text" placeholder="Enter Last Name" name="lastname" required>-->
-    <span class="required">*</span>
+  <script src="../Scripts/Scripts.js"></script>
 </body>
 </html>
 
