@@ -4,7 +4,7 @@
 <head>
 <title>Register</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
+<link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
@@ -14,7 +14,7 @@
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-<!--    <span class="required">*</span>
+    <span class="required">*</span>
 	<label><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="fullname" required><span class="required">*</span>
 
@@ -69,7 +69,7 @@
 	<label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
 	<br>
-	<label name="cant be main"></label>
+	<label name="cant be main"></label><!--
   
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
