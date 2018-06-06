@@ -5,21 +5,20 @@
 <title>Register</title>
 <meta charset="utf-8">
 
-<link rel="stylesheet" type="text/css"
-          href="myStyles.css">
+<link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
-<form action="" method="post">
+    <form action="../../Controller/" method="post">
   <div class="MainRescontainer">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr><span class="required">*</span>
 	<label><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Name" name="fullname" required><span class="required">*</span>
 
 	<label><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lastname" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Last Name" name="phonenumber" required><span class="required">*</span>
 	
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
@@ -107,6 +106,6 @@ Reports and Recording Meter Readings.</p>
   </div>
 </form>
 
- <script src="Scripts.js"></script>
+    <script src="../Scripts/Scripts.js"></script>
 </body>
 </html>
