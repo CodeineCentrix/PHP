@@ -50,7 +50,7 @@ switch ($action){
          $fullname = filter_input(INPUT_POST, 'fullname');
          $phone_number = filter_input(INPUT_POST, 'phoneNumber');
          $email = filter_input(INPUT_POST, 'email');
-         $password = filter_input(INPUT_POST, 'password');
+         $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
          $is_existant = $dataAceess->check_user_existant($email);
          if ($is_existant==FALSE) {

@@ -16,11 +16,9 @@
     <hr>
 <!--    <span class="required">*</span>
 	<label><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Name" name="fullname" required><span class="required">*</span>
 
 	<label><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lastname" required>-->
-    <span class="required">*</span>
 	
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
@@ -113,3 +111,5 @@ Reports and Recording Meter Readings.</p>
   <script src="../Scripts/Scripts.js"></script>
 </body>
 </html>
+
+    <script src="../Scripts/Scripts.js"></script>
