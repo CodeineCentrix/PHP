@@ -108,14 +108,13 @@ input[type=password]
 /*	title:Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters>*/
 }
 /* Full-width input fields */
-input[type=text], input[type=password],input[type=date], input[type=number] {
+input[type=text], input[type=password],input[type=date], input[type=number],select {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
-  
   outline: none;
 }
 
@@ -195,4 +194,27 @@ and when you move the mouse over it (hover) */
     background-color: white;
     display: none;
     overflow: hidden;
+}
+/*style for tables*/
+#table {
+    font-family:  Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
 }
