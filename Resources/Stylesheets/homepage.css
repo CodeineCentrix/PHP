@@ -10,11 +10,11 @@ and open the template in the editor.
 
 
 
-body{
+/*body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
+}*/
 .content_holder{
     width: 100%;
     height: 100%;
@@ -22,13 +22,13 @@ body{
    margin: 0;
    padding: 0;
 }
-html {
+/*html {
             width: 100% !important;
             height: 100% !important;
             overflow: hidden;
             margin: 0;
             padding: 0;
-            }
+            }*/
             
 .fullscreen-bg  {
                 cursor: url('../Images/cursor.png'), auto;
@@ -37,11 +37,11 @@ label{
     font-family: 'Century Gothic';
     color:black;
 }
-body{
+/*body{
      width: 100% !important;
      height: 100% !important;
      overflow: hidden;
-}
+}*/
 ul {
    list-style-type: none;
    font-family: 'Century Gothic';

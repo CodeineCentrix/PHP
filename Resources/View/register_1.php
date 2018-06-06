@@ -9,16 +9,17 @@
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
-    <form action="../../Controller/" method="post">
-  <div class="MainRescontainer">
+     
+<form action="" method="post">
+   <div class="MainRes">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
-    <hr><span class="required">*</span>
+    <hr>
+<!--    <span class="required">*</span>
 	<label><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="fullname" required><span class="required">*</span>
 
 	<label><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="phonenumber" required><span class="required">*</span>
 	
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
@@ -70,42 +71,48 @@
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
 	<br>
 	<label name="cant be main"></label>
+  
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
 	<!--<button class="accordion">Register As Main Resident?</button>-->
 <div class="panel">
-  <p>A Main Resident is a member of this web app who must belong in a household
-  and will be taking the sole responsibility of recording water meter readings for that
-  household on a regular basis (daily/weekly). Main resident will act as a household manager, 
-has full access to this site's utilities and can Add Residents under his/her household for 
-statics and calculation purposes. As a Main Resident we will need the number 
-of residents within your household.</p>
+  <p>A Main Resident is a member of a household who must will be taking the sole responsibility 
+     of recording water meter readings for that household on a regular basis (daily/weekly). 
+     Main resident will act as a household manager, has full access to this site's utilities and
+     can Add Residents under his/her household for statics and calculation purposes. 
+     As a Main Resident we will need the number of residents within your household.</p>
   <input type="radio" id="ResType" name="ResType" value="mainRes" onclick="DisplayGroup()"> Main Resident<br><br>
  
- <div class="MainRes" id="MainResGrp" style="display:none">
+ <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
 <label><b>Number of Residents</b></label>
     <input type="number" min="1" placeholder="Enter Number of Residents excl yourself" id="resident" name="residents"/>
 	</div><!--end group-->
 </div>
-
 <input type="button" value="Register As Resident?" class="accordion"/>
 	<div class="panel">
-  <p>A Resident is a member of this web app who belongs under a Main Resident's (Read above
-  for Main Resident definition) household. As a resident you will not be responsible for
-recording water meter readings and thus need not fill the form to follow. On this site
-you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
+  <p>A Resident is a member of a household who belongs under a Main Resident's household
+      (Read above for Main Resident definition) . As a resident you will not be responsible for
+       recording water meter readings and thus need not fill the form to follow. On this site
+       you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
 Reports and Recording Meter Readings.</p>
  <input type="radio" name="ResType" id="res" value="res" onclick="DisplayGroup()"> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
  <button type="submit" class="registerbtn">Register</button>
 <br>
+  </div>
+  
   <div class="container signin">
     <button type="button" class="cancelbtn">Cancel</button> <span>Already have an account? <a href="#">Sign in</a>.</span>
   </div>
+ </div>
 </form>
 
-    <script src="../Scripts/Scripts.js"></script>
+    <input type="text" placeholder="Enter Last Name" name="phonenumber" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required>-->
+    <span class="required">*</span>
 </body>
 </html>
+
+    <script src="../Scripts/Scripts.js"></script>

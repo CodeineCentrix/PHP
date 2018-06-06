@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>News</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../Resources/Stylesheets/general.css">
-        <link rel="stylesheet" type="text/css" href="../Resources/Stylesheets/myStyles.css">
-<!--        <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/general.css">       
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
-        <script src="../Scripts/jquery.min.js"></script>-->
-        <title>News </title>
+        
     </head>
     <body>
-       <?php include '../Resources/View/header.php'; ?>    
-       <?php //include '../Resources/View/Menu.php'; ?>     
-            
+         <?php include '../Resources/View/header.php'; ?>
+   
             <?php foreach ($news as $value): ?>
             
             <div class="news_item center_tag">
+                
                 <div class='news_item_image'>
                     <img style="object-fit: contain; height:inherit; width: 100%;"src="<?php echo "$value[7]".$value[6]; ?>" alt="<?php echo "$value[6]"; ?>">
                 </div>
+                
                 <div class="news_item_details">
                     <div class="news_item_title">
                         <h3 class="news_title" style="font-size:30px;"><?php echo "$value[0]";?></h3>
@@ -34,9 +33,10 @@
                     </div>
             </div>
                 
-            </div><br><br>
+            </div>
+       
             <?php endforeach; ?> 
-        </div>
+        
         
         <?php 
             if ($news==NULL):?>
@@ -62,5 +62,8 @@
         </div>
         </form>
         <?php endif;?>
+        
+        
+   
     </body>
 </html>

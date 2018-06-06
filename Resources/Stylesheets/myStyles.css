@@ -76,9 +76,13 @@ footer p {
     height:330px;
     width:80%;
 }
+#meter{
+    width:400px;
+    height:70px;
+}
 body .recordReadings {
     font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
+    width: 600px;
     margin: 0 auto;
     padding: 0 2em;
     background-color: white;
@@ -86,7 +90,7 @@ body .recordReadings {
 }
 body .MainRes {
     font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
+    width: 800px;
     margin: 0 auto;
     padding: 0 2em;
     background-color: white;

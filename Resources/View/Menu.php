@@ -29,7 +29,29 @@
         <p class="para">TIPS AND TRICKS</p>
       </div>
     </div>
-        <?php
-        // put your code here
-        ?>
+</div>
+   </div>
+    <script>
+$('.icon-menu').on('click', function() {
+ $(this).toggleClass('clicked');
+  $('.line').toggleClass('active');
+  $('.line--2').toggleClass('clicked');
+  $('.line--1').toggleClass('clicked');
+  $('.line--3').toggleClass('clicked');
+  
+   $('.drawer').toggleClass('clicked');
+  $('.link_con').toggleClass('clicked');
+  $('.card').toggleClass('clicked');
+
+});
+
+$('.menu').on('click', function() {
+
+  $(this).toggleClass('clicked');
+  $('.drawer').toggleClass('clicked');
+  $('.link_con').toggleClass('clicked');
+  $('.card').toggleClass('clicked');
+
+});
+</script>
 
