@@ -22,20 +22,20 @@ and open the template in the editor.
       <hr>
 
 <div>
-    <b>Duration:</b>
+<!--    <b>Duration:</b>
     <select name="duration" value="Duration">    
         <option value="daily">Daily</option>
         <option value="weekly">Weekly</option>
         <option value="monthly">Monthly</option>
         <option value="yearly">Yearly </option>
     </select>
-    <br><br>
+    <br><br>-->
      
    <label> <strong>From:</strong></label>
 <input type="date" name="fromDate">
 
   <label> <strong>To:</strong></label>
-<input type="date" name="toDate">
+<input type="date" name="toDate" max="<?php echo date("Y-m-d")?>">
 
 <table id="table">
   <tr>

@@ -102,4 +102,11 @@ for (i = 0; i < acc.length; i++) {
             panel.style.display = "block";
         }
     });
-}
+//reading must not exceede 5
+function ValidateReading()
+{
+var readinglength = document.getElementById("reading");
+if (readinglength.value.length<5)
+    document.window.alert("Reading digits must not exceede 5");
+
+}}

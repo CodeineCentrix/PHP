@@ -67,14 +67,28 @@ class DBAccess {
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function meter_readings($user_id){
-        $stored_procedure = "";
+    public function meter_readings($date, $pic=null, $house_id,$reading){
+        $stored_procedure = "uspWEBAddReading (?,?,?,?)";
         $param = array(
-            $user_id
+            $date,
+            $pic,
+            $house_id,
+            $reading
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+    public function get_readings($houseId, $froDate, $fromDate){
+        $stored_procedure="uspWEBGetReadings (?,?,?)";
+        $param=array(
+            $houseId,
+            $froDate,
+            $fromDate          
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
+
     public function custom_meter_readings($user_id, $start_date,$end_date){
         $stored_procedure = "";
         $param = array(

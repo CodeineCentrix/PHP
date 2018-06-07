@@ -7,7 +7,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Droplit</title>
-        
+        <style>
+            p
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                font-size: 20px;
+                
+            }
+        </style>
     </head>
     <body>
         <div class="content_holder">
@@ -86,6 +94,11 @@
                 
                 
             </div>
+            <br><br><br><br>
+            <p>This Water management web application is designed for individuals/businesses/homeowners<br>
+	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
+	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
+	water consumption within your household and more importantly raise awareness.</p><br>
         </div>            
 <script>
 $('.icon-menu').on('click', function() {

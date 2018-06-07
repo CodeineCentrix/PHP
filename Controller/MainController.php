@@ -33,9 +33,19 @@ switch ($action){
         $feedback =0;
         include '../Resources/View/register_1.php';
         break;
+    
+    case 'reading_page' :
+              $feedback=null;
+        $house =array();
+        $house[0] ="81";
+          $house[1] ="Mzwazwa";
+        // code from cookies
+              include '../Resources/View/RecordReadings.php';
+              break;
+
     // End Page displaying/ request  section 
     
-    
+       
     
     
     case 'login':
@@ -101,12 +111,24 @@ switch ($action){
             include '../Resources/View/view_news.php';   
         break;
     
+        case 'add_reading':
+            $house =array();
+        $house[0] ="785";
+          $house[1] ="Ngwenya";
+        $house_id = 11;
+        $pic=null;
+        $date_recorded = filter_input(INPUT_POST, 'readingDate');
+        $reading = filter_input(INPUT_POST, 'reading');
+        $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+        include '../Resources/View/RecordReadings.php';
+        break; 
         
-        
-    case 'meter_readings':
-        $user_id = filter_input(INPUT_POST, 'user_placeholder');
-        $readings = $dataAceess->meter_readings($user_id);
-        break;
+//    case 'meter_readings':
+//        $readingDate = filter_input(INPUT_POST, 'readingDate');
+//        $houseID = filter_input(INPUT_POST, 'houseId');
+//        $reading = filter_input(INPUT_POST, 'reading');
+//        $readings = $dataAceess->meter_readings($readingDate,$houseID,$reading);
+//        break;
         
     case 'custom_reading':
         $user_id = filter_input(INPUT_POST, 'user_placeholder');
@@ -115,12 +137,7 @@ switch ($action){
         $custom_reading = $dataAceess->custom_meter_readings($user_id, $start_date, $end_date);
         break;
     
-    case 'add_reading':
-        $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
-        $date_recorded = filter_input(INPUT_POST, 'date_placeholder');
-        $reading = filter_input(INPUT_POST, 'reading_placeholder');
-        $results = $dataAceess->add_reading($user_id, $date_recorded, $reading);
-        break;
+   
     
     
     case 'graph_data':
