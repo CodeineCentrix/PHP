@@ -15,11 +15,14 @@ function isNormalResident(){
 
 function ReadOrShowItem(tag){
     var myControl = document.getElementById(tag);
-    if (myControl.style.visbility==="Hidden") {
-        myControl.style.visibility = "visible";
+   
+    if (myControl.style.display==="none") {
+        
+        myControl.style.display = "block";
     }
     else{
-       myControl.style.visibility = "visible"; 
+       myControl.style.display = "none"; 
+       
     }
 }
 

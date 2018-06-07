@@ -30,12 +30,13 @@
                         <label class="news_date"><?php 
                         $dateAsString = date_format($value[4], 'jS, F Y');
                         echo $dateAsString; 
-                        ?></label><br><br>
-                        <p class="news_item_desc" id="<?php echo "$count_id"."A";?>" > <?php echo" $value[1]";?> </p>
-                        <div style="text-align: center; color: grey; font-family: Calibri, Candara, Segoe ;" onclick="ReadOrShowItem(<?php echo "$count_id"."A"; $count_id++;?>)" >Read / Hide</div>
+                        ?></label><br><br>                       
+                    </div>                    
                     </div>
-            </div>
-                
+                <div class="news_item_desc">
+                    <p style="display: none; animation-name: slower; animation-duration: 5s; " id="<?php echo "A"."$count_id";?>" > <?php echo nl2br($value[1]);?> </p>
+                    <input type="button" value="Read or Hide" id="btnRead" onclick="ReadOrShowItem('<?php echo "A"."$count_id"; $count_id++;?>')" />
+                </div>
             </div>
        
             <?php endforeach; ?> 
