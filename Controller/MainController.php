@@ -25,6 +25,9 @@ switch ($action){
         break;
     
     case 'register_page':
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        $feedback =0;
         include '../Resources/View/register_1.php';
         break;
     // End Page displaying/ request  section 
@@ -52,15 +55,26 @@ switch ($action){
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
+         $resType=filter_input(INPUT_POST,'ResType');
+         
+         $houseNum=filter_input(INPUT_POST,'housenumber');  
+         $street=filter_input(INPUT_POST, 'streetname');
+         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
+         $residentNo=filter_input(INPUT_POST,'residents');
          $is_existant = $dataAceess->check_user_existant($email);
+         
          if ($is_existant==NULL) {
-            $is_user_registered = $dataAceess->Register($fullname, $email, $password, $deleted);
-            include '../Resources/View/register_1.php';
+        
+         if ($resType=="mainRes") {
+             $feedback = $dataAceess-> RegisterMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         } else {
+             $feedback = $dataAceess->RegisterResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
          }
-         else{
-            include '../Resources/View/register_1.php';
+           include '../Resources/View/register_1.php';
+         } else {
+            $exists = TRUE;
+             include '../Resources/View/register_1.php';
          }
-          
         break;
       
     

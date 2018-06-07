@@ -42,13 +42,32 @@ class DBAccess {
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function Register($fullname,  $email, $password, $deleted=0 ){
-         $stored_procedure ="uspWEBRegisterUser(?,?,?,?)";
+    public function RegisterResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
+         $stored_procedure ="uspWEBAddResident(?,?,?,?,?,?,?,?)";
         $param = array(
            $fullname,          
            $email,
            $password,
-           $deleted
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+    public function RegisterMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
+        $stored_procedure ="uspWEBAddMainResident (?,?,?,?,?,?,?,?)";
+        $param = array(
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
@@ -151,6 +170,16 @@ class DBAccess {
     
     public function AllNewsRecords(){
         $stored_procedure ="uspWEBNewsCount";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function  Get_Cities(){
+        $stored_procedure="uspWEBCities";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function  Get_Suburbs(){
+        $stored_procedure="uspWEBSuburbs";
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
 }

@@ -32,11 +32,22 @@ and open the template in the editor.
         * The code below uses the DBhelper to call a stored procedure with no parameters. But should return an array. 
         * this is just for test purposes, we'll later move the code to the relevant class 
         */
+        $HouseNum = "26";
+        $No = 2;
+        $StreetName = "Phelindaba";
+        $surburbID = "5000";
+        $params = array(
+            $HouseNum,
+            $No,
+            $StreetName,
+            $surburbID,
+            
+        );
+        $tabs = DBhelper::sp_NonQueryStatementsParams("uspAddHouse(?,?,?,?)", $params);
         
-        $tabs = DBhelper::sp_SelectStatement(" uspWEBNewsCount");
-        $water = implode($tabs['0']);
-        //print_r($water);
-        echo "$water";
+        print_r($tabs);
+        
+     
         /*------------------------------------------------END REGION--------------------------------------------------------------------*/
         /*
          * The code below is intended to add a new customer to the database! Using stored procedures. We seriously need to consider PHP and MS SQL Datatypes. Convert when neccessary
