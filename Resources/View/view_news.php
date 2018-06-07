@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">       
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
-        <script src="../Resources/Scripts"></script>
+        <script src="../Resources/Scripts/centrixScript.js"></script>
         
     </head>
     <body>
@@ -31,8 +31,8 @@
                         $dateAsString = date_format($value[4], 'jS, F Y');
                         echo $dateAsString; 
                         ?></label><br><br>
-                        <p class="news_item_desc" id="<?php echo "$count_id"."A";?>"><?php echo" $value[1]";?></p>
-                        <div style="text-align: center; color: grey; font-family: Calibri, Candara, Segoe ;" onclick="ReadOrShowItem(<?php echo "$count_id"."A"; $count_id++;?>)">Read / Hide</div>
+                        <p class="news_item_desc" id="<?php echo "$count_id"."A";?>" > <?php echo" $value[1]";?> </p>
+                        <div style="text-align: center; color: grey; font-family: Calibri, Candara, Segoe ;" onclick="ReadOrShowItem(<?php echo "$count_id"."A"; $count_id++;?>)" >Read / Hide</div>
                     </div>
             </div>
                 
