@@ -22,7 +22,9 @@ $context = "Unkown location";
 switch ($action){
     //   Page displaying/ request section 
     case 'login_page':
-        include '../Resources/View/Login.php';
+        $user_details= NULL;
+        include '../Resources/View/log_in.php';
+//        $credentials=
         break;
     
     case 'register_page':
@@ -37,15 +39,17 @@ switch ($action){
     
     
     case 'login':
-        $username = filter_input(INPUT_POST, 'placeholder_username');
-        $password = filter_input(INPUT_POST, 'placeholder_password');
-        $user_details = $dataAceess->login($username, $password);
-        if ($user_details==NULL) {
-           $login_issues = "Username or Password isn't valid.";
-        } else {
-          //Display page and create a session for a user (ALL Logic for a valid user)
-          session_start();
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $user_details = $dataAceess->Login($email, $password);
+        if($user_details==NULL){
+            $user_details= FALSE;
+            include '../Resources/View/log_in.php';
+        }else{
+            session_start();
+            header("../Resources/View/LandingPage.php"); 
         }
+        
         break;
         
         

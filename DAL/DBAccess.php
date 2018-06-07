@@ -29,19 +29,6 @@ class DBAccess {
     }
     
     
-    public function login($username, $password){
-        /*
-         * Returns a full array if user does exist or an empty array if it doesn't
-         * find the user. 
-         */
-         $stored_procedure ="";
-        $param = array(
-            $username,
-            $password
-        );
-        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
-    }
-    
     public function RegisterResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
          $stored_procedure ="uspWEBAddResident(?,?,?,?,?,?,?,?)";
         $param = array(
@@ -176,5 +163,14 @@ class DBAccess {
     public function  Get_Suburbs(){
         $stored_procedure="uspWEBSuburbs";
         return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function Login($email, $password){
+        $stored_procedure="uspWEBLogin(?,?)";
+        $param =array(
+            $email,
+            $password
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
 }
