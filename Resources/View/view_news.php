@@ -6,13 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">       
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <script src="../Resources/Scripts"></script>
         
     </head>
     <body>
          <?php include '../Resources/View/header.php'; ?>
-   
-            <?php foreach ($news as $value): ?>
-            
+   <!-- Lots of these are auto-generated and there is no use trying to use static behavior --> 
+            <?php $count_id =0;
+            foreach ($news as $value): ?>
+           
             <div class="news_item center_tag">
                 
                 <div class='news_item_image'>
@@ -29,7 +31,8 @@
                         $dateAsString = date_format($value[4], 'jS, F Y');
                         echo $dateAsString; 
                         ?></label><br><br>
-                        <label class="news_item_desc"><?php echo" $value[1]";?></label>
+                        <p class="news_item_desc" id="<?php echo "$count_id"."A";?>"><?php echo" $value[1]";?></p>
+                        <div style="text-align: center; color: grey; font-family: Calibri, Candara, Segoe ;" onclick="ReadOrShowItem(<?php echo "$count_id"."A"; $count_id++;?>)">Read / Hide</div>
                     </div>
             </div>
                 
@@ -50,12 +53,12 @@
             <?php else: ?>
         <form method="POST" action="."> 
             <div class="pgn_holder center_tag">
-            <?php /*if($previous>0)*/if(1==1): ?>
+            <?php if($previous>0)/*if(1==1)*/: ?>
         <a href="<?php echo "../Controller/MainController.php?action=news&to=$previous&from=5";?>" class="news_prev">
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>
             
-            <?php /*if($to<=$total_records)*/if(1==1):?>
+            <?php if($to<=$total_records) /*if(1==1)*/: ?>
                 <a href="<?php echo "../Controller/MainController.php?action=news&to=$to&from=5&records=$total_records";?>" class="news_next">
                     <span class="img_next"> <label>next</label><img  src="../Resources/Images/next.png"></span></a>
             <?php endif; ?>

@@ -4,24 +4,36 @@
 <head>
 <title>Register</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
-<script src="../Scripts/Scripts.js"></script>
+<link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes" >
+    <?php if($feedback >0):?>
+ <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<div class="mid">
+	<img src="../Resources/Images/success.png">
+    <strong><h3 class="modalText">Registration Successful</h3></strong>
+	<div class="btnProceed"><a href= "../Controller/MainController.php?action=homepage">OK</a></div>
+	</div>
+  </div>
+
+</div>
+<?php endif;?>
+<form action="MainController.php?action=register_resident" method="post">
      
-<form action="" method="post">
+    
    <div class="MainRes">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-<!--    <span class="required">*</span>
--->	<label><b>Full Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" >
-<!--    <span class="required">*</span>
 
-	<label><b>Last Name</b></label>
-    <input type="text" placeholder="Enter Last Name" name="lastname" required>-->
+	<label><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required>
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
@@ -72,8 +84,8 @@
 
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
-    <br>
-<!--	<label name="cant be main"></label>-->
+	<br>
+	<label name="cant be main"></label><!--
   
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
@@ -111,10 +123,9 @@ Reports and Recording Meter Readings.</p>
   </div>
  </div>
  
- 
 
 </form>
 
-  
+  <script src="../Resources/Scripts/Scripts.js"></script>
 </body>
 </html>

@@ -41,23 +41,41 @@ class DBAccess {
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
-   
-    public function Register($fullname, $phone_number, $email, $password, $deleted=0 ){
-         $stored_procedure ="uspWEBRegisterUser(?,?,?,?,?)";
+    
+    public function RegisterResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
+         $stored_procedure ="uspWEBAddResident(?,?,?,?,?,?,?,?)";
         $param = array(
-           $fullname,
-           $phone_number,
+           $fullname,          
            $email,
            $password,
-           $deleted
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    public function check_user_existant($username) {
-         $stored_procedure ="";
+    public function RegisterMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
+        $stored_procedure ="uspWEBAddMainResident (?,?,?,?,?,?,?,?)";
         $param = array(
-            $username
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+    public function check_user_existant($email) {
+         $stored_procedure ="uspWEBCheckExistance(?)";
+        $param = array(
+            $email
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }

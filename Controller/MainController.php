@@ -23,9 +23,11 @@ switch ($action){
     case 'login_page':
         include '../Resources/View/Login.php';
         break;
+    
     case 'register_page':
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
+        $feedback =0;
         include '../Resources/View/register_1.php';
         break;
     // End Page displaying/ request  section 
@@ -49,24 +51,30 @@ switch ($action){
         
         
     case 'register_resident':
-         $fullname = filter_input(INPUT_POST, 'fullname');
-         $phone_number = filter_input(INPUT_POST, 'phoneNumber');
+         $fullname = filter_input(INPUT_POST, 'lastname');       
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
+         $resType=filter_input(INPUT_POST,'ResType');
+         
+         $houseNum=filter_input(INPUT_POST,'housenumber');  
+         $street=filter_input(INPUT_POST, 'streetname');
+         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
+         $residentNo=filter_input(INPUT_POST,'residents');
          $is_existant = $dataAceess->check_user_existant($email);
-         if ($is_existant==FALSE) {
-            $is_user_registered = $dataAceess->Register($fullname, $phone_number, $email, $password, $deleted);
-          if ($is_user_registered==TRUE) {
-              //Inform user that the have registered successfully. 
-          }else{
-             //Tell user an error occured and that they should try again.. 
-              $register_errors = "An Internal error occured, Please try again";
-          }
+         
+         if ($is_existant==NULL) {
+        
+         if ($resType=="mainRes") {
+             $feedback = $dataAceess-> RegisterMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
          } else {
-             //Tell user to pick another email address or recommend logging in rather, because they already exist!!
-             $register_errors = "The email picked already exists within the database please select another one!";
-         } 
+             $feedback = $dataAceess->RegisterResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         }
+           include '../Resources/View/register_1.php';
+         } else {
+            $exists = TRUE;
+             include '../Resources/View/register_1.php';
+         }
         break;
       
     

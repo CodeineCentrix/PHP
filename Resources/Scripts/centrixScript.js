@@ -13,4 +13,13 @@ function isNormalResident(){
     document.getElementById('main_resident').style.display = "none";
     }
 
+function ReadOrShowItem(tag){
+    var myControl = document.getElementById(tag);
+    if (myControl.style.visbility==="Hidden") {
+        myControl.style.visibility = "visible";
+    }
+    else{
+       myControl.style.visibility = "visible"; 
+    }
+}
 

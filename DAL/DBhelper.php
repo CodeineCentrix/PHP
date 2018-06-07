@@ -17,8 +17,8 @@ public static $count=0;
 private static function connectToDB(){
 
     $connection_params = array(	
-    "UID" => "codecentrix" ,
-    "PWD" => "password", 
+        "UID" => "codecentrix" ,
+        "PWD" => "password", 
 	"Database" => self::$database_name
 	);
         self::$connection_object =sqlsrv_connect(self::$server_address,$connection_params);   
