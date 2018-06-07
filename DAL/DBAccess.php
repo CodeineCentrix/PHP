@@ -126,27 +126,22 @@ class DBAccess {
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function area_stats($user_id) {
-       $stored_procedure=""; 
+    public function area_stats($email) {
+       $stored_procedure="uspWEBAreaStats(?)"; 
        $param = array(
-            $user_id
+            $email
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function area_stats_custom($user_id, $surburb) {
-        $stored_procedure="";
+    public function area_water_charges($dam_id) {
+        $stored_procedure="uspWEBWaterCharge(?)";
         $param = array(
-            $user_id,
-            $surburb
+            $dam_id
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
-    public function area_stats_combobox(){
-        $stored_procedure="";
-        return DBhelper::sp_SelectStatement($stored_procedure);
-    }
     
     public function view_tips_tricks($to, $from) {
         $stored_procedure ="";

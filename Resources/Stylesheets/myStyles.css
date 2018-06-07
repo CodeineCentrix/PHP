@@ -3,6 +3,7 @@ h1{
 }
 header{
 	background-color:#264d73;
+        overflow: hidden;
 	
 }
 #header{

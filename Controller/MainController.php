@@ -18,6 +18,7 @@ if ($action==NULL) {
 //$action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
+$context = "Unkown location";
 switch ($action){
     //   Page displaying/ request section 
     case 'login_page':
@@ -81,6 +82,7 @@ switch ($action){
     
     
     case 'news':
+        $context="News Articles";
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
@@ -131,9 +133,12 @@ switch ($action){
         break;
     
     case'area_stats':
-         $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
-        $area_stats = $dataAceess->area_stats($user_id);
-        $combobox_data = $dataAceess->area_stats_combobox();
+        $context = "Area Statistics";
+        //before calling the below retrieve user email using cookie approriate method
+        $surbs = $dataAceess->Get_Suburbs();
+        $addr_level = $dataAceess->area_stats("ggMA@gogo.com");
+        $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
+        include '../Resources/View/area_stats.php';
         break;
     
     
