@@ -35,12 +35,14 @@ and open the template in the editor.
         $dam_id = "1000";
         $user_id="ggMA@gogo.com";
         $params = array(
-            $user_id
+            $dam_id
             
         );
-        $tabs = DBhelper::sp_SelectWithParams("uspWEBAreaStats(?)", $params);
-        
-        print_r($tabs);
+        $tabs = DBhelper::sp_SelectWithParams("uspWEBWaterCharge(?)", $params);
+        foreach ($tabs as $value) {
+            echo "$tabs[0]";
+}
+       
         
      
         /*------------------------------------------------END REGION--------------------------------------------------------------------*/

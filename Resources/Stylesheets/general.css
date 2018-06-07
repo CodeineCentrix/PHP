@@ -464,7 +464,82 @@ Begin section for header....
 }
 
 .same-line{
-    width: 35%;
+    width: 33%;
     float: left;
+    text-align: center;
+    min-height: 100% !important;  
+}
+
+.same-line-right{
+  
+   text-align: center;
+}
+.same-line-left{
+    margin-bottom: -500px;
+   padding-bottom: 500px;
+   vertical-align: middle;
+}
+.same-life-middle{
+    border-right-style: solid;
+    border-right-color: grey;
     
+     border-left-style: solid;
+    border-left-color: grey;
+}
+
+.same-line-holder{
+ font-family: "Century Gothic";
+    overflow: hidden;
+    height: 50% !important;
+    border-bottom-color: grey;
+    border-bottom-style: solid;
+    margin-bottom: 80px;
+}
+
+.area-holder{
+    font-family: "Century Gothic";
+    padding-right: 15px;
+    width: 30%;
+    overflow: hidden;
+    border-style: solid;
+    border-color: rgb(224,224,224);
+    border-radius: 3px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+   float: right;
+   text-align: center;
+   
+}
+.pr-chart-ctrl{
+    list-style-type: none;
+}
+.area-holder select{
+    width: 50%;
+    margin: 30px;
+}
+
+.area-holder input{
+    width: 50%;
+}
+
+.area-charges-holder{
+     font-family: "Century Gothic";
+    overflow: hidden;
+    width: 90%;
+    text-align: center;
+    border-style: solid;
+    border-color: rgb(224,224,224);
+    border-radius: 10px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+    margin: auto;
+    padding: 5px;
+}
+.area-charges-holder p{
+    float: left;
+  width: 32%;
 }
