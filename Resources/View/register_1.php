@@ -23,7 +23,7 @@
   </div>
 
 </div>
- 
+ <?php endif;?>
 
  
 <form action="MainController.php?action=register_resident" method="post">
