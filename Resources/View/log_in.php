@@ -16,6 +16,8 @@
     <?php  
      if($user_details===FALSE): ?>
     <p>   <?php echo "Password or username incorrect, please try again.";?> </p>
+    <?php elseif($user_details==1):?>
+    <p><?php echo "Please login, to continue your activity";?></p>
     <?php endif;?>
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>

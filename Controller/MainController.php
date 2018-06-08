@@ -25,7 +25,6 @@ switch ($action){
     case 'login_page':
         $user_details= NULL;
         include '../Resources/View/log_in.php';
-//        $credentials=
         break;
     
     case 'register_page':
@@ -36,27 +35,34 @@ switch ($action){
         break;
     
     case 'reading_page' :
-              $feedback=null;
+        $feedback=null;
+        $data_null = CheckIfCookiesExists("HouseNumber", "StreetName");
+        if($data_null===FALSE){
         $house =array();
-        $house[0] ="81";
-          $house[1] ="Mzwazwa";
-        // code from cookies
-              include '../Resources/View/RecordReadings.php';
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        include '../Resources/View/RecordReadings.php';
+    }else{
+        $user_details=1;
+        include '../Resources/View/log_in.php';
+    }
               break;
           
     case 'view_readings_page':
+      $data_null=  CheckIfCookiesExists("HouseNumber","StreetName");
+        if($data_null===FALSE){
         $readings= array();
         // code from cookies
          $house =array();
-        $house[0] ="12";
-          $house[1] ="thuli";
-        
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');       
         include '../Resources/View/ViewReadings.php';
+        }else{
+            $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
         break;
     // End Page displaying/ request  section 
-    
-       
-    
     
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
@@ -67,7 +73,8 @@ switch ($action){
             include '../Resources/View/log_in.php';
         }else{
             session_start();
-            if(NULL!==filter_input(INPUT_COOKIE,$_COOKIE["PersonID"])){
+            $data_null = CheckIfCookiesExists("PersonID");
+            if($data_null ===TRUE){
             setcookie("PersonID", $user_details[0][0], time()+(86400*30));
             setcookie("FullName", $user_details[0][1], time()+(86400*30));
             setcookie("Email", $user_details[0][2], time()+(86400*30));
@@ -75,15 +82,23 @@ switch ($action){
             setcookie("Flagged", $user_details[0][4], time()+(86400*30));
             setcookie("HouseID", $user_details[0][5], time()+(86400*30));
             setcookie("Rights", $user_details[0][6], time()+(86400*30));
-            }
+
+            setcookie("MainResidentID", $user_details[0][7], time()+(86400*30));
+            setcookie("HouseID", $user_details[0][8], time()+(86400*30));
+            setcookie("HouseNumber", $user_details[0][9], time()+(86400*30));
+            setcookie("StreetName", $user_details[0][10], time()+(86400*30));
+            setcookie("SurburbID", $user_details[0][11], time()+(86400*30));
+            setcookie("NumberOfResidents", $user_details[0][12], time()+(86400*30));
+            $context="Welcome to Driplit";
             include '../Resources/View/LandingPage.php';
+            }
+            
+            
         }
         
         break;
         
-        
-        
-        
+   
     case 'register_resident':
          $fullname = filter_input(INPUT_POST, 'lastname');       
          $email = filter_input(INPUT_POST, 'email');
@@ -110,10 +125,7 @@ switch ($action){
              include '../Resources/View/register_1.php';
          }
         break;
-      
-    
-    
-    
+   
     case 'news':
         $context="News Articles";
         $to = filter_input(INPUT_GET, 'to');
@@ -130,60 +142,57 @@ switch ($action){
             include '../Resources/View/view_news.php';   
         break;
     
-        case 'add_reading':
+    case 'add_reading':
+        $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
+        if($data_null===FALSE){
             $house =array();
-        $house[0] ="785";
-          $house[1] ="Ngwenya";
-        $house_id = 11;
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
         $pic=null;
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
         $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
         include '../Resources/View/RecordReadings.php';
+        } else {
+            $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
         break; 
         
     case 'view_readings':
+        $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         //code from cookies
+        if($data_null===FALSE){
         $house =array();
-        $house[0] ="785";
-        $house[1] ="Ngwenya";
-        $house_id = 11;
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
        include '../Resources/View/ViewReadings.php';
+        }else{
+             $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
        break;
         
-    case 'custom_reading':
-        $user_id = filter_input(INPUT_POST, 'user_placeholder');
-        $start_date = filter_input(INPUT_POST, 'start_date_placeholder');
-        $end_date = filter_input(INPUT_POST, 'end_date_placeholder');
-        $custom_reading = $dataAceess->custom_meter_readings($user_id, $start_date, $end_date);
-        break;
-    
-   
-    
-    
-    case 'graph_data':
-      $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
-      $graph_data = $dataAceess->graph_data($user_id);
-    break;
-
-
-    case 'custom_graph_data':
-        $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
-        $start_date = filter_input(INPUT_POST, 'start_date_placeholder');
-        $end_date = filter_input(INPUT_POST, 'end_date_placeholder');
-        $graph_data = $dataAceess->custom_graph_data($user_id, $start_date, $end_date);
-        break;
     
     case'area_stats':
+        $data_null = CheckIfCookiesExists("Email");
+        if($data_null===FALSE){
         $context = "Area Statistics";
         //before calling the below retrieve user email using cookie approriate method
+        $email = filter_input(INPUT_COOKIE, 'Email');
         $surbs = $dataAceess->Get_Suburbs();
-        $addr_level = $dataAceess->area_stats("ggMA@gogo.com");
+        $addr_level = $dataAceess->area_stats($email);
         $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
         include '../Resources/View/area_stats.php';
+        } else {
+            $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
         break;
     
     
@@ -196,15 +205,18 @@ switch ($action){
          include '../Resources/View/area_stats.php';
         break;
     
-    case 'tips_tricks':
-        $to = filter_input(INPUT_POST, 'to_placeholder');
-        $from = filter_input(INPUT_POST, 'from_placeholder');
-        $tips_tricks = $dataAceess->view_tips_tricks($to, $from);
-        break;
-    
-    case 'tips_tricks_add':
-         $user_id = filter_input(INPUT_POST, 'user_id_placeholder');
-        $comment = filter_input(INPUT_POST, 'start_date_placeholder');
-        $tips_trick_feedback = $dataAceess->add_tip_tricks($user_id, $comment);
-        break;
+}
+
+ function CheckIfCookiesExists() {
+  $is_non_existant = FALSE;
+ $numOfParams = func_num_args();
+ $parm_list = func_get_args();
+ 
+ for($i=0; $i<$numOfParams;$i++){
+     if(filter_input(INPUT_COOKIE, $parm_list[$i])===NULL){
+         $is_non_existant = TRUE;
+         break;
+     }
+ }
+ return $is_non_existant;
 }
