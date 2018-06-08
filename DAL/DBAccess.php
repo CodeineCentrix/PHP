@@ -109,23 +109,7 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    public function custom_graph_data($user_id, $start_date,$end_date) {
-         $stored_procedure="";
-        $param = array(
-            $user_id,
-            $start_date,
-            $end_date
-        );
-        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
-    }
-    
-     public function graph_data($user_id) {
-        $stored_procedure="";
-        $param = array(
-            $user_id
-        );
-        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
-    }
+
     
     public function area_stats($email) {
        $stored_procedure="uspWEBAreaStats(?)"; 
@@ -144,25 +128,7 @@ class DBAccess {
     }
     
     
-    public function view_tips_tricks($to, $from) {
-        $stored_procedure ="";
-        $param = array(
-            $to,
-            $from
-                
-        );        
-        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
-    }
-    
-    public function add_tip_tricks($user_id, $comment) {
-        $stored_procedure ="";
-        $param = array(
-            $user_id,
-            $comment
-                
-        );  
-        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
-    }
+
     
     public function AllNewsRecords(){
         $stored_procedure ="uspWEBNewsCount";
@@ -184,6 +150,13 @@ class DBAccess {
         $param =array(
             $email,
             $password
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    public function custom_area_stats($surburb_id) {
+       $stored_procedure="uspWEBAreaStatsCustom(?)";
+        $param =array(
+            $surburb_id
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }

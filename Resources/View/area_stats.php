@@ -15,37 +15,57 @@ and open the template in the editor.
      <?php include '../Resources/View/header.php'; ?>
         
         <div class="stats_content">
-           
-            <div class="same-line">
-                <h3>Your Location</h3>
+            
+            <div class="same-line-holder">     
+            <div class="same-line same-line-left">
+                <h3>Your Location:</h3>
                 <p><?php echo $addr_level[0][0]; ?></p>
+                <br><br>
+                <h3>Your Supplying Dam:</h3>
+                <p><?php echo $addr_level[0][3]; ?></p>
             </div>
             
-            <div class="same-line">
-                <ul>
-                    <li class="pr-chart-ctrl"> <div class="pr-chart" data-percent="<?php echo $addr_level[0][1]; ?>"></li>
-                <i></i>
+            
+            
+            
+            
+            <div class="same-line same-life-middle">
+                
+                    <li class="pr-chart-ctrl">
+                        <h3>Current Dam Level</h3>
+                        <div class="pr-chart" data-percent="<?php echo $addr_level[0][1]; ?>">
+                            <p><?php echo $addr_level[0][1] ?>%</p>
+                        </div>
+                        
+                    </li>
+            
             </div>
-                </ul>
-            <p>Your Dam level</p>
+               
 
-            </div>
-            
-            <div class="same-line">
-                <h5>View other area's</h5>
-                <form method="POST" action="MainController.php?action=other_areas">
+
+            <div class=" same-line-right">
+                <h3>View other area's</h3>
+                <div class="area-holder">
+               
+                <form method="POST" action="MainController.php?action=area_stats_custom">
                 <select name="areas">
                 <?php foreach($surbs as $burbs): ?>
                     <option value="<?php echo "$burbs[0]";?>"><?php echo "$burbs[1]"; ?></option>
                    <?php endforeach;?>
-                </select>
-                    <input type="submit" value="View Area">
+                </select><br>
+                <br>
+                <input type="submit" value="View Area" class="registerbtn">
                 </form>
+                </div>
             </div>
+        </div>
             
-            <div style="width: 50%;">
+            
+            
+            <div class="area-charges-holder">
+                <h2>Water Charges:</h2>
         <?php foreach($water_charges as $charge): ?>
-        <p><?php echo "$charge[0]"; ?><span></span><?php echo "$charge[1]"; ?><span></span><?php echo "$charge[2]"; ?> </p>
+                <p><?php echo "Price: R$charge[0]"; ?><span> | </span><?php echo " Min: $charge[1]kl"; ?><span> | </span><?php echo " Max: $charge[2]kl"; ?> </p>
         <?php endforeach; ?>
         </div>
             

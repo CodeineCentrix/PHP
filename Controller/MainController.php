@@ -178,10 +178,12 @@ switch ($action){
     
     
     case'area_stats_custom':
-         $to = filter_input(INPUT_POST, 'to_placeholder');
-        $from = filter_input(INPUT_POST, 'from_placeholder');
-         $area_stats_custom = $dataAceess->area_stats_custom($user_id, $surburb);
-         $combobox_data = $dataAceess->area_stats_combobox();
+        $suburb_id = filter_input(INPUT_POST, 'areas');
+        $context = "Area Statistics";
+         $surbs = $dataAceess->Get_Suburbs();
+         $addr_level= $dataAceess->custom_area_stats($suburb_id);
+         $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
+         include '../Resources/View/area_stats.php';
         break;
     
     case 'tips_tricks':
