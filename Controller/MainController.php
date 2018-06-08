@@ -66,7 +66,16 @@ switch ($action){
             include '../Resources/View/log_in.php';
         }else{
             session_start();
-            header("../Resources/View/LandingPage.php"); 
+            if(NULL!==filter_input(INPUT_COOKIE,$_COOKIE["PersonID"])){
+            setcookie("PersonID", $user_details[0][0], time()+(86400*30));
+            setcookie("FullName", $user_details[0][1], time()+(86400*30));
+            setcookie("Email", $user_details[0][2], time()+(86400*30));
+            setcookie("UserPassword", $user_details[0][3], time()+(86400*30));
+            setcookie("Flagged", $user_details[0][4], time()+(86400*30));
+            setcookie("HouseID", $user_details[0][5], time()+(86400*30));
+            setcookie("Rights", $user_details[0][6], time()+(86400*30));
+            }
+            include '../Resources/View/LandingPage.php';
         }
         
         break;
