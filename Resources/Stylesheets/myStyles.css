@@ -4,7 +4,8 @@ h1{
 header{
 	background-color:#264d73;
         overflow: hidden;
-	
+	color: #E8E8E8;
+        font-family:"Courier New", Courier, monospace;
 }
 #header{
 	
