@@ -14,7 +14,7 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+<!--    <span class="close">&times;</span>-->
 	<div class="mid">
 	<img src="../Resources/Images/success.png">
     <strong><h3 class="modalText">Registration Successful</h3></strong>
@@ -23,7 +23,9 @@
   </div>
 
 </div>
-<?php endif;?>
+ 
+
+ 
 <form action="MainController.php?action=register_resident" method="post">
      
     
@@ -58,13 +60,7 @@
 	title="Must match above entered password">
 	</br>
    
-<!--   <span class="required">*</span>
 
-	<label><b>Province</b></label>
-    <select name="Provinces">
-  <option value="">Eastern Cape</option>
-  <option value="">Gauteng</option>
-  <option value="">Mpumalanga</option>-->
   </select><span class="required">*</span>
 	<label><b>City</b></label>
    <select name="Cities">
@@ -85,23 +81,23 @@
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
 	<br>
-	<label name="cant be main"></label><!--
+       
   
 <!--Accordion*/-->
 <input type="button" value="Register As Main Resident?" class="accordion"/>
 	<!--<button class="accordion">Register As Main Resident?</button>-->
 <div class="panel">
   <p>A Main Resident is a member of a household who must will be taking the sole responsibility 
-     of recording water meter readings for that household on a regular basis (daily/weekly). 
+     of recording water meter readings for that household on a regular basis (own discretion). 
      Main resident will act as a household manager, has full access to this site's utilities and
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
-  <input type="radio" id="ResType" name="ResType" value="mainRes" onclick="DisplayGroup()"> Main Resident<br><br>
+  <input type="radio" id="ResType" required name="ResType" value="mainRes" onclick="DisplayGroup()"> Main Resident<br><br>
  
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
 <label><b>Number of Residents</b></label>
-    <input type="number" min="1" placeholder="Enter Number of Residents excl yourself" id="resident" name="residents"/>
+    <input type="number" min="1" placeholder="Enter Number of Residents incl yourself" id="resident" name="residents"/>
 	</div><!--end group-->
 </div>
 <input type="button" value="Register As Resident?" class="accordion"/>
