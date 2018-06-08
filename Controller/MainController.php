@@ -42,7 +42,16 @@ switch ($action){
         // code from cookies
               include '../Resources/View/RecordReadings.php';
               break;
-
+          
+    case 'view_readings_page':
+        $readings= array();
+        // code from cookies
+         $house =array();
+        $house[0] ="12";
+          $house[1] ="thuli";
+        
+        include '../Resources/View/ViewReadings.php';
+        break;
     // End Page displaying/ request  section 
     
        
@@ -123,12 +132,17 @@ switch ($action){
         include '../Resources/View/RecordReadings.php';
         break; 
         
-//    case 'meter_readings':
-//        $readingDate = filter_input(INPUT_POST, 'readingDate');
-//        $houseID = filter_input(INPUT_POST, 'houseId');
-//        $reading = filter_input(INPUT_POST, 'reading');
-//        $readings = $dataAceess->meter_readings($readingDate,$houseID,$reading);
-//        break;
+    case 'view_readings':
+        //code from cookies
+        $house =array();
+        $house[0] ="785";
+        $house[1] ="Ngwenya";
+        $house_id = 11;
+       $fromDate = filter_input(INPUT_POST, 'fromDate');
+       $toDate = filter_input(INPUT_POST, 'toDate');
+       $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       include '../Resources/View/ViewReadings.php';
+       break;
         
     case 'custom_reading':
         $user_id = filter_input(INPUT_POST, 'user_placeholder');
