@@ -7,16 +7,16 @@
  */
 include '../DAL/DBhelper.php';
 include '../DAL/DBAccess.php';
-$action = filter_input(INPUT_POST, 'action');
+$action= filter_input(INPUT_POST, 'action');
 if ($action==NULL) {
-    $action = filter_input(INPUT_GET, 'action');
+    $action= filter_input(INPUT_GET, 'action');
     if ($action==NULL) {
         $context ="Welcome to Driplit";
         include "../Resources/View/LandingPage.php";
         exit();
     }
 }
-//$action = 'news';
+//$action= 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
 $context = "Unknown location";
@@ -76,20 +76,20 @@ switch ($action){
             $_SESSION["email"] = $user_details[0][2];
             $data_null = CheckIfCookiesExists("PersonID");
             if($data_null ===TRUE){
-            setcookie("PersonID", $user_details[0][0], time()+(86400*30));
-            setcookie("FullName", $user_details[0][1], time()+(86400*30));
-            setcookie("Email", $user_details[0][2], time()+(86400*30));
-            setcookie("UserPassword", $user_details[0][3], time()+(86400*30));
-            setcookie("Flagged", $user_details[0][4], time()+(86400*30));
-            setcookie("HouseID", $user_details[0][5], time()+(86400*30));
-            setcookie("Rights", $user_details[0][6], time()+(86400*30));
+            setcookie("PersonID", $user_details[0][0]);
+            setcookie("FullName", $user_details[0][1]);
+            setcookie("Email", $user_details[0][2]);
+            setcookie("UserPassword", $user_details[0][3]);
+            setcookie("Flagged", $user_details[0][4]);
+            setcookie("HouseID", $user_details[0][5]);
+            setcookie("Rights", $user_details[0][6]);
 
-            setcookie("MainResidentID", $user_details[0][7], time()+(86400*30));
-            setcookie("HouseID", $user_details[0][8], time()+(86400*30));
-            setcookie("HouseNumber", $user_details[0][9], time()+(86400*30));
-            setcookie("StreetName", $user_details[0][10], time()+(86400*30));
-            setcookie("SurburbID", $user_details[0][11], time()+(86400*30));
-            setcookie("NumberOfResidents", $user_details[0][12], time()+(86400*30));
+            setcookie("MainResidentID", $user_details[0][7]);
+            setcookie("HouseID", $user_details[0][8]);
+            setcookie("HouseNumber", $user_details[0][9]);
+            setcookie("StreetName", $user_details[0][10]);
+            setcookie("SurburbID", $user_details[0][11]);
+            setcookie("NumberOfResidents", $user_details[0][12]);
             $context="Welcome to Driplit";
             include '../Resources/View/LandingPage.php';
             }
@@ -214,10 +214,11 @@ switch ($action){
         $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
           $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
         $house_id = filter_input(INPUT_COOKIE, 'HouseID');
-       $fromDate = filter_input(INPUT_POST, 'fromDate');
-       $toDate = filter_input(INPUT_POST, 'toDate');
+       $fromDate = "2018/01/01";
+       $toDate = "2018/10/10";
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
-       include '../Resources/View/ViewReadings.php';
+       $context ="Water Usage";
+       include '../Resources/View/water_usage.php';
         }else{
              $user_details = 1;
             include '../Resources/View/log_in.php';
@@ -235,10 +236,11 @@ switch ($action){
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       $context = "Water Usage";
        include '../Resources/View/ViewReadings.php';
         }else{
              $user_details = 1;
-            include '../Resources/View/log_in.php';
+            include '../Resources/View/water_usage.php';
         }
         break;
     case'log_out':

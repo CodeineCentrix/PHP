@@ -9,6 +9,11 @@ could create one stylesheet  for all but that will confuse the hell outa us.
 /*
 Login page style BEGIN ============
 */
+
+body {
+    margin-top: 0;
+   padding-top: 0;
+}
 .bgLogin{
 
     background-image: url('../Images/bglogin.jpg');
@@ -543,4 +548,75 @@ Begin section for header....
 .area-charges-holder p{
     float: left;
   width: 32%;
+}
+
+/*
+ Water Usage reporting 
+*/
+.wrap_usage_area{
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+    padding: 5px;
+}
+.date_wrapper{
+    font-family: "Century Gothic";
+    overflow: hidden;
+    height: 49%;
+     border-style: solid;
+    border-color: rgb(224,224,224);
+    border-radius: 10px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+.date_control_wrapper{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+.date_control_wrapper input[type=date] {
+    width: 75%;
+    margin: 5px;
+}
+.date_control_wrapper label{
+    width: 40%;
+}
+
+.date_control_wrapper input[type=submit] {
+    margin-top: 20px;
+    width: 70%;
+}
+
+.date_control_wrapper .button_wrapper{
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+.date_control_wrapper h3{
+    text-align: center;
+}
+
+.date_control_wrapper .date_control{
+    width: 50%;
+    float: left;
+    overflow: hidden;
+    
+}
+
+.graph-wrapper{
+    width: 90%;
+    height: 100% !important;
+    overflow: hidden;
+    margin: auto;
+    padding: 15px;
+}
+
+.graph-wrapper #graphArea{
+    height: 500px !important;
+    width: 100% !important;
+    overflow: hidden;
 }
