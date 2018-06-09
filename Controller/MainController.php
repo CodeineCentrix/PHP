@@ -19,7 +19,7 @@ if ($action==NULL) {
 //$action = 'news';
 /* Below is a really important section and this is the logic, if you're coding the interface this is where you'll get your data */
 $dataAceess = new DBAccess(); 
-$context = "Unkown location";
+$context = "Unknown location";
 switch ($action){
     //   Page displaying/ request section 
     case 'login_page':
@@ -205,6 +205,41 @@ switch ($action){
          include '../Resources/View/area_stats.php';
         break;
     
+    case 'water_usage':
+        $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
+        //code from cookies
+        if($data_null===FALSE){
+        $house =array();
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+       $fromDate = filter_input(INPUT_POST, 'fromDate');
+       $toDate = filter_input(INPUT_POST, 'toDate');
+       $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       include '../Resources/View/ViewReadings.php';
+        }else{
+             $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
+        break;
+
+    case 'water_usage_custom':
+        $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
+        //code from cookies
+        if($data_null===FALSE){
+        $house =array();
+        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
+          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+       $fromDate = filter_input(INPUT_POST, 'fromDate');
+       $toDate = filter_input(INPUT_POST, 'toDate');
+       $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       include '../Resources/View/ViewReadings.php';
+        }else{
+             $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
+        break;
 }
 
  function CheckIfCookiesExists() {
