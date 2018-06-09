@@ -34,6 +34,10 @@ switch ($action){
         include '../Resources/View/register_1.php';
         break;
     
+    case 'tips_page':
+        $categories=$dataAceess->GetCategories();
+        include '../Resources/View/ViewTips.php';
+    
     case 'reading_page' :
         $feedback=null;
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName");
@@ -142,6 +146,7 @@ switch ($action){
         $to += $from;
             include '../Resources/View/view_news.php';   
         break;
+        
     /*View Tips tricks*/
     case 'tips':
          $context="Tips & Tricks";
@@ -153,9 +158,10 @@ switch ($action){
         }
         $previous = $to - $from;
         $tips = $dataAceess->View_Tips($from, $to);
+        $total_records_count = $dataAceess->AllTipsRecords();
         $total_records = implode($total_records_count[0]);
         $to += $from;
-            include '../Resources/View/view_ViewTips.php';   
+            include '../Resources/View/ViewTips.php';   
        break; 
         
     case 'add_reading':
@@ -221,6 +227,19 @@ switch ($action){
          include '../Resources/View/area_stats.php';
         break;
     
+        case 'post_tip':
+             $data_null = CheckIfCookiesExists("PersonId");
+        if($data_null===FALSE){
+        $context = "Tips & Tricks";
+        $personID= filter_input(INPUT_COOKIE, 'PersonID');
+        $tip=filter_input(INPUT_POST,'tip');
+        $catID=filter_input(INPUT_POST);
+        $approved=null; //in stored procedure
+        $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
+        include '..Resources/View/ViewTips.php';
+        }
+    break;
+
     case 'water_usage':
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         //code from cookies
@@ -234,7 +253,8 @@ switch ($action){
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
        $context ="Water Usage";
        include '../Resources/View/water_usage.php';
-        }else{
+        }
+        else{
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -258,12 +278,15 @@ switch ($action){
             include '../Resources/View/water_usage.php';
         }
         break;
+        
     case'log_out':
         session_start();
         session_abort();
         include '../Resources/View/LandingPage.php';
         break;
 }
+
+
 
  function CheckIfCookiesExists() {
   $is_non_existant = FALSE;

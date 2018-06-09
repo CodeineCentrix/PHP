@@ -53,6 +53,7 @@
         </div>
             <?php else: ?>
         <form method="POST" action="."> 
+            
             <div class="pgn_holder center_tag">
             <?php if($previous>0)/*if(1==1)*/: ?>
         <a href="<?php echo "../Controller/MainController.php?action=news&to=$previous&from=5";?>" class="news_prev">
