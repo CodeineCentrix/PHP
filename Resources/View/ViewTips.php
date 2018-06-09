@@ -12,19 +12,19 @@
 <h2>Top Water Saving Tips &amp; Tricks</h2>
 
 
-<div class="container">
-  <img src="../Images/001-student.png" alt="Avatar" style="width:90px">
+<div class="tipscontainer">
+  <img src="../Images/head.png" alt="Avatar" style="width:90px">
   <p><span>Chris Fox.</span>System Administrator.<span name="date" class="date"><i>23June18</i></span></p>
   <p>John Doe saved us from a web disaster.</p>
 </div>
 
-<div class="container">
-  <img src="../Images/001-student.png" alt="Avatar" style="width:90px">
+<div class="tipscontainer">
+  <img src="../Images/head.png" alt="Avatar" style="width:90px">
   <p><span>Rebecca Flex.</span> Main Resident.<span name="date" class="date"><i>23June18</i></span></p></p>
   <p >No one is better than John Doe.</p>
 </div>
-<div class="container">
-  <img src="../Images/001-student.png" alt="Avatar" style="width:90px">
+<div class="tipscontainer">
+  <img src="../Images/head.png" alt="Avatar" style="width:90px">
   <p><span>Chris Brown.</span>Resident.<span name="date" class="date"><i>23June18</i></span></p></p>
   <p>No one is better than John Doe.</p>
 </div>
