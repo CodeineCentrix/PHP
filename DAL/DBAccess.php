@@ -160,4 +160,12 @@ class DBAccess {
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
+    public function View_Tips($from, $to ){
+        $stored_procedure="uspWEBViewTips(?,?)";
+        $param=array(
+            $from,
+            $to
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
 }

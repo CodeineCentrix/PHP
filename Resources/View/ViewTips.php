@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../Stylesheets/myStyles.css" type="text/css"/>
+    <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
@@ -13,22 +13,22 @@
 
 
 <div class="tipscontainer">
-  <img src="../Images/head.png" alt="Avatar" style="width:90px">
-  <p><span>Chris Fox.</span>System Administrator.<span name="date" class="date"><i>23June18</i></span></p>
-  <p>John Doe saved us from a web disaster.</p>
-</div>
+    
+     <?php $count_id =0;
+            foreach ($tips as $value): ?>
+  <img src="..Resources/Images/head.png" alt="Avatar" style="width:90px">
+  <p><span><?php echo "$value[0]"?></span><span name="date" class="date"><i><?php$dateAsString = date_format($value[2], 'jS, F Y');
+                        echo $dateAsString;?></i></span></p>
+  <p><?php echo "$value[1]"?></p>
+  </div>
+<?php endforeach; ?> 
 
-<div class="tipscontainer">
-  <img src="../Images/head.png" alt="Avatar" style="width:90px">
-  <p><span>Rebecca Flex.</span> Main Resident.<span name="date" class="date"><i>23June18</i></span></p></p>
-  <p >No one is better than John Doe.</p>
+<a class="ViewTipsLinks" href="../Controller/MainController.php?action=news&to=$to&from=5&records=$total_records">More tips...</a>
+<div class="postTip">
+<p style="width:50%">Remember to share your personal favorite water saving tips </p>
+ <textarea  style="width:50%"  name="postTip" placeholder="Type in something.." style="height:500px"></textarea>
+ <p style="color:dodgerblue" > NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.</p> 
+ <input  type="button" value="Post Tip" class="registerbtn" style="width:50%">
 </div>
-<div class="tipscontainer">
-  <img src="../Images/head.png" alt="Avatar" style="width:90px">
-  <p><span>Chris Brown.</span>Resident.<span name="date" class="date"><i>23June18</i></span></p></p>
-  <p>No one is better than John Doe.</p>
-</div>
-<a class="ViewTipsLinks" href="">More tips...</a>
-<p>Remember to share your personal favorite water saving tips <a class="ViewTipsLinks" href="">here.</a></p>
 </body>
 </html>

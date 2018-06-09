@@ -142,7 +142,22 @@ switch ($action){
         $to += $from;
             include '../Resources/View/view_news.php';   
         break;
-    
+    /*View Tips tricks*/
+    case 'tips':
+         $context="Tips & Tricks";
+        $to = filter_input(INPUT_GET, 'to');
+        $from = filter_input(INPUT_GET, 'from');
+        if (!isset($to)&& !isset($from)) {
+            $to = 0;
+            $from = 3;
+        }
+        $previous = $to - $from;
+        $tips = $dataAceess->View_Tips($from, $to);
+        $total_records = implode($total_records_count[0]);
+        $to += $from;
+            include '../Resources/View/view_ViewTips.php';   
+       break; 
+        
     case 'add_reading':
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         if($data_null===FALSE){
