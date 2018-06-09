@@ -73,6 +73,7 @@ switch ($action){
             include '../Resources/View/log_in.php';
         }else{
             session_start();
+            $_SESSION["email"] = $user_details[0][2];
             $data_null = CheckIfCookiesExists("PersonID");
             if($data_null ===TRUE){
             setcookie("PersonID", $user_details[0][0], time()+(86400*30));
@@ -239,6 +240,11 @@ switch ($action){
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
+        break;
+    case'log_out':
+        session_start();
+        session_abort();
+        include '../Resources/View/LandingPage.php';
         break;
 }
 
