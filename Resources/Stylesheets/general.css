@@ -635,4 +635,28 @@ Begin section for header....
     margin: auto;
     padding: 5px;
     overflow: hidden;
+    border-style: solid;
+    border-color: rgb(224,224,224);
+    border-radius: 10px;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 40px;
+    
+}
+
+.add_res_content input[type=email]{
+    width: 60%;
+}
+
+.add_res_content input[type=submit]{
+    width: 35%;
+}
+
+.add_cent_cont{
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
 }

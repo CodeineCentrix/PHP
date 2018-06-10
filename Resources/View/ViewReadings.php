@@ -16,6 +16,7 @@ and open the template in the editor.
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body class="recordReadings" >
+       <?php include '../Resources/View/header.php'; ?>
     <div class="MainRes">
         <form action="MainController.php?action=view_readings" method="post">
       <h1>View Water Readings</h1>

@@ -38,11 +38,12 @@ switch ($action){
     
     case 'reading_page' :
         $feedback=null;
+        $context="Add a reading";
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName");
         if($data_null===FALSE){
         $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];
         include '../Resources/View/RecordReadings.php';
     }else{
         $user_details=1;
@@ -51,19 +52,27 @@ switch ($action){
               break;
           
     case 'view_readings_page':
+        $context = "View Meter Readings";
       $data_null=  CheckIfCookiesExists("HouseNumber","StreetName");
         if($data_null===FALSE){
         $readings= array();
         // code from cookies
          $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');       
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];       
         include '../Resources/View/ViewReadings.php';
         }else{
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
         break;
+        
+        case'add_page':
+            $context="Add a Resident";
+            $add_results = 1;
+            $email_results = 0;
+            include '../Resources/View/add_resident.php';
+            break;
     // End Page displaying/ request  section 
     
     case 'login':
@@ -166,13 +175,14 @@ switch ($action){
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         if($data_null===FALSE){
             $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
-        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];
+        $house_id = $_SESSION['HouseID'];
         $pic=null;
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
         $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+        $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';
         } else {
             $user_details = 1;
@@ -181,13 +191,14 @@ switch ($action){
         break; 
         
     case 'view_readings':
+        $context="View Meter Readings";
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         //code from cookies
         if($data_null===FALSE){
         $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
-        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];
+        $house_id = $_SESSION['HouseID'];
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
@@ -204,7 +215,7 @@ switch ($action){
         if($data_null===FALSE){
         $context = "Area Statistics";
         //before calling the below retrieve user email using cookie approriate method
-        $email = filter_input(INPUT_COOKIE, 'Email');
+        $email = $_SESSION['Email'];
         $surbs = $dataAceess->Get_Suburbs();
         $addr_level = $dataAceess->area_stats($email);
         $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
@@ -229,7 +240,7 @@ switch ($action){
         $data_null = CheckIfCookiesExists("PersonID");
         if($data_null===FALSE){
         $context = "Tips & Tricks";
-        $personID= filter_input(INPUT_COOKIE, 'PersonID');
+        $personID= $_SESSION['PersonID'];
         $tip=filter_input(INPUT_POST,'postTip');
         $catID=filter_input(INPUT_POST,'cat');
         $approved=0; //in stored procedure
@@ -256,9 +267,9 @@ switch ($action){
         //code from cookies
         if($data_null===FALSE){
         $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
-        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];
+        $house_id = $_SESSION['HouseID'];
        $fromDate = "2018/01/01";
        $toDate = "2018/10/10";
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
@@ -276,9 +287,9 @@ switch ($action){
         //code from cookies
         if($data_null===FALSE){
         $house =array();
-        $house[0] = filter_input(INPUT_COOKIE, 'HouseNumber');
-          $house[1] = filter_input(INPUT_COOKIE, 'StreetName');
-        $house_id = filter_input(INPUT_COOKIE, 'HouseID');
+        $house[0] = $_SESSION['HouseNumber'];
+          $house[1] = $_SESSION['StreetName'];
+        $house_id = $_SESSION['HouseID'];
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
@@ -294,10 +305,35 @@ switch ($action){
         session_destroy();
         $_SESSION = array();
         $PersonID = NULL;
-        $MainResidentID = NULL;
-        DeleteCookies();
+        $MainResidentID = NULL;       
         $context = "Welcome to Driplit";
         include '../Resources/View/LandingPage.php';
+        break;
+    
+    case'add_resident':
+        $email = filter_input(INPUT_POST,'email_add');
+        $add_results = $dataAceess->check_user_existant($email);
+        if($add_results==NULL){
+            
+        }
+        break;
+    case'email_resident':
+        $email = filter_input(INPUT_POST,'email_reg');
+        $email_results = $dataAceess->check_user_existant($email);
+        if($email_results==NULL){
+            $null_exist = CheckIfCookiesExists("FullName");
+            if($null_exist==FALSE){
+                $name = $_SESSION["FullName"];
+                $message = "Hi there, \r\n $name has invited you to Join Driplit. Join now at:\r\n http:sict-iis.nmmu.ac.za/codecentrix/IT2/Controller/MainController.php ";
+                $message = wordwrap($message,70,"\r\n");
+                mail($email, "Invitation to Driplit", $message);
+                $email_results = 1;
+            }
+        }
+        break;
+    
+    default :
+        
         break;
 }
 
@@ -309,7 +345,7 @@ switch ($action){
  $parm_list = func_get_args();
  
  for($i=0; $i<$numOfParams;$i++){
-     if(filter_input(INPUT_COOKIE, $parm_list[$i])===NULL){
+     if(!isset($_SESSION[$parm_list[$i]])){
          $is_non_existant = TRUE;
          break;
      }
@@ -317,20 +353,3 @@ switch ($action){
  return $is_non_existant;
 }
 
-function DeleteCookies(){
-    setcookie("PersonID", time()-3600);
-            setcookie("FullName", time()-3600);
-            setcookie("Email",  time()-3600);
-            setcookie("UserPassword",  time()-3600);
-            setcookie("Flagged",  time()-3600);
-            setcookie("HouseID",  time()-3600);
-            setcookie("Rights",  time()-3600);
-
-            setcookie("MainResidentID",  time()-3600);
-            setcookie("HouseID",  time()-3600);
-            setcookie("HouseNumber", time()-3600);
-            setcookie("StreetName", time()-3600);
-            setcookie("SurburbID",  time()-3600);
-            setcookie("NumberOfResidents", time()-3600);
-           
-}

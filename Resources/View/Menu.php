@@ -57,7 +57,7 @@
        
        
        <div class="link_con">
-           <i class="icon fa "><a href="../Controller/MainController.php?action=water_usage"><img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png"></a></i>
+           <i class="icon fa "><a href="../Controller/MainController.php?action=water_usage"><img src="https://png.icons8.com/ios/50/000000/plumbing-filled.png"></a></i>
         <p class="para">VIEW WATER USAGE</p>
       </div>
        <?php 
@@ -80,7 +80,7 @@
         
         if((isset($_SESSION['MainResidentID'])|| $rights>0)||isset($MainResidentID)): ?>
         <div class="link_con">
-            <i class="icon fa "><a href="../Controller/MainController.php?action="><img src="https://png.icons8.com/metro/50/000000/groups.png"></a></i>
+            <i class="icon fa "><a href="../Controller/MainController.php?action=add_page"><img src="https://png.icons8.com/metro/50/000000/groups.png"></a></i>
         <p class="para">ADD RESIDENT</p>
       </div>
 
@@ -88,7 +88,9 @@
          <i class="icon fa "><a href="../Controller/MainController.php?action=add_reading"><img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png"></a></i>
         <p class="para">RECORD READINGS</p>
       </div>
-     <?php if(filter_input(INPUT_COOKIE, 'MainResidentID')!==NULL):?>
+     <?php 
+
+     if(isset($_SESSION['MainResidentID'])):?>
      <div class="link_con">
          <i class="icon fa "><a href="../Controller/MainController.php?action="><img src="https://png.icons8.com/ios/50/000000/user-rights-filled.png"></a></i>
         <p class="para">REVOKE RIGHTS</p>       
