@@ -20,7 +20,7 @@
 	<div class="mid">
 	<img src="../Resources/Images/success.png">
     <strong><h3 class="modalText">Tip posted for evaluation</h3></strong>
-	<div class="btnProceed"><a href= "../Controller/MainController.php?action=homepage">OK</a></div>
+	<div class="btnProceed"><a href= "../Controller/MainController.php?action=tips">OK</a></div>
 	</div>
   </div>
 
@@ -42,12 +42,12 @@
 <!--prev next buttons-->
  <div class="pgn_holder center_tag">
             <?php if($previous>0)/*if(1==1)*/: ?>
-        <a href="<?php echo "../Controller/MainController.php?action=news&to=$previous&from=5";?>" class="news_prev">
+        <a href="<?php echo "../Controller/MainController.php?action=tips&to=$previous&from=5";?>" class="news_prev">
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>
             
             <?php if($from<$total_records) /*if(1==1)*/: ?>
-                <a href="<?php echo "../Controller/MainController.php?action=news&to=$to&from=$from&records=$total_records";?>" class="news_next">
+                <a href="<?php echo "../Controller/MainController.php?action=tips&to=$to&from=$from&records=$total_records";?>" class="news_next">
                     <span class="img_next"> <label>next</label><img  src="../Resources/Images/next.png"></span></a>
             <?php endif; ?>
         </div>
@@ -71,7 +71,7 @@
 <label>Select Category</label><br>
 <select name="cat">
     <?php foreach ($categories as $cat) :?>
-<option><?php echo "$cat[1]"; ?></option>
+    <option value="<?php echo "$cat[0]";?>"><?php echo "$cat[1]"; ?></option>
     <?php endforeach; ?>
     </select>
         <br>

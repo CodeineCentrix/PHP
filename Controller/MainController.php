@@ -158,6 +158,7 @@ switch ($action){
         $total_records_count = $dataAceess->AllTipsRecords();
         $total_records = implode($total_records_count[0]);
         $from += $to;
+        $postedTip =0;
             include '../Resources/View/ViewTips.php';   
        break; 
         
@@ -233,7 +234,17 @@ switch ($action){
         $catID=filter_input(INPUT_POST,'cat');
         $approved=0; //in stored procedure
         $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
-        include '..Resources/View/ViewTips.php';
+        $to = filter_input(INPUT_GET, 'to');
+        $from = filter_input(INPUT_GET, 'from');
+        if (!isset($to)&& !isset($from)) {
+            $to = 3;
+            $from = 0;
+        }
+         $previous = $from - $to;
+         $tips = $dataAceess->View_Tips($from, $to);
+          $total_records_count = $dataAceess->AllTipsRecords();
+        $total_records = implode($total_records_count[0]);
+        include '../Resources/View/ViewTips.php';
         }else{
             $user_details = 1;
             include '../Resources/View/log_in.php';

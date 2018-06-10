@@ -177,7 +177,7 @@ class DBAccess {
         $stored_procedure="uspWEBGetCategories";
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
-    public function Post_Tip($stored_procedure, $param){
+    public function Post_Tip($personId,$tip,$catID,$approved ){
         $stored_procedure="uspWEBAddTip(?,?,?,?)";
         $param=array(
             $personId,//get from cookies
