@@ -9,14 +9,31 @@
 </head>
 <body>
  <?php include '../Resources/View/header.php'; ?>
+
+    <?php if($postedTip >0):?>
+ <!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+<!--    <span class="close">&times;</span>-->
+	<div class="mid">
+	<img src="../Resources/Images/success.png">
+    <strong><h3 class="modalText">Tip posted for evaluation</h3></strong>
+	<div class="btnProceed"><a href= "../Controller/MainController.php?action=homepage">OK</a></div>
+	</div>
+  </div>
+
+</div>
+ <?php endif;?>
+
+<div class="tips_holder">
 <h2>Top Water Saving Tips &amp; Tricks</h2>
-
-
-<div class="tipscontainer">
     
      <?php $count_id =0;
             foreach ($tips as $value): ?>
-  <img src="..Resources/Images/head.png" alt="Avatar" style="width:90px">
+   <div class="tipscontainer">
+  <img src="../Resources/Images/head.png" alt="Avatar" style="width:90px">
   <p><span><?php echo "$value[0]"?></span><?php echo "$value[3]"?><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
                         echo $dateAsString;?></i></span></p>
   <p><?php echo "$value[1]"?></p>
@@ -29,8 +46,8 @@
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>
             
-            <?php if($to<=$total_records) /*if(1==1)*/: ?>
-                <a href="<?php echo "../Controller/MainController.php?action=news&to=$to&from=5&records=$total_records";?>" class="news_next">
+            <?php if($from<$total_records) /*if(1==1)*/: ?>
+                <a href="<?php echo "../Controller/MainController.php?action=news&to=$to&from=$from&records=$total_records";?>" class="news_next">
                     <span class="img_next"> <label>next</label><img  src="../Resources/Images/next.png"></span></a>
             <?php endif; ?>
         </div>
@@ -46,19 +63,26 @@
    
         <?php endif;?>
 
-<form action="MainController.php?action=" method="post">
+<form action="../Controller/MainController.php?action=post_tip" method="post">
 
-            <div class="postTip">
-<p style="width:50%">Remember to share your personal favorite water saving tips </p>
-<label>Select Category</label><?php foreach ($categories as $cat) :?><select><option><?php echo "$cat[1]"; ?></option></select>
-    <?php endforeach; ?> <br>
- <textarea  style="width:50%"  name="postTip" placeholder="Type in something.." style="height:500px"></textarea>
+    <div class="post_wrap">
+        <div class="postTip">
+<h3>Remember to share your personal favorite water saving tips </h3>
+<label>Select Category</label><br>
+<select name="cat">
+    <?php foreach ($categories as $cat) :?>
+<option><?php echo "$cat[1]"; ?></option>
+    <?php endforeach; ?>
+    </select>
+        <br>
+ <textarea   name="postTip" placeholder="Type in something.."></textarea>
  <p style="color:dodgerblue" > NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.</p> 
- <input  type="button" value="Post Tip" class="registerbtn" style="width:50%">
+ <input  type="submit" value="Post Tip" class="registerbtn" style="width:50%">
 </div>
+    </div>
           
         </form>
-        
+</div>     
     
 </body>
 </html>

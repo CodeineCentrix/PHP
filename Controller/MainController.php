@@ -34,9 +34,6 @@ switch ($action){
         include '../Resources/View/register_1.php';
         break;
     
-    case 'tips_page':
-        $categories=$dataAceess->GetCategories();
-        include '../Resources/View/ViewTips.php';
     
     case 'reading_page' :
         $feedback=null;
@@ -153,14 +150,15 @@ switch ($action){
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
-            $to = 0;
-            $from = 3;
+            $to = 3;
+            $from = 0;
         }
-        $previous = $to - $from;
+        $previous = $from - $to;
+                $categories=$dataAceess->GetCategories();
         $tips = $dataAceess->View_Tips($from, $to);
         $total_records_count = $dataAceess->AllTipsRecords();
         $total_records = implode($total_records_count[0]);
-        $to += $from;
+        $from += $to;
             include '../Resources/View/ViewTips.php';   
        break; 
         
@@ -228,15 +226,18 @@ switch ($action){
         break;
     
         case 'post_tip':
-             $data_null = CheckIfCookiesExists("PersonId");
+        $data_null = CheckIfCookiesExists("PersonID");
         if($data_null===FALSE){
         $context = "Tips & Tricks";
         $personID= filter_input(INPUT_COOKIE, 'PersonID');
-        $tip=filter_input(INPUT_POST,'tip');
-        $catID=filter_input(INPUT_POST);
-        $approved=null; //in stored procedure
+        $tip=filter_input(INPUT_POST,'postTip');
+        $catID=filter_input(INPUT_POST,'cat');
+        $approved=0; //in stored procedure
         $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
         include '..Resources/View/ViewTips.php';
+        }else{
+            $user_details = 1;
+            include '../Resources/View/log_in.php';
         }
     break;
 

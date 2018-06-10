@@ -365,4 +365,33 @@ float:right;
 
 /*info to user*/
 
+.tips_holder{
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
+    padding: 5px;
+}
 
+.postTip select{
+    width: 50%;
+    
+}
+
+.postTip{
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.postTip textarea{
+    width: 50%;
+    height: 180px;
+}
+
+.post_wrap{
+    width: 70%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
+}
