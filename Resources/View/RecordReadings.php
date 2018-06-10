@@ -21,7 +21,7 @@
 <h2 class="displayInfoToUser"><?php echo "$house[0]"." $house[1]"; ?></h2>
 
 <iframe id="iframe" src="../Resources/Images/gauge.png" name="iframe_a"></iframe><br>
-<a href="meterReadingHelp.html" target="iframe_a">Help me read my meter?</a>
+<a href="../Resources/View/meterReadingHelp.html" target="iframe_a">Help me read my meter?</a>
 
 
 <form action="MainController.php?action=add_reading" method="post">
