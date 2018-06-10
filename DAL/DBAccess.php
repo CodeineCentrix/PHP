@@ -135,6 +135,11 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
+     public function AllTipsRecords(){
+        $stored_procedure ="uspWEBTipsCount";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
     public function  Get_Cities(){
         $stored_procedure="uspWEBCities";
         return DBhelper::sp_SelectStatement($stored_procedure);
@@ -159,5 +164,29 @@ class DBAccess {
             $surburb_id
         );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    public function View_Tips($from, $to ){
+        $stored_procedure="uspWEBViewTips(?,?)";
+        $param=array(
+            $from,
+            $to
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    public function GetCategories(){
+        $stored_procedure="uspWEBGetCategories";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    public function Post_Tip($personId,$tip,$catID,$approved ){
+        $stored_procedure="uspWEBAddTip(?,?,?,?)";
+        $param=array(
+            $personId,//get from cookies
+            $tip,
+            $catID,
+            $approved
+            
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+                
     }
 }

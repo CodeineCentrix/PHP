@@ -35,6 +35,7 @@ switch ($action){
         include '../Resources/View/register_1.php';
         break;
     
+    
     case 'reading_page' :
         $feedback=null;
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName");
@@ -141,7 +142,26 @@ switch ($action){
         $to += $from;
             include '../Resources/View/view_news.php';   
         break;
-    
+        
+    /*View Tips tricks*/
+    case 'tips':
+         $context="Tips & Tricks";
+        $to = filter_input(INPUT_GET, 'to');
+        $from = filter_input(INPUT_GET, 'from');
+        if (!isset($to)&& !isset($from)) {
+            $to = 3;
+            $from = 0;
+        }
+        $previous = $from - $to;
+                $categories=$dataAceess->GetCategories();
+        $tips = $dataAceess->View_Tips($from, $to);
+        $total_records_count = $dataAceess->AllTipsRecords();
+        $total_records = implode($total_records_count[0]);
+        $from += $to;
+        $postedTip =0;
+            include '../Resources/View/ViewTips.php';   
+       break; 
+        
     case 'add_reading':
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         if($data_null===FALSE){
@@ -205,6 +225,32 @@ switch ($action){
          include '../Resources/View/area_stats.php';
         break;
     
+        case 'post_tip':
+        $data_null = CheckIfCookiesExists("PersonID");
+        if($data_null===FALSE){
+        $context = "Tips & Tricks";
+        $personID= filter_input(INPUT_COOKIE, 'PersonID');
+        $tip=filter_input(INPUT_POST,'postTip');
+        $catID=filter_input(INPUT_POST,'cat');
+        $approved=0; //in stored procedure
+        $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
+        $to = filter_input(INPUT_GET, 'to');
+        $from = filter_input(INPUT_GET, 'from');
+        if (!isset($to)&& !isset($from)) {
+            $to = 3;
+            $from = 0;
+        }
+         $previous = $from - $to;
+         $tips = $dataAceess->View_Tips($from, $to);
+          $total_records_count = $dataAceess->AllTipsRecords();
+        $total_records = implode($total_records_count[0]);
+        include '../Resources/View/ViewTips.php';
+        }else{
+            $user_details = 1;
+            include '../Resources/View/log_in.php';
+        }
+    break;
+
     case 'water_usage':
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         //code from cookies
@@ -218,7 +264,8 @@ switch ($action){
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
        $context ="Water Usage";
        include '../Resources/View/water_usage.php';
-        }else{
+        }
+        else{
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -242,6 +289,7 @@ switch ($action){
             include '../Resources/View/water_usage.php';
         }
         break;
+        
     case'log_out':
         session_destroy();
         $_SESSION = array();
@@ -252,6 +300,8 @@ switch ($action){
         include '../Resources/View/LandingPage.php';
         break;
 }
+
+
 
  function CheckIfCookiesExists() {
   $is_non_existant = FALSE;

@@ -110,7 +110,7 @@ input[type=password]
 /*	title:Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters>*/
 }
 /* Full-width input fields */
-input[type=text], input[type=password],input[type=date], input[type=number],select {
+input[type=text], input[type=password],input[type=date], input[type=number],select, textarea {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -161,6 +161,7 @@ registerbtn:hover {
 /* Add a blue text color to links */
 a {
   color: dodgerblue;
+  text-decoration: none;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
@@ -321,4 +322,76 @@ border-style:solid;
 text-align:center;
 margin: auto;
 padding:5px;
+}
+/*View Tips tricks*/
+.tipscontainer {
+  border: 2px solid  #4CAF50;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px;
+}
+		 
+.tipscontainer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.date {
+float:right;
+
+}
+.tipscontainer img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.tipscontainer span {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+@media (max-width: 500px) {
+  .tipscontainer {
+      text-align: center;
+  }
+  .tipscontainer img {
+      margin: auto;
+      float: none;
+      display: block;
+  }
+}
+
+/*info to user*/
+
+.tips_holder{
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.postTip select{
+    width: 50%;
+    
+}
+
+.postTip{
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.postTip textarea{
+    width: 50%;
+    height: 180px;
+}
+
+.post_wrap{
+    width: 70%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
 }
