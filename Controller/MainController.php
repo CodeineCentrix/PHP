@@ -24,11 +24,13 @@ $context = "Unknown location";
 switch ($action){
     //   Page displaying/ request section 
     case 'login_page':
+        $context = "Login";
         $user_details= NULL;
         include '../Resources/View/log_in.php';
         break;
     
     case 'register_page':
+        $context= "Register";
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
         $feedback =0;
@@ -69,7 +71,7 @@ switch ($action){
         
         case'add_page':
             $context="Add a Resident";
-            $add_results = 1;
+            $add_results = -1;
             $email_results = 0;
             include '../Resources/View/add_resident.php';
             break;
@@ -311,13 +313,28 @@ switch ($action){
         break;
     
     case'add_resident':
+        $context="Add a Resident";
         $email = filter_input(INPUT_POST,'email_add');
         $add_results = $dataAceess->check_user_existant($email);
-        if($add_results==NULL){
+        if($add_results!=NULL){
+            $null_exists = CheckIfCookiesExists("HouseID");
+            if($null_exists==FALSE){
+                $houseID = $_SESSION["HouseID"];
+            $add_results = $dataAceess->AddResident($email, $houseID);
             
+            }else{
+                 $user_details = 1;
+                include '../Resources/View/log_in.php';
+            }
+        }else{
+            $add_results = FALSE;
         }
+        $email_results = 0;
+        
+        include '../Resources/View/add_resident.php';
         break;
     case'email_resident':
+        $context="Add a Resident";
         $email = filter_input(INPUT_POST,'email_reg');
         $email_results = $dataAceess->check_user_existant($email);
         if($email_results==NULL){
@@ -333,7 +350,7 @@ switch ($action){
         break;
     
     default :
-        
+        include '../Resources/View/page_not_found.php';
         break;
 }
 

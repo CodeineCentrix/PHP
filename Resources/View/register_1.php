@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<?php include '../Resources/View/base_header.php';?>
 <body class="MainRes" >
     <?php if($feedback >0):?>
  <!-- The Modal -->

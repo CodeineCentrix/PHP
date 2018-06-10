@@ -189,4 +189,13 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
                 
     }
+    
+    public function AddResident($email, $houseID) {
+        $stored_procedure = "uspWEBAddResidentToHouse(?,?)";
+        $param = array(
+            $email,
+            $houseID
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
 }

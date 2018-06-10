@@ -5,9 +5,11 @@
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css">
+<link rel="stylesheet" href="../Resources/Stylesheets/general.css" type="text/css">
 <script src="..Resources/Scripts/Scripts.js"></script>
 </head>
 <body class="recordReadings" >
+    <?php include '../Resources/View/base_header.php';?>
     <div class="MainRes">
     <form action="MainController.php?action=login" method="post" >
   
@@ -15,9 +17,9 @@
     <p>Please fill in form to login.</p><hr>
     <?php  
      if($user_details===FALSE): ?>
-    <p>   <?php echo "Password or username incorrect, please try again.";?> </p>
+    <p class="error">   <?php echo "Password or username incorrect, please try again.";?> </p>
     <?php elseif($user_details==1):?>
-    <p><?php echo "Please login, to continue your activity";?></p>
+    <p class="error"><?php echo "Please login, to continue your activity";?></p>
     <?php endif;?>
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>

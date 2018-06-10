@@ -20,11 +20,13 @@ and open the template in the editor.
                 <input type="email" id="txtEmail" required name="email_add"/><br> 
                 <input type="submit" value="Add Resident">
                  </form>
-                <?php if($add_results===NULL):?>
-               <p>Oops, we can't find that account... Try: Re-typing the email address if you're sure your Resident is registered<br>
+                <?php if($add_results===FALSE):?>
+                <p class="error">Oops, we can't find that account... Try: Re-typing the email address if you're sure your Resident is registered<br>
                    or inviting your Resident below: </p>
                <?php elseif ($add_results>0): ?>
-               <p>Succesfully added <?php echo "$email" ;?> to your Home.</p>
+               <p class="success">Succesfully added <?php echo "$email" ;?> to your Home.</p>
+               <?php elseif($add_results===0):?>
+               <p class="error">Error occured, please try again at a later stage.</p>
                 <?php endif;?>
                 </div>
                 </div>
@@ -42,9 +44,9 @@ and open the template in the editor.
               
                     </div>  
                        <?php if($email_results ===NULL): ?>
-                     <p>Couldn't add because the email is already registered. Try adding instead of inviting.</p>
+                     <p class="error">Couldn't add because the email is already registered. Try adding instead of inviting.</p>
                      <?php elseif($email_results===1):?>
-                     <p>Email request sent to <?php echo "$email"; ?> await approval.</p>
+                     <p class="success">Email request sent to <?php echo "$email"; ?> await approval.</p>
                      <?php endif; ?>
             </div>
             
