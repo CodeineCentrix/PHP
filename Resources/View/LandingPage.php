@@ -65,10 +65,10 @@
                 
             </div>
             <br><br><br><br>
-            <p>This Water management web application is designed for individuals/businesses/homeowners<br>
+            <strong> <p style="color:white;">This Water management web application is designed for individuals/businesses/homeowners<br>
 	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
 	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
-	water consumption within your household and more importantly raise awareness.</p><br>
+        water consumption within your household and more importantly raise awareness.</p></strong><br>
         </div>            
 
     </body>
