@@ -37,7 +37,7 @@
         <p class="para">TIPS AND TRICKS</p>
       </div>
        <!-- Logged in registered users options--> 
-        <?php if(filter_input(INPUT_COOKIE, 'PersonID')!==NULL): ?>
+        <?php if(isset($_COOKIE["PersonID"])||isset($PersonID)): ?>
        
        <div class="link_con">
            <i class="icon fa "><a href="../Controller/MainController.php?action=view_readings"><img src="https://png.icons8.com/windows/50/000000/pressure.png"></a></i>
@@ -71,7 +71,14 @@
        
         <?php endif; ?>
      <!-- Logged in registered main residents users options -->   
-        <?php if(filter_input(INPUT_COOKIE, 'MainResidentID')!==NULL || filter_input(INPUT_COOKIE,'Rights')===1): ?>
+        <?php 
+        if(isset($_COOKIE["Rights"])){
+          $rights = filter_input(INPUT_COOKIE, 'Rights');  
+        }else{
+          $rights = 0; 
+        }
+        
+        if((isset($_COOKIE['MainResidentID'])|| $rights>0)||isset($MainResidentID)): ?>
         <div class="link_con">
             <i class="icon fa "><a href="../Controller/MainController.php?action="><img src="https://png.icons8.com/metro/50/000000/groups.png"></a></i>
         <p class="para">ADD RESIDENT</p>

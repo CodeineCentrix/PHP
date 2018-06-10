@@ -7,6 +7,7 @@
  */
 include '../DAL/DBhelper.php';
 include '../DAL/DBAccess.php';
+   session_start();
 $action= filter_input(INPUT_POST, 'action');
 if ($action==NULL) {
     $action= filter_input(INPUT_GET, 'action');
@@ -72,29 +73,27 @@ switch ($action){
             $user_details= FALSE;
             include '../Resources/View/log_in.php';
         }else{
-            session_start();
+          
             $_SESSION["email"] = $user_details[0][2];
-            $data_null = CheckIfCookiesExists("PersonID");
-            if($data_null ===TRUE){
-            setcookie("PersonID", $user_details[0][0]);
-            setcookie("FullName", $user_details[0][1]);
-            setcookie("Email", $user_details[0][2]);
-            setcookie("UserPassword", $user_details[0][3]);
-            setcookie("Flagged", $user_details[0][4]);
-            setcookie("HouseID", $user_details[0][5]);
-            setcookie("Rights", $user_details[0][6]);
+            $PersonID = $user_details[0][0] ;
+            $MainResidentID = $user_details[0][7] ;
+            setcookie("PersonID", $user_details[0][0], time()+(86400 * 1),"/");
+            setcookie("FullName", $user_details[0][1], time()+(86400 * 1),"/");
+            setcookie("Email", $user_details[0][2], time()+(86400 * 1),"/");
+            setcookie("UserPassword", $user_details[0][3], time()+(86400 * 1),"/");
+            setcookie("Flagged", $user_details[0][4], time()+(86400 * 1),"/");
+            setcookie("HouseID", $user_details[0][5], time()+(86400 * 1),"/");
+            setcookie("Rights", $user_details[0][6], time()+(86400 * 1),"/");
 
-            setcookie("MainResidentID", $user_details[0][7]);
-            setcookie("HouseID", $user_details[0][8]);
-            setcookie("HouseNumber", $user_details[0][9]);
-            setcookie("StreetName", $user_details[0][10]);
-            setcookie("SurburbID", $user_details[0][11]);
-            setcookie("NumberOfResidents", $user_details[0][12]);
+            setcookie("MainResidentID", $user_details[0][7], time()+(86400 * 1),"/");
+            setcookie("HouseID", $user_details[0][8], time()+(86400 * 1),"/");
+            setcookie("HouseNumber", $user_details[0][9], time()+(86400 * 1),"/");
+            setcookie("StreetName", $user_details[0][10], time()+(86400 * 1),"/");
+            setcookie("SurburbID", $user_details[0][11], time()+(86400 * 1),"/");
+            setcookie("NumberOfResidents", $user_details[0][12], time()+(86400 * 1),"/");
             $context="Welcome to Driplit";
             include '../Resources/View/LandingPage.php';
-            }
-            
-            
+
         }
         
         break;
@@ -244,8 +243,8 @@ switch ($action){
         }
         break;
     case'log_out':
-        session_start();
         session_abort();
+        DeleteCookies();
         include '../Resources/View/LandingPage.php';
         break;
 }
@@ -262,4 +261,21 @@ switch ($action){
      }
  }
  return $is_non_existant;
+}
+
+function DeleteCookies(){
+    setcookie("PersonID", NULL);
+            setcookie("FullName",  NULL);
+            setcookie("Email",  NULL);
+            setcookie("UserPassword",  NULL);
+            setcookie("Flagged",  NULL);
+            setcookie("HouseID",  NULL);
+            setcookie("Rights",  NULL);
+
+            setcookie("MainResidentID",  NULL);
+            setcookie("HouseID",  NULL);
+            setcookie("HouseNumber",  NULL);
+            setcookie("StreetName",  NULL);
+            setcookie("SurburbID",  NULL);
+            setcookie("NumberOfResidents",  NULL);
 }

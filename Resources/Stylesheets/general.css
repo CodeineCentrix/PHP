@@ -620,3 +620,19 @@ Begin section for header....
     width: 100% !important;
     overflow: hidden;
 }
+/*Add Resident: */
+
+.add_res_holder{
+    width: 80%;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px;
+    
+}
+
+.add_res_content{
+    width: 70%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
+}
