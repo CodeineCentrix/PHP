@@ -426,11 +426,12 @@ max-height: 15%;
 
 #btnRead{
     text-align: center;
-    color: grey;
+    color: white;
     font-family:  Calibri, Candara, Segoe ;
     text-align: center;
     border-color: blue;
    float: right;
+   font-size: 20px;
 }
 
 /*
