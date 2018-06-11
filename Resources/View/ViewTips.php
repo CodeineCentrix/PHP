@@ -75,7 +75,7 @@
     <?php endforeach; ?>
     </select>
         <br>
- <textarea   name="postTip" placeholder="Type in something.."></textarea>
+        <textarea   name="postTip" placeholder="Type in something.." required></textarea>
  <p style="color:dodgerblue" > NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.</p> 
  <input  type="submit" value="Post Tip" class="registerbtn" style="width:50%">
 </div>
