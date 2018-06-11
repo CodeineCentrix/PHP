@@ -39,7 +39,7 @@
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required><span class="required" autofocus>*</span>
+    <input type="email" placeholder="Enter Email" name="email" required><span class="required" autofocus >*</span>
 
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
@@ -79,7 +79,7 @@
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="text" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
+    <input type="number" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
 
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
@@ -118,7 +118,9 @@ Reports and Recording Meter Readings.</p>
   </div>
   
   <div class="container signin">
-    <button type="button" class="cancelbtn">Cancel</button> <span>Already have an account? <a href="#">Sign in</a>.</span>
+<!--    <button type="button" class="cancelbtn">Cancel</button>-->
+    
+    <span>Already have an account? <a href="#">Sign in</a>.</span>
   </div>
  </div>
  

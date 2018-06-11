@@ -30,7 +30,7 @@
 <span class="required">*</span>
 
 <label> <strong>Date:</strong></label><br><br>
-<input type="date" name="readingDate" max="<?php echo date("Y-m-d")?>" required ><span class="required">*</span>
+<input type="date" title="You cannot select a date later than today." name="readingDate" max="<?php echo date("Y-m-d")?>" required ><span class="required">*</span>
 
 <label> <strong>Reading:</strong></label><br>
 <input type="text" maxlength="5" id="reading" name="reading" required>
@@ -52,7 +52,7 @@
      <?php elseif($feedback===0):?>
     <p class="error"><?php echo 'Unable to add reading please try again';?></p>
 <?php endif; ?>
-<input type="reset" value="Clear Form">  &nbsp;&nbsp;<button type="button" class="cancelbtn">Cancel</button>
+<input type="reset" value="Clear Form">  &nbsp;&nbsp;<!--<button type="button" class="cancelbtn">Cancel</button>-->
 <input type="submit" name="submitReadings" value="Submit" onclick="ValidateReading()" class="registerbtn">
 
   </div>
