@@ -31,7 +31,6 @@
      
     
    <div class="MainRes">
-    <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
@@ -40,7 +39,7 @@
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
+    <input type="text" placeholder="Enter Email" name="email" required><span class="required" autofocus>*</span>
 
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
@@ -57,14 +56,17 @@
 	<span class="required">*</span>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat"required
-	title="Must match above entered password">
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw2"required
+           title="Must match above entered password">
+        <img class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
+ 	<label id="res2"><img src="../Resources/Images/information.PNG">&nbsp;Entered passwords do not match.</label>
+
 	</br>
    
 
   </select><span class="required">*</span>
 	<label><b>City</b></label>
-   <select name="Cities">
+   <select name="Cities"  onclick="ComparePassword()">
        <?php foreach ($cities as $city): ?>
        <option value="<?php echo "$city[0]"; ?>"> <?php echo"$city[1]";?> </option>  
   <?php endforeach; ?>
@@ -93,7 +95,7 @@
      Main resident will act as a household manager, has full access to this site's utilities and
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
-  <input type="radio" id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()"> Main Resident<br><br>
+  <input type="radio" id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()" required> Main Resident<br><br>
  
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
@@ -108,7 +110,7 @@
        recording water meter readings and thus need not fill the form to follow. On this site
        you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
 Reports and Recording Meter Readings.</p>
-  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()"> Resident<br>
+  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
  <button type="submit" class="registerbtn" id="registerbtn">Register</button>
