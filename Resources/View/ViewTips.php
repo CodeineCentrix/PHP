@@ -34,7 +34,7 @@
             foreach ($tips as $value): ?>
    <div class="tipscontainer">
   <img src="../Resources/Images/head.png" alt="Avatar" style="width:90px">
-  <p><span><?php echo "$value[0]"?></span><?php echo "$value[3]"?><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
+  <p><span><?php echo "$value[0]"?></span><span style="font-size:small" title="Tip Category"><?php echo "$value[3]"?></span><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
                         echo $dateAsString;?></i></span></p>
   <p><?php echo "$value[1]"?></p>
   </div>

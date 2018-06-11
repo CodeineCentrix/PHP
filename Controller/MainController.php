@@ -77,6 +77,11 @@ switch ($action){
             $email_results = 0;
             include '../Resources/View/add_resident.php';
             break;
+        
+        case'under_construction':
+            include '../Resources/View/comingSoon.php';
+            break;
+
     // End Page displaying/ request  section 
     
     case 'login':
