@@ -76,7 +76,7 @@
     </select>
         <br>
         <textarea   name="postTip" placeholder="Type in something.." required></textarea>
- <p style="color:dodgerblue" > NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.</p> 
+        <div class="warning" > <br>NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.<br><br></div> <br>
  <input  type="submit" value="Post Tip" class="registerbtn" style="width:50%">
 </div>
     </div>
