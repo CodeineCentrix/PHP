@@ -199,7 +199,7 @@ and when you move the mouse over it (hover) */
 .panel {
     padding: 0 18px;
     background-color: white;
-    display: none;
+    display: block;
     overflow: hidden;
 }
 /*style for tables*/
