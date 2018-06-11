@@ -289,9 +289,10 @@ switch ($action){
         $house[0] = $_SESSION['HouseNumber'];
           $house[1] = $_SESSION['StreetName'];
         $house_id = $_SESSION['HouseID'];
-       $fromDate = "2018/01/01";
-       $toDate = "2018/10/10";
+       $fromDate = date("F j, Y ", strtotime("-1 months"));
+           $toDate = date("F j, Y");
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       $opening_balance = $readings[0][2];
        $context ="Water Usage";
        include '../Resources/View/water_usage.php';
         }
@@ -310,14 +311,15 @@ switch ($action){
         $house[0] = $_SESSION['HouseNumber'];
           $house[1] = $_SESSION['StreetName'];
         $house_id = $_SESSION['HouseID'];
-       $fromDate = filter_input(INPUT_POST, 'fromDate');
-       $toDate = filter_input(INPUT_POST, 'toDate');
+       $fromDate = filter_input(INPUT_POST, 'min_date');
+       $toDate = filter_input(INPUT_POST, 'max_date');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       $opening_balance = $readings[0][2];
        $context = "Water Usage";
-       include '../Resources/View/ViewReadings.php';
+       include '../Resources/View/water_usage.php';
         }else{
              $user_details = 1;
-            include '../Resources/View/water_usage.php';
+            include '../Resources/View/log_in.php';
         }
         break;
         

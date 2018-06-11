@@ -407,3 +407,16 @@ color:red;
 .click{
 cursor:pointer;
 }
+
+@media (max-width: 500px) {
+  body  .MainRes{
+        width: 100%;
+        margin: auto;
+        background-color: white;
+        border: 1px solid #006699
+    }
+    
+    body{
+        
+    }
+}
