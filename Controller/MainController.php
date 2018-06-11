@@ -49,6 +49,7 @@ switch ($action){
         include '../Resources/View/RecordReadings.php';
     }else{
         $user_details=1;
+        $context="Log in";
         include '../Resources/View/log_in.php';
     }
               break;
@@ -64,6 +65,7 @@ switch ($action){
           $house[1] = $_SESSION['StreetName'];       
         include '../Resources/View/ViewReadings.php';
         }else{
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -88,6 +90,7 @@ switch ($action){
         $user_details = $dataAceess->Login($email, $password);
         if($user_details==NULL){
             $user_details= FALSE;
+            $context="Log in";
             include '../Resources/View/log_in.php';
         }else{
           
@@ -192,6 +195,7 @@ switch ($action){
         $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';
         } else {
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -208,9 +212,14 @@ switch ($action){
         $house_id = $_SESSION['HouseID'];
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
+       if (!isset($fromDate)||!isset($toDate)) {
+           $fromDate = date("F j, Y, g:i a", strtotime("-1 months"));
+           $toDate = date();
+       }
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
        include '../Resources/View/ViewReadings.php';
         }else{
+            $context="Log in";
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -228,6 +237,7 @@ switch ($action){
         $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
         include '../Resources/View/area_stats.php';
         } else {
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -264,6 +274,7 @@ switch ($action){
         $total_records = implode($total_records_count[0]);
         include '../Resources/View/ViewTips.php';
         }else{
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -284,6 +295,7 @@ switch ($action){
        include '../Resources/View/water_usage.php';
         }
         else{
+            $context="Log in";
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -328,6 +340,7 @@ switch ($action){
             $add_results = $dataAceess->AddResident($email, $houseID);
             
             }else{
+                $context="Log in";
                  $user_details = 1;
                 include '../Resources/View/log_in.php';
             }
