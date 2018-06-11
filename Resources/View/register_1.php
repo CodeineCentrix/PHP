@@ -120,7 +120,7 @@ Reports and Recording Meter Readings.</p>
   <div class="container signin">
 <!--    <button type="button" class="cancelbtn">Cancel</button>-->
     
-    <span>Already have an account? <a href="#">Sign in</a>.</span>
+    <span>Already have an account? <a href="../Controller/MainController.php?action=login_page">Sign in</a>.</span>
   </div>
  </div>
  

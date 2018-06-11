@@ -38,7 +38,7 @@ and open the template in the editor.
 
   <label> <strong>To:</strong></label>
   <input type="date" required name="toDate">
-
+  <div class="warning"><br><label>Readings &amp; Consumption in kiloliters.</label><br><br></div>
 <table id="table">
   <tr>
     <th>Date</th>

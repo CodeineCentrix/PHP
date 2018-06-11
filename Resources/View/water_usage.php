@@ -86,7 +86,7 @@ and open the template in the editor.
           title: 'Time'
         },
         vAxis: {
-          title: 'Consumption(litres)'
+          title: 'Consumption(Kilolitres)'
         }
       };
 
