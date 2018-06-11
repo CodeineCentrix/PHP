@@ -148,7 +148,7 @@ input[type=submit] {
     cursor: pointer;
     width: 100%;
 }
-registerbtn:hover {
+.registerbtn:hover {
   opacity:1;
 }
 /* Extra style for the cancel button (red) */
@@ -394,4 +394,16 @@ float:right;
     margin: auto;
     padding: 5px;
     overflow: hidden;
+}
+/*more validations*/
+.warning {
+    background-color: #ffffcc;
+    border-left: 6px solid #ffeb3b;
+}
+#res2{
+display:none;
+color:red;
+}
+.click{
+cursor:pointer;
 }

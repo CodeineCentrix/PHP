@@ -49,7 +49,7 @@ and open the template in the editor.
   $count=-1;
   $amount= 0;
   $records = count($readings);
-  if($records>1):
+  if($records>0):
   foreach ($readings as $value): ?>
   <tr>
       <td><?php 
@@ -75,7 +75,7 @@ and open the template in the editor.
   </tr>
   <?php $count++;endforeach;?>
 </table>
-  <?php else: ?>
+  <?php elseif($records<=0): ?>
   <p class="error"> You have <?php echo "$records";?> readings which aren't sufficient for us to generate a clear report for you.</p>
   <p class="error">Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add readings</a></p>
   <?php endif;?>

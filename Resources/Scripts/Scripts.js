@@ -110,3 +110,27 @@ if (readinglength.value.length<5)
     document.window.alert("Reading digits must not exceede 5");
 
 }}
+/*password match*/
+function ComparePassword()
+  {
+  var p1=document.getElementById("psw");
+    var p2=document.getElementById("psw2");
+var p3=document.getElementById("res2");
+	
+
+  if (p1.value!==p2.value)
+  
+  {
+  p3.style.display = "block";
+  p1.type="text";
+    p2.type="text";
+
+  p2.focus();}
+    else
+  {
+    p3.style.display = "none";
+  p1.type="password";
+    p2.type="password";
+  
+ }
+  }
