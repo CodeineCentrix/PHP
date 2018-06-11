@@ -217,6 +217,7 @@ switch ($action){
            $toDate = date("F j, Y");
        }
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       $opening_balance = $readings[0][2];
        include '../Resources/View/ViewReadings.php';
         }else{
             $context="Log in";
