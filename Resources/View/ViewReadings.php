@@ -81,7 +81,11 @@ and open the template in the editor.
 </table>
   <?php elseif($records<=0): ?>
   <p class="error"> You have <?php echo "$records";?> readings which aren't sufficient for us to generate a clear report for you.</p>
-  <p class="error">Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add readings</a></p>
+  <?php if(!isset($_SESSION['MainResidentID'])):?>
+  <strong><p class="error">Tasks to help: Tell Main Resident to record meter readings for the selected date range.</p></strong>
+  <?php else: ?>
+  <strong><p class="error">Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add readings</a></p></strong>
+  <?php endif; ?>
   <?php endif;?>
 <br>
 <label> <strong>Total water used:</strong></label>

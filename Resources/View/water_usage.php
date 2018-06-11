@@ -32,12 +32,9 @@ and open the template in the editor.
         
         <!-- The graph -->
         <div class="graph-wrapper">
+            
             <div id="graphArea">
-                
-            </div>
-        </div>
-        </div>
-        <?php
+                <?php
         $records = count($readings);
         if($records>=2): ?>
         <!-- If there is data that is returned and is sufficient to create a graph --> 
@@ -99,12 +96,22 @@ and open the template in the editor.
         chart.draw(data, options);
       }
     </script>
-        <?php else:?>
+            </div>
+            
+            <?php else:?>
     <!-- If there isn't data returned or it isn't sufficient to create a graph -->
-    <div>
-        <p>You only have <?php echo "$records"; ?> which isn't enough for us to formulate a proper graph. </p>
-        <p>Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add some meter readings?</a></p>
+    <div class="eror">
+        <p class="error">You only have <?php echo "$records"; ?> meter readings which isn't enough for us to formulate a proper graph. </p>
+        <?php if(!isset($_SESSION['MainResidentID'])):?>
+        <strong> <p class="error">Tasks to help: Tell Main Resident to record meter readings for the selected date range.</p></strong>
+  <?php else: ?>
+        <strong> <p class="error">Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add some meter readings?</a></p></strong>
+        <?php endif;?>
     </div>
     <?php endif;?>
+        </div>
+
+        </div>
+
     </body>
 </html>

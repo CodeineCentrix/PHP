@@ -217,7 +217,10 @@ switch ($action){
            $toDate = date("F j, Y");
        }
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
-       $opening_balance = $readings[0][2];
+       if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
+      
        include '../Resources/View/ViewReadings.php';
         }else{
             $context="Log in";
@@ -292,7 +295,9 @@ switch ($action){
        $fromDate = date("F j, Y ", strtotime("-1 months"));
            $toDate = date("F j, Y");
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
-       $opening_balance = $readings[0][2];
+      if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
        $context ="Water Usage";
        include '../Resources/View/water_usage.php';
         }
@@ -314,7 +319,9 @@ switch ($action){
        $fromDate = filter_input(INPUT_POST, 'min_date');
        $toDate = filter_input(INPUT_POST, 'max_date');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
-       $opening_balance = $readings[0][2];
+       if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
        $context = "Water Usage";
        include '../Resources/View/water_usage.php';
         }else{
