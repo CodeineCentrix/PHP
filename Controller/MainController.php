@@ -208,10 +208,11 @@ switch ($action){
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
        if (!isset($fromDate)||!isset($toDate)) {
-           $fromDate = date("F j, Y, g:i a", strtotime("-1 months"));
-           $toDate = date();
+           $fromDate = date("F j, Y ", strtotime("-1 months"));
+           $toDate = date("F j, Y");
        }
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       $opening_balance = $readings[0][2];
        include '../Resources/View/ViewReadings.php';
         }else{
             $context="Log in";
