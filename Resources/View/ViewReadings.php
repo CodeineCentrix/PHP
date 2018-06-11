@@ -34,10 +34,10 @@ and open the template in the editor.
      <h2 class="displayInfoToUser"><?php echo "$house[0]"." $house[1]"; ?></h2>
      
    <label> <strong>From:</strong></label>
-<input type="date" name="fromDate">
+   <input type="date" required name="fromDate">
 
   <label> <strong>To:</strong></label>
-<input type="date" name="toDate">
+  <input type="date" required name="toDate">
 
 <table id="table">
   <tr>
@@ -48,6 +48,8 @@ and open the template in the editor.
   <?php 
   $count=-1;
   $amount= 0;
+  $records = count($readings);
+  if($records>1):
   foreach ($readings as $value): ?>
   <tr>
       <td><?php 
@@ -73,6 +75,10 @@ and open the template in the editor.
   </tr>
   <?php $count++;endforeach;?>
 </table>
+  <?php else: ?>
+  <p class="error"> You have <?php echo "$records";?> readings which aren't sufficient for us to generate a clear report for you.</p>
+  <p class="error">Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add readings</a></p>
+  <?php endif;?>
 <br>
 <label> <strong>Total water used:</strong></label>
 <input type="text" disabled name="totWaterUsed" value="<?php echo "$amount";?>">

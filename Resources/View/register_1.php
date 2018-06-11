@@ -19,7 +19,7 @@
 	<div class="mid">
 	<img src="../Resources/Images/success.png">
     <strong><h3 class="modalText">Registration Successful</h3></strong>
-	<div class="btnProceed"><a href= "../Controller/MainController.php?action=homepage">OK</a></div>
+	<div class="btnProceed"><a href= "../Controller/MainController.php?action=login_page">OK</a></div>
 	</div>
   </div>
 
@@ -93,7 +93,7 @@
      Main resident will act as a household manager, has full access to this site's utilities and
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
-  <input type="radio" id="ResType" required name="ResType" value="mainRes" onclick="DisplayGroup()"> Main Resident<br><br>
+  <input type="radio" id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()"> Main Resident<br><br>
  
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
@@ -108,7 +108,7 @@
        recording water meter readings and thus need not fill the form to follow. On this site
        you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
 Reports and Recording Meter Readings.</p>
- <input type="radio" name="ResType" id="res" value="res" onclick="DisplayGroup()"> Resident<br>
+  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()"> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
  <button type="submit" class="registerbtn" id="registerbtn">Register</button>

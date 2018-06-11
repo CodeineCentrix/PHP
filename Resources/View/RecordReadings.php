@@ -50,7 +50,7 @@
 
 </div>
      <?php elseif($feedback===0):?>
-    <p><?php echo 'Unable to add reading please try again';?></p>
+    <p class="error"><?php echo 'Unable to add reading please try again';?></p>
 <?php endif; ?>
 <input type="reset" value="Clear Form">  &nbsp;&nbsp;<button type="button" class="cancelbtn">Cancel</button>
 <input type="submit" name="submitReadings" value="Submit" onclick="ValidateReading()" class="registerbtn">

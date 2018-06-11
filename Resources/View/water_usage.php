@@ -11,7 +11,7 @@ and open the template in the editor.
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <style>
             html{
-                overflow-y:  hidden;
+                overflow-y:  auto;
             }
         </style>
     </head>
@@ -23,8 +23,8 @@ and open the template in the editor.
                 <div class="date_control_wrapper">
                 <form action="MainController.php?action=water_usage_custom" method="POST">
                 <h3>Generate your own custom graph</h3>
-                <div class="date_control"> <label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
-                <div class="date_control"> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
+                <div class="date_control" required> <label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
+                <div class="date_control" required> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
                 <div class="button_wrapper"> <input type="submit" value="Generate Graph"></div>
             </form>
             </div>
@@ -38,7 +38,8 @@ and open the template in the editor.
         </div>
         </div>
         <?php
-        if(1===1): ?>
+        $records = count($readings);
+        if($records>=2): ?>
         <!-- If there is data that is returned and is sufficient to create a graph --> 
         <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -79,7 +80,7 @@ and open the template in the editor.
         ]);
 
          var options = {
-        title: 'Your water consumption: <?php echo filter_input(INPUT_COOKIE, 'HouseNumber')." ". filter_input(INPUT_COOKIE, 'StreetName')." Street";?>',
+        title: 'Your water consumption: <?php echo $_SESSION['HouseNumber']." ".$_SESSION['StreetName']." Street";?>',
         curveType: 'function',
         hAxis: {
           title: 'Time'
@@ -97,8 +98,8 @@ and open the template in the editor.
         <?php else:?>
     <!-- If there isn't data returned or it isn't sufficient to create a graph -->
     <div>
-        <p>There isn't enough data to generate the graph for you.</p>
-        <p><a>Add some meter readings?</a></p>
+        <p>You only have <?php echo "$records"; ?> which isn't enough for us to formulate a proper graph. </p>
+        <p>Tasks to help: <a href="../Controller/MainController.php?action=add_reading">Add some meter readings?</a></p>
     </div>
     <?php endif;?>
     </body>
