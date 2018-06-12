@@ -18,6 +18,8 @@ and open the template in the editor.
                         <h3>Add a Resident already registered with us. </h3>
                 <label for="txtEmail">Email Address:</label><br>
                 <input type="email" id="txtEmail" required name="email_add"/><br> 
+              <label><input type="checkbox" value="1" name="chkRights"> Give Resident Reading Rights</label>
+              <br>
                 <input type="submit" value="Add Resident">
                  </form>
                 <?php if($add_results===FALSE):?>
@@ -39,7 +41,7 @@ and open the template in the editor.
                          <h3>Invite a Resident to Register and join you.</h3>
                 <label for="txtEmail1">Email Address:</label><br>
                 <input type="email"  id="txtEmail1"required name="email_reg"><br>
-                <input type="submit" value="Invite Resident">
+                <input type="submit" disabled value="Invite Resident">
                 </form>
               
                     </div>  

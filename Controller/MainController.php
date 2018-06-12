@@ -346,8 +346,12 @@ switch ($action){
         if($add_results!=NULL){
             $null_exists = CheckIfCookiesExists("HouseID");
             if($null_exists==FALSE){
+               $right = filter_input(INPUT_POST, 'chkRights');
+               if(!isset($right)){
+                 $right = 0;  
+               }
                 $houseID = $_SESSION["HouseID"];
-            $add_results = $dataAceess->AddResident($email, $houseID);
+            $add_results = $dataAceess->AddResident($email, $houseID,$right);
             
             }else{
                 $context="Log in";
