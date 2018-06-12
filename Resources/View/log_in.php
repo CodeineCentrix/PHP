@@ -13,7 +13,9 @@
     <div class="MainRes">
     <form action="MainController.php?action=login" method="post" >
   
-    <h1>Resident Login</h1>
+<!--    <h1>Resident Login</h1>-->
+    
+    
     <p>Please fill in form to login.</p><hr>
     <?php  
      if($user_details===FALSE): ?>
@@ -28,10 +30,11 @@
     <input type="password" placeholder="Enter Password" name="password" id="psw" required>
 	<img class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
         <input type="submit" class="registerbtn" value="Login">
-	 <label>
+<!--	 <label>
       <input type="checkbox" name="remember"> Remember me
-    </label>
-  
+    </label>-->
+      <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
+
    <div class="container signin">
        <a href="MainController.php?action=register_resident">Register?</a>
 <!--    <button type="button" class="cancelbtn">Cancel</button> <span>&nbsp;&nbsp;&nbsp;&nbsp;Forgot <a href="#">Username/Password? </a></span>-->

@@ -5,8 +5,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-<title>Record Meter Readings
-</title>
+<!--<title>Record Meter Readings
+</title>-->
 
 <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
  <script src="../Resources/Scripts/Scripts.js"></script>
@@ -17,7 +17,6 @@
     <?php include '../Resources/View/header.php'; ?>
 <div class="MainRes">
 <main>
-<h1>Record Meter Readings</h1>
 
 <h2 class="displayInfoToUser"><?php echo "$house[0]"." $house[1]"; ?></h2>
 
@@ -33,15 +32,8 @@
 <input type="date" title="You cannot select a date later than today." name="readingDate" max="<?php echo date("Y-m-d")?>" required ><span class="required">*</span>
 
 <label> <strong>Reading:</strong></label><br>
-<input type="text" maxlength="5" id="reading" name="reading" required>
-<p class="error"><?php 
-if(isset($isReadingValid)!=NULL){
-    if(isset($message)){
-    echo "$message";
-    }
-}
-?></p>
-<?php if(isset($feedback)>0):?>
+<input type="number" maxlength="5" id="reading" name="reading" required title="Must be a 5 numbers field">
+<?php if($feedback>0):?>
     <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -61,6 +53,7 @@ if(isset($isReadingValid)!=NULL){
 <?php endif; ?>
 <input type="reset" value="Clear Form">  &nbsp;&nbsp;<!--<button type="button" class="cancelbtn">Cancel</button>-->
 <input type="submit" name="submitReadings" value="Submit" onclick="ValidateReading()" class="registerbtn">
+    <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
 
   </div>
 </form> 

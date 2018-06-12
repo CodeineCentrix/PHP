@@ -40,6 +40,7 @@ header{
     
 }
 
+
 /* Add a red text color and an "x" when the requirements are wrong */
 .invalid {
     color: red;
