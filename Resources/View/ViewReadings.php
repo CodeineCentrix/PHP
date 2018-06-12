@@ -12,6 +12,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>View Meter Readings</title>
+        
+        
         <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -19,7 +21,8 @@ and open the template in the editor.
        <?php include '../Resources/View/header.php'; ?>
     <div class="MainRes">
         <form action="MainController.php?action=view_readings" method="post">
-      <h1>View Water Readings</h1>
+<!--      <h1>View Water Readings</h1>-->
+      
       <hr>
 
 <div>
@@ -32,13 +35,14 @@ and open the template in the editor.
     </select>
     <br><br>-->
      <h2 class="displayInfoToUser"><?php echo "$house[0]"." $house[1]"; ?></h2>
-     
+     <span class="required">*</span>
    <label> <strong>From:</strong></label>
    <input type="date" required name="fromDate">
-
+    <span class="required">*</span>
   <label> <strong>To:</strong></label>
   <input type="date" required name="toDate">
-  <div class="warning"><br><label>Readings &amp; Consumption in kiloliters.</label><br><br></div>
+  <div class="warning"><br><label>Readings &amp; Consumption in kiloliters.</label><br><br></div>  <br>
+
 <table id="table">
   <tr>
     <th>Date</th>
@@ -92,7 +96,8 @@ and open the template in the editor.
 <input type="text" disabled name="totWaterUsed" value="<?php echo "$amount";?>">
 <input type="submit" value="Submit" class="registerbtn">
 </div>
-    
+        <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
+
 </div> 
 <!--close box container div-->
     </form>
