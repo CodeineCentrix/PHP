@@ -17,7 +17,6 @@
     <?php include '../Resources/View/header.php'; ?>
 <div class="MainRes">
 <main>
-<h1>Record Meter Readings</h1>
 
 <h2 class="displayInfoToUser"><?php echo "$house[0]"." $house[1]"; ?></h2>
 
