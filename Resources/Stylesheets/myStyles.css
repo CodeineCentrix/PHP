@@ -408,6 +408,10 @@ float:right;
 display:none;
 color:red;
 }
+
+#res3{
+color:red;
+}
 .click{
 cursor:pointer;
 }

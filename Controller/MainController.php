@@ -34,6 +34,7 @@ switch ($action){
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
         $feedback =0;
+        $exists = FALSE;
         include '../Resources/View/register_1.php';
         break;
     
@@ -120,6 +121,7 @@ switch ($action){
         
    
     case 'register_resident':
+        $context="Register";
          $fullname = filter_input(INPUT_POST, 'lastname');       
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
@@ -142,6 +144,7 @@ switch ($action){
            include '../Resources/View/register_1.php';
          } else {
             $exists = TRUE;
+            $feedback = -1;
              include '../Resources/View/register_1.php';
          }
         break;

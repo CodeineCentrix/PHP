@@ -39,8 +39,14 @@
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required><span class="required" autofocus >*</span>
-
+    <input type="email" placeholder="Enter Email" name="email" required>
+    <?php if($exists == TRUE):?>
+    <label id="res3">
+    <img src="../Resources/Images/information.PNG">The entered email <?php echo "'$email'"; ?> already exists. Try: 
+    <a href="../Controller/MainController.php?action=login_page">Logging in</a></label><br><br><br>
+    
+    <?php endif;?>
+  <span class="required" autofocus >*</span>
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
 	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
@@ -56,7 +62,7 @@
 	<span class="required">*</span>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw2"required
+    <input type="password" placeholder="Repeat Password" onblur="ComparePassword()" name="psw-repeat" id="psw2"required
            title="Must match above entered password">
     <img style="float: right;" class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
  	<label id="res2"><img src="../Resources/Images/information.PNG">&nbsp;Entered passwords do not match.</label>
