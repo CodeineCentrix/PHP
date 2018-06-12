@@ -196,16 +196,14 @@ switch ($action){
         $pic=null;
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
-        if(isset($date_recorded) && isset($reading)){
+        if(isset($date_recorded)!=NULL && isset($reading)!=NULL){
         $isReadingValid = $dataAceess->ValidateReadingValue($house_id, $date_recorded);
-        if($isReadingValid==NULL){
+        if($reading >= $isReadingValid[0][0]){
         $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
         
         }else{
-            if($isReadingValid >= $reading){
-              $message = "The reading for $date_recorded as $reading is too low for the date... Please use a different date";
-               
-            }
+           $isReadingValid = $isReadingValid[0][0];
+              $message = "The reading for $date_recorded as $reading is too low for the date... Lowest = $isReadingValid";
         }}
         $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';

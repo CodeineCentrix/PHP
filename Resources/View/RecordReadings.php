@@ -24,7 +24,7 @@
 <a href="../Resources//View/meterReadingHelp.html" target="iframe_a">Help me read my meter?</a>
 
 
-<form action="MainController.php?action=add_reading" method="post">
+<form action="MainController.php?action=add_reading" method="POST">
     <br>
 <span class="required">*</span>
 
@@ -33,7 +33,14 @@
 
 <label> <strong>Reading:</strong></label><br>
 <input type="number" maxlength="5" id="reading" name="reading" required title="Must be a 5 numbers field">
-<?php if($feedback>0):?>
+<p class="error"><?php 
+if(isset($isReadingValid)!=NULL){
+    if(isset($message)){
+    echo "$message";
+    }
+}
+?></p>
+<?php if(isset($feedback)>0): ?>
     <!-- The Modal -->
 <div id="myModal" class="modal">
 
