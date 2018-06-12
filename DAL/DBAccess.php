@@ -199,4 +199,13 @@ class DBAccess {
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
+    
+    function ValidateReadingValue($house_id, $date) {
+        $stored_procedure = "uspWEBValReading(?,?)";
+        $param = array(
+            $house_id,
+            $date
+        );
+         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
 }

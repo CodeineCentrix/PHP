@@ -34,7 +34,14 @@
 
 <label> <strong>Reading:</strong></label><br>
 <input type="text" maxlength="5" id="reading" name="reading" required>
-<?php if($feedback>0):?>
+<p class="error"><?php 
+if(isset($isReadingValid)!=NULL){
+    if(isset($message)){
+    echo "$message";
+    }
+}
+?></p>
+<?php if(isset($feedback)>0):?>
     <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -49,7 +56,7 @@
   </div>
 
 </div>
-     <?php elseif($feedback===0):?>
+     <?php elseif(isset($feedback)===0):?>
     <p class="error"><?php echo 'Unable to add reading please try again';?></p>
 <?php endif; ?>
 <input type="reset" value="Clear Form">  &nbsp;&nbsp;<!--<button type="button" class="cancelbtn">Cancel</button>-->

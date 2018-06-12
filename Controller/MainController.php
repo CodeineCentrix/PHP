@@ -145,7 +145,9 @@ switch ($action){
          } else {
             $exists = TRUE;
             $feedback = -1;
-             include '../Resources/View/register_1.php';
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        include '../Resources/View/register_1.php';
          }
         break;
    
@@ -194,7 +196,17 @@ switch ($action){
         $pic=null;
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
+        if(isset($date_recorded) && isset($reading)){
+        $isReadingValid = $dataAceess->ValidateReadingValue($house_id, $date_recorded);
+        if($isReadingValid==NULL){
         $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+        
+        }else{
+            if($isReadingValid >= $reading){
+              $message = "The reading for $date_recorded as $reading is too low for the date... Please use a different date";
+               
+            }
+        }}
         $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';
         } else {

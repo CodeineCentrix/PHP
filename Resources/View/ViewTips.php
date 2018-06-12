@@ -41,7 +41,7 @@
 <?php endforeach; ?> 
 <!--prev next buttons-->
  <div class="pgn_holder center_tag">
-            <?php if($previous>0)/*if(1==1)*/: ?>
+            <?php if($previous>=0)/*if(1==1)*/: ?>
         <a href="<?php echo "../Controller/MainController.php?action=tips&from=$previous&to=3";?>" class="news_prev">
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>

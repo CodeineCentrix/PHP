@@ -23,8 +23,8 @@ and open the template in the editor.
                 <div class="date_control_wrapper">
                 <form action="MainController.php?action=water_usage_custom" method="POST">
                 <h3>Generate your own custom graph</h3>
-                <div class="date_control" required> <label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
-                <div class="date_control" required> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
+                <div class="date_control" > <label>Your start date:  </label> <br>  <input type="date" required name="min_date"> </div>
+                <div class="date_control" required> <label> Your end date: </label><br> <input type="date" required name="max_date"></div>
                 <div class="button_wrapper"> <input type="submit" value="Generate Graph"></div>
             </form>
             </div>
@@ -101,7 +101,7 @@ and open the template in the editor.
             <?php else:?>
     <!-- If there isn't data returned or it isn't sufficient to create a graph -->
     <div class="eror">
-        <p class="error">You only have <?php echo "$records"; ?> meter readings which isn't enough for us to formulate a proper graph. </p>
+        <p class="error">You only have <?php echo "$records"; ?> meter readings for the requested time frame or there aren't any records related to your Home which isn't enough for us to formulate a proper graph. </p>
         <?php if(!isset($_SESSION['MainResidentID'])):?>
         <strong> <p class="error">Tasks to help: Tell Main Resident to record meter readings for the selected date range.</p></strong>
   <?php else: ?>

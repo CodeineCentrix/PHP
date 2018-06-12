@@ -822,3 +822,7 @@ Begin section for header....
     padding: 5px;
     
 }
+
+.hide_stuff{
+    visibility: hidden;
+}
