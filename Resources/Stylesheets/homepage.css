@@ -15,6 +15,9 @@ and open the template in the editor.
     padding: 0;
     overflow: hidden;
 }*/
+@import url('https://fonts.googleapis.com/css?family=Jura');
+@import url('https://fonts.googleapis.com/css?family=Gudea');
+/*font-family: 'Jura', sans-serif;*/
 .content_holder{
     width: 100%;
     height: 100%;
@@ -30,9 +33,6 @@ and open the template in the editor.
             padding: 0;
             }*/
             
-.fullscreen-bg  {
-                cursor: url('../Images/cursor.png'), auto;
-            }
 label{
     font-family: 'Century Gothic';
     color:black;
@@ -60,7 +60,8 @@ ul {
     overflow: hidden;
 /*    width: 100%;*/
 /*    height: 100% !important;*/
-
+    font-family: 'Gudea', sans-serif;
+    color: white;
 }
 
 .middliseV2{
@@ -325,3 +326,49 @@ div.link_con:nth-of-type(4) {
 /*End Menu tray*/
 /*Hamburger curtosy of effico https://codepen.io/efficio/pen/vGJbNO */
 
+.tray{
+    position: absolute;
+    bottom: 30px;
+    right: 80px;
+
+    width: 10%;
+    overflow: hidden;
+}
+
+.tray_item{
+    background-color: white;
+    border-radius: 50%;
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    overflow: hidden;
+    margin-bottom: 35px;
+    cursor: pointer; 
+ display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tray_item img{
+    margin: auto;
+    padding: 5px;
+}
+
+.tray_item:hover{
+    background-color: gray;
+}
+
+
+.info_text{
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    background-color: white;
+    overflow: hidden;
+    display: none;
+    z-index: 900000;
+}
