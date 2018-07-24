@@ -46,7 +46,7 @@
        
       
        <div class="link_con">
-           <i class="icon fa "><a href="../Controller/MainController.php?action="><img src="https://png.icons8.com/metro/50/000000/edit-user-male.png"></a></i>
+           <i class="icon fa "><a href="../Controller/MainController.php?action=under_construction"><img src="https://png.icons8.com/metro/50/000000/edit-user-male.png"></a></i>
         <p class="para">EDIT PROFILE</p>
       </div>
        

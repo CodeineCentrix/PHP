@@ -34,6 +34,7 @@ switch ($action){
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
         $feedback =0;
+        $exists = FALSE;
         include '../Resources/View/register_1.php';
         break;
     
@@ -49,6 +50,7 @@ switch ($action){
         include '../Resources/View/RecordReadings.php';
     }else{
         $user_details=1;
+        $context="Log in";
         include '../Resources/View/log_in.php';
     }
               break;
@@ -64,6 +66,7 @@ switch ($action){
           $house[1] = $_SESSION['StreetName'];       
         include '../Resources/View/ViewReadings.php';
         }else{
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -75,6 +78,11 @@ switch ($action){
             $email_results = 0;
             include '../Resources/View/add_resident.php';
             break;
+        
+        case'under_construction':
+            include '../Resources/View/comingSoon.php';
+            break;
+
     // End Page displaying/ request  section 
     
     case 'login':
@@ -83,6 +91,7 @@ switch ($action){
         $user_details = $dataAceess->Login($email, $password);
         if($user_details==NULL){
             $user_details= FALSE;
+            $context="Log in";
             include '../Resources/View/log_in.php';
         }else{
           
@@ -112,6 +121,7 @@ switch ($action){
         
    
     case 'register_resident':
+        $context="Register";
          $fullname = filter_input(INPUT_POST, 'lastname');       
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
@@ -134,7 +144,10 @@ switch ($action){
            include '../Resources/View/register_1.php';
          } else {
             $exists = TRUE;
-             include '../Resources/View/register_1.php';
+            $feedback = -1;
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        include '../Resources/View/register_1.php';
          }
         break;
    
@@ -183,10 +196,19 @@ switch ($action){
         $pic=null;
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
+        if(isset($date_recorded)!=NULL && isset($reading)!=NULL){
+        $isReadingValid = $dataAceess->ValidateReadingValue($house_id, $date_recorded);
+        if($reading >= $isReadingValid[0][0]){
         $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+        
+        }else{
+           $isReadingValid = $isReadingValid[0][0];
+              $message = "The reading for $date_recorded as $reading is too low for the date... Lowest = $isReadingValid";
+        }}
         $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';
         } else {
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -203,9 +225,18 @@ switch ($action){
         $house_id = $_SESSION['HouseID'];
        $fromDate = filter_input(INPUT_POST, 'fromDate');
        $toDate = filter_input(INPUT_POST, 'toDate');
+       if (!isset($fromDate)||!isset($toDate)) {
+           $fromDate = date("F j, Y", strtotime("-1 months"));
+           $toDate = date("F j, Y");
+       }
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
+      
        include '../Resources/View/ViewReadings.php';
         }else{
+            $context="Log in";
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -223,6 +254,7 @@ switch ($action){
         $water_charges = $dataAceess->area_water_charges($addr_level[0][2]);
         include '../Resources/View/area_stats.php';
         } else {
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -259,6 +291,7 @@ switch ($action){
         $total_records = implode($total_records_count[0]);
         include '../Resources/View/ViewTips.php';
         }else{
+            $context="Log in";
             $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -272,13 +305,17 @@ switch ($action){
         $house[0] = $_SESSION['HouseNumber'];
           $house[1] = $_SESSION['StreetName'];
         $house_id = $_SESSION['HouseID'];
-       $fromDate = "2018/01/01";
-       $toDate = "2018/10/10";
+       $fromDate = date("F j, Y ", strtotime("-1 months"));
+           $toDate = date("F j, Y");
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+      if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
        $context ="Water Usage";
        include '../Resources/View/water_usage.php';
         }
         else{
+            $context="Log in";
              $user_details = 1;
             include '../Resources/View/log_in.php';
         }
@@ -292,14 +329,17 @@ switch ($action){
         $house[0] = $_SESSION['HouseNumber'];
           $house[1] = $_SESSION['StreetName'];
         $house_id = $_SESSION['HouseID'];
-       $fromDate = filter_input(INPUT_POST, 'fromDate');
-       $toDate = filter_input(INPUT_POST, 'toDate');
+       $fromDate = filter_input(INPUT_POST, 'min_date');
+       $toDate = filter_input(INPUT_POST, 'max_date');
        $readings = $dataAceess->get_readings($house_id, $fromDate, $toDate);
+       if(isset($reading[0][2])){
+          $opening_balance=  0; 
+       }
        $context = "Water Usage";
-       include '../Resources/View/ViewReadings.php';
+       include '../Resources/View/water_usage.php';
         }else{
              $user_details = 1;
-            include '../Resources/View/water_usage.php';
+            include '../Resources/View/log_in.php';
         }
         break;
         
@@ -319,10 +359,15 @@ switch ($action){
         if($add_results!=NULL){
             $null_exists = CheckIfCookiesExists("HouseID");
             if($null_exists==FALSE){
+               $right = filter_input(INPUT_POST, 'chkRights');
+               if(!isset($right)){
+                 $right = 0;  
+               }
                 $houseID = $_SESSION["HouseID"];
-            $add_results = $dataAceess->AddResident($email, $houseID);
+            $add_results = $dataAceess->AddResident($email, $houseID,$right);
             
             }else{
+                $context="Log in";
                  $user_details = 1;
                 include '../Resources/View/log_in.php';
             }

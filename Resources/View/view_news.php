@@ -35,7 +35,7 @@
                     </div>
                 <div class="news_item_desc">
                     <p style="display: none; animation-name: slower; animation-duration: 5s; " id="<?php echo "A"."$count_id";?>" > <?php echo nl2br($value[1]);?> </p>
-                    <input type="button" value="Read or Hide" id="btnRead" onclick="ReadOrShowItem('<?php echo "A"."$count_id"; $count_id++;?>')" />
+                    <input type="button" class="registerbtn" value="Read or Hide" id="btnRead" onclick="ReadOrShowItem('<?php echo "A"."$count_id"; $count_id++;?>')" />
                 </div>
             </div>
        

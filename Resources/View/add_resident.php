@@ -18,13 +18,15 @@ and open the template in the editor.
                         <h3>Add a Resident already registered with us. </h3>
                 <label for="txtEmail">Email Address:</label><br>
                 <input type="email" id="txtEmail" required name="email_add"/><br> 
+              <label><input type="checkbox" value="1" name="chkRights"> Give Resident Reading Rights</label>
+              <br>
                 <input type="submit" value="Add Resident">
                  </form>
                 <?php if($add_results===FALSE):?>
                 <p class="error">Oops, we can't find that account... Try: Re-typing the email address if you're sure your Resident is registered<br>
                    or inviting your Resident below: </p>
                <?php elseif ($add_results>0): ?>
-               <p class="success">Succesfully added <?php echo "$email" ;?> to your Home.</p>
+               <p class="success">Successfully added <?php echo "$email" ;?> to your Home.</p>
                <?php elseif($add_results===0):?>
                <p class="error">Error occured, please try again at a later stage.</p>
                 <?php endif;?>
@@ -39,18 +41,18 @@ and open the template in the editor.
                          <h3>Invite a Resident to Register and join you.</h3>
                 <label for="txtEmail1">Email Address:</label><br>
                 <input type="email"  id="txtEmail1"required name="email_reg"><br>
-                <input type="submit" value="Invite Resident">
+                <input type="submit" disabled value="Invite Resident">
                 </form>
               
                     </div>  
                        <?php if($email_results ===NULL): ?>
-                     <p class="error">Couldn't add because the email is already registered. Try adding instead of inviting.</p>
+                     <p class="error">Could not add because the email is already registered. Try adding instead of inviting.</p>
                      <?php elseif($email_results===1):?>
                      <p class="success">Email request sent to <?php echo "$email"; ?> await approval.</p>
                      <?php endif; ?>
             </div>
             
-            
+
         </div>
     </body>
 </html>

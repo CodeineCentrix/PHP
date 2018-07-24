@@ -31,3 +31,18 @@ Version 2  of the above
 SELECT First Name + ' ' + Last Name FROM Employees ORDER BY First Name OFFSET 10 ROWS FETCH NEXT 5 ROWS ONLY;
 <--- End of news article approach -->
 https://assets.mozilla.net/video/web-demystified/episode-0-the-web.webm
+
+Discussion on what to fix
+Need to fix radio button, I suggest we keep the buttons open and just make them different by grouping them in div tags and changing the display of the div tag to highlight
+two different sections
+
+Fixed: 
+Register page-  Modal box when your register- direct you to login page.
+Register page - Made combo box required forcing user to select either a main resident or normal resident
+Tips and Tricks - View Tips and tricks when your looping through the existing tips and tricks
+water usage - Made sure there is more than 1 record for a graph to be created 
+water usage - removed using cookies, used session variables instead [NB]
+water usage - made webpage scrollable if there is a need for display purposes
+water usage - made date fields required if you want to generate your custom graph
+Record Reading-  added styling to message recieved if user didn't add a reading successfully
+View Readings  - made the date required if you want get readings for a specific time date.  

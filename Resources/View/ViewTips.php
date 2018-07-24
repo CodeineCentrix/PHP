@@ -34,15 +34,15 @@
             foreach ($tips as $value): ?>
    <div class="tipscontainer">
   <img src="../Resources/Images/head.png" alt="Avatar" style="width:90px">
-  <p><span><?php echo "$value[0]"?></span><?php echo "$value[3]"?><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
+  <p><span><?php echo "$value[0]"?></span><span style="font-size:small" title="Tip Category"><?php echo "$value[3]"?></span><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
                         echo $dateAsString;?></i></span></p>
   <p><?php echo "$value[1]"?></p>
   </div>
 <?php endforeach; ?> 
 <!--prev next buttons-->
  <div class="pgn_holder center_tag">
-            <?php if($previous>0)/*if(1==1)*/: ?>
-        <a href="<?php echo "../Controller/MainController.php?action=tips&to=$previous&from=5";?>" class="news_prev">
+            <?php if($previous>=0)/*if(1==1)*/: ?>
+        <a href="<?php echo "../Controller/MainController.php?action=tips&from=$previous&to=3";?>" class="news_prev">
             <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
         <?php  endif;?>
             
@@ -75,13 +75,14 @@
     <?php endforeach; ?>
     </select>
         <br>
- <textarea   name="postTip" placeholder="Type in something.."></textarea>
- <p style="color:dodgerblue" > NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.</p> 
+        <textarea   name="postTip" placeholder="Type in something.." required></textarea>
+        <div class="warning" > <br>NB: The tip you post will only be viewable after 24hrs as it will undergo evaluation first.<br><br></div> <br>
  <input  type="submit" value="Post Tip" class="registerbtn" style="width:50%">
 </div>
     </div>
           
         </form>
+
 </div>     
     
 </body>

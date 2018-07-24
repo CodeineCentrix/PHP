@@ -422,11 +422,12 @@ max-height: 15%;
 
 #btnRead{
     text-align: center;
-    color: grey;
+    color: white;
     font-family:  Calibri, Candara, Segoe ;
     text-align: center;
     border-color: blue;
    float: right;
+   font-size: 20px;
 }
 
 /*
@@ -811,3 +812,13 @@ Begin section for header....
 	100% { top: 0px; right: 4%; opacity: 0.5; }
 }
 
+.eror{
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    
+}
+
+.hide_stuff{
+    visibility: hidden;
+}

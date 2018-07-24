@@ -61,7 +61,11 @@
         </svg>
     </div>              
                     
-                <div class="login_section middliseV2 ">  
+                <div class="login_section middliseV2 <?php
+                if(isset($_SESSION['PersonID'])){
+                echo "hide_stuff";
+                }
+                ?>">  
                     <a href="../Controller/MainController.php?action=login_page">Login</a> 
                     <a href="../Controller/MainController.php?action=register_page">Register</a> 
                 </div>

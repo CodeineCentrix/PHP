@@ -19,7 +19,7 @@
 	<div class="mid">
 	<img src="../Resources/Images/success.png">
     <strong><h3 class="modalText">Registration Successful</h3></strong>
-	<div class="btnProceed"><a href= "../Controller/MainController.php?action=homepage">OK</a></div>
+	<div class="btnProceed"><a href= "../Controller/MainController.php?action=login_page">OK</a></div>
 	</div>
   </div>
 
@@ -31,7 +31,6 @@
      
     
    <div class="MainRes">
-    <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
@@ -40,8 +39,14 @@
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required><span class="required">*</span>
-
+    <input type="email" placeholder="Enter Email" name="email" required>
+    <?php if($exists == TRUE):?>
+    <label id="res3">
+    <img src="../Resources/Images/information.PNG">The entered email <?php echo "'$email'"; ?> already exists. Try: 
+    <a href="../Controller/MainController.php?action=login_page">Logging in</a></label><br><br><br>
+    
+    <?php endif;?>
+  <span class="required" autofocus >*</span>
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
 	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
@@ -57,14 +62,17 @@
 	<span class="required">*</span>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat"required
-	title="Must match above entered password">
+    <input type="password" placeholder="Repeat Password" onblur="ComparePassword()" name="psw-repeat" id="psw2"required
+           title="Must match above entered password">
+    <img style="float: right;" class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
+ 	<label id="res2"><img src="../Resources/Images/information.PNG">&nbsp;Entered passwords do not match.</label>
+
 	</br>
    
 
   </select><span class="required">*</span>
 	<label><b>City</b></label>
-   <select name="Cities">
+   <select name="Cities"  onclick="ComparePassword()">
        <?php foreach ($cities as $city): ?>
        <option value="<?php echo "$city[0]"; ?>"> <?php echo"$city[1]";?> </option>  
   <?php endforeach; ?>
@@ -77,7 +85,7 @@
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="text" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
+    <input type="number" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
 
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
@@ -93,7 +101,7 @@
      Main resident will act as a household manager, has full access to this site's utilities and
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
-  <input type="radio" id="ResType" required name="ResType" value="mainRes" onclick="DisplayGroup()"> Main Resident<br><br>
+  <input type="radio" id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()" required> Main Resident<br><br>
  
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
@@ -108,15 +116,19 @@
        recording water meter readings and thus need not fill the form to follow. On this site
        you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
 Reports and Recording Meter Readings.</p>
- <input type="radio" name="ResType" id="res" value="res" onclick="DisplayGroup()"> Resident<br>
+  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
  <button type="submit" class="registerbtn" id="registerbtn">Register</button>
 <br>
+    <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
+
   </div>
   
   <div class="container signin">
-    <button type="button" class="cancelbtn">Cancel</button> <span>Already have an account? <a href="#">Sign in</a>.</span>
+<!--    <button type="button" class="cancelbtn">Cancel</button>-->
+    
+    <span>Already have an account? <a href="../Controller/MainController.php?action=login_page">Sign in</a>.</span>
   </div>
  </div>
  
