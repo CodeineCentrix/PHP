@@ -9,7 +9,7 @@ could create one stylesheet  for all but that will confuse the hell outa us.
 /*
 Login page style BEGIN ============
 */
-
+@import url('https://fonts.googleapis.com/css?family=Gudea');
 body {
     margin-top: 0;
    padding-top: 0;
@@ -283,10 +283,6 @@ Begin View news article web page
     width: 45% !important;
    float: left;
    overflow: hidden;
-/*   background-image: url('../Images/companylogo.png');
-     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;*/
 }
 #header_pic img{
     max-height: 10%;

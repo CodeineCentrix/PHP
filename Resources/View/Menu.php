@@ -14,7 +14,7 @@
     <div class="links">
         
       <div class="link_con">
-          <i class="icon fa"><a href="../Controller/MainController.php?action=register_page"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHxSURBVGhD7djPK2VhGMDxa5iaCGVjw0ZiYZJGsbKRJlYWU/IHaMpCdjNlFiY12WA7UaLElIXtNEkyFMk/YCxYSGYWw8qg8eP7FPV2ey7nvO97rqPeb312973nPN17znnvzYRCoVAo9MxqwEd8xRzG8A4leBY1YRU3OZxABixCauvFP2gDZFtBOVJXO/5DO+lcllGI1FSMQ2gn+5gBpKZBaCcZxW+8hLfkq/He0IKobUA7yajk2N6ah/nmo4ha1As8lw/wlu0gpTDX2RiHt2wHkbtO3LtVtmF4y+Wr9Qvm2rjk+eMtl0EmYK6N4xIViJ1sIZoV32EeYAba6+qRXQ0uYK6PagpWnUJ7w6jWofUZ2usfcoRKWJXUIAX4Bm2N5i9aYV1Sg0gyzBDOoK29t4k6OJXkIPdVQW6p2/iDc+xjAd2QgRPL5a6VqsIgaSsMctcLNKIP8qRfwk/s3JEL/wem8QldsHqiP5btIHLyk5AfSOb6KGSzuQb5/fMKXnqNDkMtHqoNsq25hnaScR1DnkFlyEvyv5R8Ar4GyHYAr78YtWTDuAftBHy6wggS6Q1srgMX8i+l111ANWSroR0saV/gJbmtbkE7SD7ItdgJ53qgHSCfduFcP7Q3zyfZsTsXBvHIyyBvsfjEZhEKhUKhkGOZzC3vRaUW0sHjXQAAAABJRU5ErkJggg=="></a></i>
+          <i class="icon fa"><a href="../Controller/MainController.php?action=register_page"><img src="https://png.icons8.com/ios/50/000000/edit-user-male-filled.png"></a></i>
         <p class="para">REGISTER</p>
       </div>
         <?php
