@@ -15,6 +15,7 @@ and open the template in the editor.
     padding: 0;
     overflow: hidden;
 }*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Jura');
 @import url('https://fonts.googleapis.com/css?family=Gudea');
 /*font-family: 'Jura', sans-serif;*/
@@ -74,6 +75,7 @@ ul {
 /*The drawable heart*/
 .middlise path,
 polyline {
+  
   stroke-dasharray: 392.1333312988281;
   stroke-dashoffset: 392.1333312988281;
   animation: dash 1.5s cubic-bezier(0.42, 0, 0.26, 0.99) forwards;
@@ -82,6 +84,8 @@ polyline {
   animation-duration: 5s;
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
+  color: white;
+  
 }
 
 @keyframes dash {
@@ -90,6 +94,7 @@ polyline {
   }
 }
 #Layer_1{
+    color: white;
      margin: auto;
     padding: 30px;
     overflow: hidden;
@@ -209,7 +214,7 @@ transform: rotate(45deg) translateY(0) translateX(0);
   -webkit-transform-origin: left;
 }
 .card {
-  background: #1ad1fc;
+  background: #E8E8E8; /*#1ad1fc;*/
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   width: 6%;
   height: 100%;
@@ -224,7 +229,7 @@ transform: rotate(45deg) translateY(0) translateX(0);
 
 .drawer {
   z-index: 0;
-  background: #fff;
+  background: white;
   opacity: .1;
   margin: 0;
   position: absolute;
@@ -330,14 +335,14 @@ div.link_con:nth-of-type(4) {
     position: absolute;
     bottom: 30px;
     right: 80px;
-
+    box-shadow: 5px 5px 5px white;
     width: 10%;
     overflow: hidden;
 }
 
 .tray_item{
     background-color: white;
-    border-radius: 50%;
+    border-radius: 40%;
     width: 50%;
     margin: auto;
     padding: 5px;
@@ -356,6 +361,7 @@ div.link_con:nth-of-type(4) {
 .tray_item img{
     margin: auto;
     padding: 5px;
+   
 }
 
 .tray_item:hover{
@@ -371,4 +377,10 @@ div.link_con:nth-of-type(4) {
     overflow: hidden;
     display: none;
     z-index: 900000;
+}
+.greetText{
+   color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 100px;
+    font-weight: 0;
 }

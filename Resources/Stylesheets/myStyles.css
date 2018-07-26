@@ -1,3 +1,4 @@
+
 h1{
 	text-align:center;
 }
@@ -6,6 +7,9 @@ header{
         overflow: hidden;
 	color: #E8E8E8;
         font-family:"Courier New", Courier, monospace;
+        height: 100px;
+        width: 100%;
+        margin: 0;
 }
 #header{
 	
@@ -429,3 +433,5 @@ cursor:pointer;
         
     }
 }
+
+

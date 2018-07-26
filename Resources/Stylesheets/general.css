@@ -447,10 +447,10 @@ Begin section for header....
     
 }
 
-.header_info p{
-    margin: 0;
+.header_info h1{
+    margin: 3px;
     padding:0;
-    vertical-align: top;
+    vertical-align: text-bottom;
 }
 
 .header_image{

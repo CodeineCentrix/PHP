@@ -45,4 +45,10 @@ water usage - removed using cookies, used session variables instead [NB]
 water usage - made webpage scrollable if there is a need for display purposes
 water usage - made date fields required if you want to generate your custom graph
 Record Reading-  added styling to message recieved if user didn't add a reading successfully
-View Readings  - made the date required if you want get readings for a specific time date.  
+View Readings  - made the date required if you want get readings for a specific time date. 
+
+Updates requested by judges:
+Fix the login and allow for usernames to be lowercase too. 
+Fix the house address part and allow for text to be added, E.g: 220B Mandla Street
+Recreate Home page and divert from using conflicting colors.  
+Once you've added a meter reading direct to the view readings page
