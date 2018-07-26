@@ -79,7 +79,7 @@ polyline {
   stroke-dasharray: 392.1333312988281;
   stroke-dashoffset: 392.1333312988281;
   animation: dash 1.5s cubic-bezier(0.42, 0, 0.26, 0.99) forwards;
-  stroke: #000;
+  stroke: #660000;
   animation-name: dash;
   animation-duration: 5s;
   animation-fill-mode: forwards;
@@ -371,16 +371,21 @@ div.link_con:nth-of-type(4) {
 
 .info_text{
     position: fixed;
-    top: 50%;
-    left: 20%;
-    background-color: white;
+    bottom: 6%;
+    left: 30%;
+    color: white;
+    padding: 5px;
+    border-style: solid;
+    border-color: white;
     overflow: hidden;
-    display: none;
-    z-index: 900000;
+    z-index: 200;
+}
+
+.info_text p{
+    color: white;
 }
 .greetText{
    color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 100px;
-    font-weight: 0;
 }

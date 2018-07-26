@@ -17,12 +17,25 @@
             }
         </style>
         
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        $('.info_text').hide();
         
+        $( ".info" ).mouseover(function() {
+        $('.info_text').show();
+     });
+            
+        $( ".info" ).mouseout(function() {
+        $('.info_text').hide();
+    });
+    });
+    </script>
     </head>
     <body>
         <!-- Floating action buttons-->
         <div class="tray">
-            <div class=" info tray_item" onmouseover="show_info()" onmouseout="hide_info()"><img src="https://png.icons8.com/ios/50/000000/info.png"></div>
+            <div class=" info tray_item"><img src="https://png.icons8.com/ios/50/000000/info.png"></div>
             <div class="tray_item" title="Login"><img src="https://png.icons8.com/ios/50/000000/login-rounded-right-filled.png"></div>
             <div class="tray_item" title="Register"><img src="https://png.icons8.com/ios/50/000000/edit-user-male-filled.png"></div>
         </div>
@@ -50,7 +63,7 @@
          xml:space="preserve">
                 <g>
                 <g>
-            <path class="path" fill="none" stroke="#000" stroke-width="5" stroke-miterlimit="10" d="M126.274,15.18l-0.091-0.091
+            <path class="path" fill="none" stroke="#660000" stroke-width="5" stroke-miterlimit="10" d="M126.274,15.18l-0.091-0.091
                 c-13.42-13.42-35.517-13.08-49.354,0.756l-6.158,6.158l-6.159-6.159C50.677,2.006,28.579,1.669,15.158,15.088l-0.091,0.092
                 C1.646,28.6,1.985,50.698,15.822,64.536l29.793,29.793c0.006,0.006,0.013,0.012,0.019,0.019l0.639,0.639
                 c0.002,0.003,0.005,0.005,0.007,0.008l0.091,0.091c0.002,0.003,0.005,0.005,0.008,0.008l24.291,24.291l24.278-24.278
@@ -67,23 +80,12 @@
             </div>
             <br><br><br><br>
             <div class="info_text">
-            <strong> <p style="color:black;">This Water management web application is designed for individuals/businesses/homeowners<br>
+            <strong> <p>This Water management web application is designed for individuals/businesses/homeowners<br>
 	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
 	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
         water consumption within your household and more importantly raise awareness.</p></strong>
             </div>
             <br>
         </div>            
-
-        <script>$
-            $document
-            function show_info(){
-                $('.info_text').css('display'​​​​​​​​​​​​​​​​​​​​​​​​​​​,'block');​​​​​​
-            }
-            
-            function hide_info(){
-                 $('.info_text').css('display'​​​​​​​​​​​​​​​​​​​​​​​​​​​,'none');​​​​​​
-            }
-        </script>
     </body>
 </html>
