@@ -167,7 +167,7 @@ switch ($action){
             include '../Resources/View/view_news.php';   
         break;
         
-    /*View Tips tricks*/
+    /*View  tricks*/
     case 'tips':
          $context="Tips & Tricks";
         $to = filter_input(INPUT_GET, 'to');
