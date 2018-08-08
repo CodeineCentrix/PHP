@@ -38,6 +38,20 @@ switch ($action){
         include '../Resources/View/register_1.php';
         break;
     
+    //Admin page on general content
+    case 'dams-content':
+       $dams=$dataAceess->Get_Dams();
+       $damInfo=$dataAceess->Get_DamInformation();
+        include '../Resources/View/adminDams.php';
+        break;
+//    
+//    case 'searchDams-content':
+//          $dam= filter_input(INPUT_POST, 'damSrch');
+//        $dams=$dataAceess->Get_Dams();
+//      
+//       $damInfo=$dataAceess->Get_DamInfo($dam);
+//        include '../Resources/View/adminDams.php';
+//        break;
     
     case 'reading_page' :
         $feedback=null;
@@ -378,6 +392,7 @@ switch ($action){
         
         include '../Resources/View/add_resident.php';
         break;
+        
     case'email_resident':
         $context="Add a Resident";
         $email = filter_input(INPUT_POST,'email_reg');

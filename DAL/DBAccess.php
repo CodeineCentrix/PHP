@@ -150,6 +150,30 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
+    //content manager
+    public function Get_Municipality(){
+        $stored_procedure="uspWEBGetMunicipality";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function Get_Dams(){
+        $stored_procedure="uspWEBGetDams";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function Get_DamInfo($damId) {
+        $stored_procedure="uspWEBGetDamInfo";
+        $param=array(
+            $damId
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+        
+    }
+    public function Get_DamInformation(){
+        $stored_procedure="uspWEBDamInformation";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+
     public function Login($email, $password){
         $stored_procedure="uspWEBLogin(?,?)";
         $param =array(
