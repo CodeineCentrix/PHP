@@ -92,7 +92,7 @@
 
      if(isset($_SESSION['MainResidentID'])):?>
      <div class="link_con">
-         <i class="icon fa "><a href="../Controller/MainController.php?action="><img src="https://png.icons8.com/ios/50/000000/user-rights-filled.png"></a></i>
+         <i class="icon fa "><a href="../Controller/MainController.php?action=revoke_page"><img src="https://png.icons8.com/ios/50/000000/user-rights-filled.png"></a></i>
         <p class="para">REVOKE RIGHTS</p>       
       </div>
      <?php endif; ?>

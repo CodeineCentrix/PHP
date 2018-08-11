@@ -434,6 +434,10 @@ switch ($action){
             //Get user details once again 
         }
         break;
+        
+    case 'revoke_page':
+        include '../Resources/View/revoke_rights';
+        break;
     
     default :
         include '../Resources/View/page_not_found.php';
