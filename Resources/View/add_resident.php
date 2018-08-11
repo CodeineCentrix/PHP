@@ -41,9 +41,9 @@ and open the template in the editor.
                          <h3>Invite a Resident to Register and join you.</h3>
                 <label for="txtEmail1">Email Address:</label><br>
                 <input type="email"  id="txtEmail1"required name="email_reg"><br>
-                <input type="submit" disabled value="Invite Resident">
+                <input type="submit"  value="Invite Resident">
                 </form>
-              
+                <label><?php if(isset($error)) {echo $error;} ?></label>
                     </div>  
                        <?php if($email_results ===NULL): ?>
                      <p class="error">Could not add because the email is already registered. Try adding instead of inviting.</p>

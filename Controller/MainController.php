@@ -5,6 +5,8 @@
  *
  * @author s217057098
  */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include '../DAL/DBhelper.php';
 include '../DAL/DBAccess.php';
    session_start();
@@ -368,8 +370,10 @@ switch ($action){
     
     case'add_resident':
         $context="Add a Resident";
+        
         $email = filter_input(INPUT_POST,'email_add');
         $add_results = $dataAceess->check_user_existant($email);
+        
         if($add_results!=NULL){
             $null_exists = CheckIfCookiesExists("HouseID");
             if($null_exists==FALSE){
@@ -400,12 +404,34 @@ switch ($action){
         if($email_results==NULL){
             $null_exist = CheckIfCookiesExists("FullName");
             if($null_exist==FALSE){
-                $name = $_SESSION["FullName"];
-                $message = "Hi there, \r\n $name has invited you to Join Driplit. Join now at:\r\n http:sict-iis.nmmu.ac.za/codecentrix/IT2/Controller/MainController.php ";
-                $message = wordwrap($message,70,"\r\n");
-                mail($email, "Invitation to Driplit", $message);
-                $email_results = 1;
+               $name = $_SESSION["FullName"];
+                //Add libraries
+                require '../PHPMailer-master/src/Exception.php';
+                require '../PHPMailer-master/src/PHPMailer.php';
+                require '../PHPMailer-master/src/SMTP.php';
+            //create and prepare mailing objects
+                $mail = new PHPMailer();
+                $mail->IsSMTP();
+                $mail->SMTPAutoTLS = false;
+                $mail->Host = 'smtp.gmail.com'; 
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Username = 'centrixcode@gmail.com'; 
+                $mail->Password = 'codecentrix@4';
+                $mail->Port = 465; 
+                $mail->SetFrom("centrixcode@gmail.com"); 
+                $mail->AddAddress($email);
+                $mail->Subject = "Help us save water invitation";
+                $mail->Body = "I really wanna know if this works";
+                
+                if(!$mail->Send()){
+                    $error = $mail->ErrorInfo;
+                }else{
+                    $error = "Mail Sent!";
+                }
+                include '../Resources/View/add_resident.php';
             }
+            //Get user details once again 
         }
         break;
     
