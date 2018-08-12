@@ -822,3 +822,17 @@ Begin section for header....
 .hide_stuff{
     visibility: hidden;
 }
+
+/* REVOKE RIGHTS SECTION */
+.shader{
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.revoke_wrapper{
+    overflow: hidden; 
+    margin: auto;
+    padding: 60px; 
+    width: 50%;
+}

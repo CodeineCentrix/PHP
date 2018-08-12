@@ -436,7 +436,23 @@ switch ($action){
         break;
         
     case 'revoke_page':
-        include '../Resources/View/revoke_rights';
+        $context = "Revoke Rights";
+        $roomies = array(); //TODO: Create methods and stored procedure to complete process
+        include '../Resources/View/revoke_rights.php';
+        break;
+    
+    case 'revoke_person':
+        $context = "Revoke Rights";
+        $person_id = filter_input(INPUT_POST, 'cmbMates');
+        $person_name = filter_input(INPUT_POST, 'txtperson_name');
+        $is_removed = $dataAceess->remove_resident($person_id);  //TODO: Create methods and stored procedures   
+        $roomies = array(); //TODO: Create methods and stored procedure to complete process
+        if($is_removed ==TRUE){
+            $moved = "Successfully removed ". $person_name;
+        }else{
+            $moved = "We weren't able to revoke resident right for ".$person_name.". Try again.";
+        }
+        include '../Resources/View/revoke_rights.php';
         break;
     
     default :
