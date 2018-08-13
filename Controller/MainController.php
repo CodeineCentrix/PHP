@@ -437,7 +437,8 @@ switch ($action){
         
     case 'revoke_page':
         $context = "Revoke Rights";
-        $roomies = array(); //TODO: Create methods and stored procedure to complete process
+        $main_resident_id = $_SESSION["MainResidentID"];
+        $roomies = $dataAceess->getRoomies($main_resident_id);
         include '../Resources/View/revoke_rights.php';
         break;
     
@@ -445,8 +446,9 @@ switch ($action){
         $context = "Revoke Rights";
         $person_id = filter_input(INPUT_POST, 'cmbMates');
         $person_name = filter_input(INPUT_POST, 'txtperson_name');
-        $is_removed = $dataAceess->remove_resident($person_id);  //TODO: Create methods and stored procedures   
-        $roomies = array(); //TODO: Create methods and stored procedure to complete process
+        $is_removed = $dataAceess->revokeRoomiesRights($person_id);  
+        $main_resident_id = $_SESSION["MainResidentID"];
+        $roomies = $dataAceess->getRoomies($main_resident_id);
         if($is_removed ==TRUE){
             $moved = "Successfully removed ". $person_name;
         }else{
@@ -454,6 +456,10 @@ switch ($action){
         }
         include '../Resources/View/revoke_rights.php';
         break;
+        
+        case'news_page':
+            include '../Admin/blank.php';
+            break;
     
     default :
         include '../Resources/View/page_not_found.php';

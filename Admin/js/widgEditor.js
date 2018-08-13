@@ -95,7 +95,7 @@
 ******************************************************************************/
 
 /* Location of stylesheet file for editor content */
-var widgStylesheet = "../css/widgContent.css";
+var widgStylesheet = "../Admin/css/widgContent.css";
 
 /* Items to appear in toolbar. */
 var widgToolbarItems = new Array();

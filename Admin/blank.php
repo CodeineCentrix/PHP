@@ -29,7 +29,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
+    <!-- localhost test -->
+        <link href="../Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../Admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+        <link href="../Admin/dist/css/sb-admin-2.css" rel="stylesheet">
+        <link href="../Admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <script src="../Admin/js/widgEditor.js"></script>      
+        <link rel="stylesheet" href="../Admin/css/widgEditor.css">
 </head>
 
 <body>
@@ -301,14 +308,15 @@
                 <!-- Thuli include your page here, just ensure that it only contains divs -->
               <?php 
            /*   Check the action variable and then trap it via the if statement then once that's done
-               include the page that you want the user to see wrapped inside of the homepage kinda domain
+               include the page that you want the user to see wrapped inside of the adminpage kinda domain
              Eg: 
                if(action =='home'):
                require_once'home.php'; --use either require_once or include_once, all up to you.
              Note: home.php shouldn't contain html, body tags - preferably divs only.  
             */
               ?>
-             <?php if(action == ''): ?>
+             <?php if($action == 'news_page'): ?>
+                <?php include 'pages/news.html'; ?>
               <?php else: ?>
             <?php endif;?>
             </div>

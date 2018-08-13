@@ -232,4 +232,20 @@ class DBAccess {
         );
          return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
+    
+    function getRoomies($main_resident_id) {
+        $stored_procedure ="uspWEBgetHouseResidents(?)";
+        $param = array(
+            $main_resident_id
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+    function revokeRoomiesRights($person_id){
+        $stored_procedure = "uspWEBRevokeRight(?)";
+        $param = array(
+            $person_id
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
 }
