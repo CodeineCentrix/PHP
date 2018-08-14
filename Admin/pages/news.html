@@ -5,13 +5,14 @@
             <form method="POST" action="?action=add_article">
                 
                 <div style="width: 85%;margin: auto;overflow: hidden;">
+                    <label>Enter Article title</label><br><input type="text" style="width: 50%;height: 40px;" name="article_title" placeholder="Aritcle title" required>
+                <br><label>Enter Article Author</label><br><input type="text" style="width: 50%;height: 40px;" name="article_author" placeholder="Article Author" required>
+                <br><label for="fleImage">Choose Article Image</label> <input type="file" id="fleImage" required><br>
+
+                <br><label>Enter Article Body</label><br>
+                
                     <textarea id="noise" name="noise" class="widgEditor nothing"></textarea>
-                    <br>
-                    <hr>
-                    <label for="fleImage">Choose Article Image</label> <input type="file" id="fleImage" required>
-                    <br>
-                    <br>
-                    <hr>
+                    
                 </div>
             </form>
         </div>
