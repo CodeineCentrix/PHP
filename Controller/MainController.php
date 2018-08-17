@@ -460,6 +460,38 @@ switch ($action){
         case'news_page':
             include '../Admin/blank.php';
             break;
+        case'add_article':
+            //get posted data
+            $article_title = filter_input(INPUT_POST, 'temp');
+            $article_author = filter_input(INPUT_POST, 'temp');
+            $article_image = filter_input(INPUT_POST, 'temp');
+            $article_body = filter_input(INPUT_POST, 'temp');
+            $current_timestamp = date('Y-m-d_His');
+            //Save image first
+            $upFile = '../Resources/ArticleImages/'.$current_timestamp.$_FILES['prodImg']['name'];
+            $saved = FALSE;
+		if(is_uploaded_file($_FILES['fp_article_image']['tmp_name'])) {
+		 if(!move_uploaded_file($_FILES['fp_article_image']['tmp_name'], $upFile)) {
+		 echo 'Problem could not move file to destination. Please check again later. <a href="index.php">Please go back.</a>';
+		 exit;
+		 }
+		 else{
+		$saved= TRUE;	 
+		 }
+		 }
+                 $imageDirectory = $upFile;
+            //Save text file
+            if($saved===TRUE){
+                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'txt';
+                $myfile = fopen($article_up, "w") or die("Authorization issues have caused this crash");
+		fwrite($myfile, $article_body);
+		fclose($myfile);
+            }
+            
+            //Then add to database if everything is successfull
+            //Method needs actual parameters!!
+            $successfully_added = $dataAceess->AddNewsArticle($pic_name, $pic_link, $admin_id, $article_title, $art_desc, $date_posted, $article_body_link);
+            break;
     
     default :
         include '../Resources/View/page_not_found.php';
