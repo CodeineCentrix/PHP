@@ -7,17 +7,21 @@
 </head>
 <body class="MainRes">
 <h1>Update Dam Info</h1>
-<form method="POST" action="MainController.php?action=searchDams-content">
-<label>Dam Name:<select style="width: 20%" name="damSrch">
-        <?php foreach ($dams as $dam):?>
-        <option value="<?php echo $dam[0];?>"> <?php echo $dam[1];?></option>
+<form method="POST" action="MainController.php?action=dams-content">
+    <!--have to search by municipality because we working with one main dam per municipality-->
+    <label>Municipality:</label>
+    <select style="width: 20%" name="municipalitySrch">
+        <?php foreach ($municipalities as $municipality):?>
+        <option value="<?php echo "$municipality[0]";?>"> <?php echo "$municipality[3]";?></option>
     <?php endforeach; ?>
     </select>
+    
     <input type="submit" value="Search" style="width: 10%">
-</form>
-<table>
+
+<table name="General">
 <tr>
-<th></th><th>Name</th><th>Dam Level</th><th>Municipality</th><th>State</th><th>Min</th><th>Max</th><th>Price</th><th>update</th>
+<th></th><th>Name</th><th>Dam Level</th><th>Municipality</th><th>State</th><th>Min</th><th>Max</th><th>Price</th>
+<!--<th>update</th>-->
 </tr>
  <?php foreach ($damInfo as $dam): ?>
 <tr>
@@ -30,10 +34,11 @@
 <td><input type="text" name="min" value="<?php echo $dam[4];?>"></td>
 <td><input type="text" name="max" value="<?php echo $dam[5];?>"></td>
 <td><input type="text" name="price" value="<?php echo $dam[6];?>"></td>
-<td><img src="../Resources/Images/pencil-edit-button.png"</td>
+<!--<td><img src="../Resources/Images/pencil-edit-button.png"</td>-->
   <?php endforeach; ?>
 </tr>
 </table>
+</form>   
 
 
 

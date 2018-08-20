@@ -161,14 +161,14 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
-    public function Get_DamInfo($damId) {
-        $stored_procedure="uspWEBGetDamInfo";
+    public function Get_DamInfo($municipalId) {
+        $stored_procedure="uspWEBGetDamInfoParam(?)";
         $param=array(
-            $damId
+            $municipalId
         );
-        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
-        
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);      
     }
+    
     public function Get_DamInformation(){
         $stored_procedure="uspWEBDamInformation";
         return DBhelper::sp_SelectStatement($stored_procedure);
