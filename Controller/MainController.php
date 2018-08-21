@@ -42,19 +42,16 @@ switch ($action){
     
     //Admin page on general content
     case 'dams-content':
-       $dams=$dataAceess->Get_Dams();
-       $damInfo=$dataAceess->Get_DamInformation();
-        include '../Resources/View/adminDams.php';
+       $municipalities=$dataAceess->Get_Municipality();
+       $municipalId= filter_input(INPUT_POST, 'municipalitySrch');
+        if (isset($municipalId)) {
+        $damInfo=$dataAceess->Get_DamInfo($municipalId);}
+        else{
+        $damInfo=$dataAceess->Get_DamInformation();}
+        include '../Resources/View/adminViewMunicipalities.php';
         break;
-//    
-//    case 'searchDams-content':
-//          $dam= filter_input(INPUT_POST, 'damSrch');
-//        $dams=$dataAceess->Get_Dams();
-//      
-//       $damInfo=$dataAceess->Get_DamInfo($dam);
-//        include '../Resources/View/adminDams.php';
-//        break;
-    
+        
+        
     case 'reading_page' :
         $feedback=null;
         $context="Add a reading";
@@ -507,6 +504,7 @@ switch ($action){
             $articles;
                 
                 break;
+    
     
     default :
         include '../Resources/View/page_not_found.php';
