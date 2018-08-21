@@ -462,17 +462,16 @@ switch ($action){
             break;
         case'add_article':
             //get posted data
-            $article_title = filter_input(INPUT_POST, 'temp');
-            $article_author = filter_input(INPUT_POST, 'temp');
-            $article_image = filter_input(INPUT_POST, 'temp');
-            $article_body = filter_input(INPUT_POST, 'temp');
+            $article_title = filter_input(INPUT_POST, 'article_title');
+            $article_author = filter_input(INPUT_POST, 'article_author');
+            $article_body = filter_input(INPUT_POST, 'article_body');
             $current_timestamp = date('Y-m-d_His');
             //Save image first
-            $upFile = '../Resources/ArticleImages/'.$current_timestamp.$_FILES['prodImg']['name'];
+            $upFile = '../Resources/ArticleImages/'.$_FILES['fp_article_image']['name'];
             $saved = FALSE;
 		if(is_uploaded_file($_FILES['fp_article_image']['tmp_name'])) {
 		 if(!move_uploaded_file($_FILES['fp_article_image']['tmp_name'], $upFile)) {
-		 echo 'Problem could not move file to destination. Please check again later. <a href="index.php">Please go back.</a>';
+		 echo 'Problem could not move file to destination. Please check again later.';
 		 exit;
 		 }
 		 else{
@@ -482,7 +481,7 @@ switch ($action){
                  $imageDirectory = $upFile;
             //Save text file
             if($saved===TRUE){
-                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'txt';
+                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'.txt';
                 $myfile = fopen($article_up, "w") or die("Authorization issues have caused this crash");
 		fwrite($myfile, $article_body);
 		fclose($myfile);
@@ -490,8 +489,24 @@ switch ($action){
             
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
-            $successfully_added = $dataAceess->AddNewsArticle($pic_name, $pic_link, $admin_id, $article_title, $art_desc, $date_posted, $article_body_link);
+            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up);
+            $action = 'news_page';
+            include '../Admin/blank.php';
             break;
+            
+            case'get_articles':
+            $from = 0;
+                $page = filter_input(INPUT_POST, 'page');
+                if ($page != 1){ 
+                    $from = ($page-1) * 4;                   
+                }
+                 else{
+                     $from=0;                     
+                 }                
+            $total_records_count = $dataAceess->AllNewsRecords();
+            $articles;
+                
+                break;
     
     default :
         include '../Resources/View/page_not_found.php';

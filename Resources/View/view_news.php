@@ -12,6 +12,7 @@
     <body>
          <?php include '../Resources/View/header.php'; ?>
    <!-- Lots of these are auto-generated and there is no use trying to use static behavior --> 
+   <?php if(false):?>
             <?php $count_id =0;
             foreach ($news as $value): ?>
            
@@ -40,9 +41,26 @@
             </div>
        
             <?php endforeach; ?> 
+        <?php endif; ?>
         
         
-        <?php 
+            
+            <!-- Construction area for a newer more effecient news articles
+            uses JQuery, Javascripting to load news articles and pagination
+            -->
+            <div id="articles_section">
+                
+            </div>
+            
+            <div id="pagination">
+                <a href="#" id="1"></a>
+            </div>
+            
+            
+            
+            
+            
+            <?php 
             if ($news==NULL):?>
         <div class="news_none center_tag">
             <div class="center_tag">
