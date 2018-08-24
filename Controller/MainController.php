@@ -51,6 +51,15 @@ switch ($action){
         include '../Resources/View/adminViewMunicipalities.php';
         break;
         
+        //Admin Update Municipality
+    case 'updateMunicipality-page':
+        $municipalId= filter_input(INPUT_POST, 'municipalityId');
+        $municipalName= filter_input(INPUT_POST, 'municipalName');
+        $dams=$dataAceess->Get_Dams();
+        $state=$dataAceess->Get_State();
+        $damInfo=$dataAceess->Get_DamInfo($municipalId);
+        include '../Resources/View/EditMunicipality.php';
+        break;
         
     case 'reading_page' :
         $feedback=null;
