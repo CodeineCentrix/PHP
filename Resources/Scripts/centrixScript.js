@@ -27,11 +27,12 @@ function ReadOrShowItem(tag){
 }
 
 $('document').ready(function() {
-	
+
+    
 $('#pagination ').on('click', 'a', function(e) { // When click on a 'a' element of the pagination div
         var page = this.id; // Page number is the id of the 'a' element
 	var pagination = ''; // Init pagination
-        $('#articles_section').html('<div class="loader"></div>'); // Display a processing div
+      $('#articles_section').html('Loading'); // Display a processing div
 	var data = {page: page, per_page: 4,action:'get_articles'}; // Create JSON which will be sent via Ajax
 	
         $.ajax({ // jQuery Ajax
@@ -41,9 +42,8 @@ $('#pagination ').on('click', 'a', function(e) { // When click on a 'a' element 
 		dataType: 'json', // Json format
 		timeout: 120000,
 		success: function(data) {
-                   //We create the article format here now
-                   
-                var htmlContent = '';
+                   //We create the article format here now                  
+              $('#articles_section').html(data.content);
                 
         
         // Pagination system
@@ -65,7 +65,7 @@ $('#pagination ').on('click', 'a', function(e) { // When click on a 'a' element 
 			$('#pagination').html(pagination); // We update the pagination DIV
 		},
 		error: function(error , status) {
-                   // window.alert("Error"+error+"Status"+status);
+                 window.alert("Error"+error+"Status"+status);
 		}
 	});
          e.preventDefault();

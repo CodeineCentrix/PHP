@@ -466,6 +466,7 @@ switch ($action){
         case'news_page':
             include '../Admin/blank.php';
             break;
+        
         case'add_article':
             //get posted data
             $article_title = filter_input(INPUT_POST, 'article_title');
@@ -501,6 +502,7 @@ switch ($action){
             break;
             
             case'get_articles':
+             
             $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
                 if ($page != 1){ 
@@ -510,8 +512,27 @@ switch ($action){
                      $from=0;                     
                  }                
             $total_records_count = $dataAceess->AllNewsRecords();
-            $articles;
-                
+            $news = $dataAceess->get_news_items(4, $from);
+                $numPage = ceil($total_records_count[0][0]/4);
+                $drawNews = "";
+                $i= 0;
+                foreach($news as $value){
+                $drawNews .= "<div class='news_item center_tag'>"
+                        . "<div class='news_item_image'>". 
+                        "<img style='object-fit: contain; height:inherit; width: 100%;' src='$value[7]"."$value[6]' alt='$value[6]'>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>$value[9]</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$value[1]</div>"  
+                        . "<input type='button' class='registerbtn' value='Read or Hide' id='btnRead' onclick=\"ReadOrShowItem('".'A'.$i."')\"/>"
+                        . "</div>" 
+                        . "</div>"; 
+                  $i++;
+                }
+                if(count($news)<0){
+                    $drawNews = "Oops, we are out of these";
+                }
+                $return_data = array('numPage' => $numPage,
+                    'content' => utf8_encode($drawNews)
+                    );
+                $return_data = json_encode($return_data);
+                echo $return_data;
                 break;
     
     

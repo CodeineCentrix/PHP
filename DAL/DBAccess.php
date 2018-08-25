@@ -22,8 +22,7 @@ class DBAccess {
         $stored_procedure ="uspWEBViewNews(?, ?) ";
         $param = array(
              $to,
-             $from
-                
+             $from               
         );        
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }

@@ -6,42 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">       
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
         <script src="../Resources/Scripts/centrixScript.js"></script>
+        <!--<script src="../Resources/Scripts/jquery.min.js"></script>-->
         
+        <!--Styles temporarily put here till complete with entire page -->
+        <style>
+	#pagination div { display: inline-block; margin-right: 5px; margin-top: 5px }
+	#pagination .cell a { border-radius: 3px; font-size: 11px; color: #333; padding: 8px; text-decoration:none; border: 1px solid #d3d3d3; background-color: #f8f8f8; }
+	#pagination .cell a:hover { border: 1px solid #c6c6c6; background-color: #f0f0f0;  }
+	#pagination .cell_active span { border-radius: 3px; font-size: 11px; color: #333; padding: 8px; border: 1px solid #c6c6c6; background-color: #e9e9e9; }
+	#pagination .cell_disabled span { border-radius: 3px; font-size: 11px; color: #777777; padding: 8px; border: 1px solid #dddddd; background-color: #ffffff; }
+	</style>
     </head>
     <body>
          <?php include '../Resources/View/header.php'; ?>
-   <!-- Lots of these are auto-generated and there is no use trying to use static behavior --> 
-   <?php if(false):?>
-            <?php $count_id =0;
-            foreach ($news as $value): ?>
-           
-            <div class="news_item center_tag">
-                
-                <div class='news_item_image'>
-                    <img style="object-fit: contain; height:inherit; width: 100%;"src="<?php echo "$value[7]".$value[6]; ?>" alt="<?php echo "$value[6]"; ?>">
-                </div>
-                
-                <div class="news_item_details">
-                    <div class="news_item_title">
-                        <h3 class="news_title" style="font-size:30px;"><?php echo "$value[0]";?></h3>
-                    </div>
-                    <div class="news_item_creds">
-                        <label class="author"><?php echo 'Admin'; ?></label><br>
-                        <label class="news_date"><?php 
-                        $dateAsString = date_format($value[4], 'jS, F Y');
-                        echo $dateAsString; 
-                        ?></label><br><br>                       
-                    </div>                    
-                    </div>
-                <div class="news_item_desc">
-                    <p style="display: none; animation-name: slower; animation-duration: 5s; " id="<?php echo "A"."$count_id";?>" > <?php echo nl2br($value[1]);?> </p>
-                    <input type="button" class="registerbtn" value="Read or Hide" id="btnRead" onclick="ReadOrShowItem('<?php echo "A"."$count_id"; $count_id++;?>')" />
-                </div>
-            </div>
-       
-            <?php endforeach; ?> 
-        <?php endif; ?>
+
         
         
             
@@ -52,10 +32,11 @@
                 
             </div>
             
-            <div id="pagination">
+            <div style="width:100%; margin: auto;padding: 15px; overflow: hidden;">
+            <div id="pagination" style="width:100%; margin: auto;padding: 15px; overflow: hidden;">
                 <a href="#" id="1"></a>
             </div>
-            
+             </div>
             
             
             
