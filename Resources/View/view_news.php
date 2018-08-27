@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
         <script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
         <script src="../Resources/Scripts/centrixScript.js"></script>
-        <!--<script src="../Resources/Scripts/jquery.min.js"></script>-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!--Styles temporarily put here till complete with entire page -->
         <style>
@@ -32,7 +32,7 @@
                 
             </div>
             
-            <div style="width:100%; margin: auto;padding: 15px; overflow: hidden;">
+            <div style="width:100%; margin: auto;padding: 15px; overflow: hidden; padding-left: 35%;">
             <div id="pagination" style="width:100%; margin: auto;padding: 15px; overflow: hidden;">
                 <a href="#" id="1"></a>
             </div>

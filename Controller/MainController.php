@@ -191,7 +191,7 @@ switch ($action){
         
     /*View  tricks*/
     case 'tips':
-         $context="Tips & Tricks";
+         $context="Tips & Tricks";        
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
@@ -496,7 +496,7 @@ switch ($action){
             
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
-            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up);
+            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
             $action = 'news_page';
             include '../Admin/blank.php';
             break;
@@ -516,10 +516,16 @@ switch ($action){
                 $numPage = ceil($total_records_count[0][0]/4);
                 $drawNews = "";
                 $i= 0;
+                $article_body = NULL;
                 foreach($news as $value){
+                    if(isset($value[8])){
+                    $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
+                    $article_body = fread($article_link, filesize($value[8]));
+                    fclose($article_link);
+                    }
                 $drawNews .= "<div class='news_item center_tag'>"
-                        . "<div class='news_item_image'>". 
-                        "<img style='object-fit: contain; height:inherit; width: 100%;' src='$value[7]"."$value[6]' alt='$value[6]'>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>$value[9]</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$value[1]</div>"  
+                        . "<div class='news_item_image'>"
+                        ."<img style='object-fit: contain; height:inherit; width: 100%;' src='$value[7]' alt='$value[6]'>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>$value[9]</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$article_body</div>"  
                         . "<input type='button' class='registerbtn' value='Read or Hide' id='btnRead' onclick=\"ReadOrShowItem('".'A'.$i."')\"/>"
                         . "</div>" 
                         . "</div>"; 
@@ -534,7 +540,35 @@ switch ($action){
                 $return_data = json_encode($return_data);
                 echo $return_data;
                 break;
-    
+            
+            case 'tip_trick':
+                $from = 0;
+                $page = filter_input(INPUT_POST, 'page');
+                if ($page != 1){ 
+                    $from = ($page-1) * 4;                   
+                }
+                 else{
+                     $from=0;                     
+                 }
+                 $total_records_count = $dataAceess->AllTipsRecords();
+                 $tips = $dataAceess->View_Tips($from, 4);
+                 $drawHTML= "";
+                 foreach ($tips as $value) {
+                    $drawHTML.="<div class='tipscontainer'>"
+                             . "<img src='../Resources/Images/head.png' alt='Avatar' style='width:90px'>"
+                             . "<p><span>$value[0]</span><span style='font-size:small' title='Tip Category'>$value[3]</span><span name='date' class='date'>"
+                             . "<i>".date_format($value[2], 'jS, F Y')."</i></span></p>"
+                             . "<p>$value[1]</p>"
+                             . "</div>";                    
+                 }
+                 if(isset($news)){
+                     $drawHTML= "Looks as if you've reached the end of our collection";
+                 }
+                 $numPage = ceil(($total_records_count[0][0]/4));
+                 $return_data = array("numPage"=> $numPage, "content"=>$drawHTML);
+                 $return_data = json_encode($return_data);
+                 echo $return_data;
+            break;
     
     default :
         include '../Resources/View/page_not_found.php';

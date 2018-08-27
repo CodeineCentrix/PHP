@@ -248,8 +248,8 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    function AddNewsArticle($pic_name,$pic_link,$admin_id,$article_title,$art_desc,$date_posted,$article_body_link) {
-        $stored_procedure ="uspWEBAddNewsArticle(?,?,?,?,?,?,?)";
+    function AddNewsArticle($pic_name,$pic_link,$admin_id,$article_title,$art_desc,$date_posted,$article_body_link, $author) {
+        $stored_procedure ="uspWEBAddNewsArticle(?,?,?,?,?,?,?,?)";
         $param = array(
             $pic_name,
             $pic_link,
@@ -257,7 +257,8 @@ class DBAccess {
             $article_title,
             $art_desc,
             $date_posted,
-            $article_body_link
+            $article_body_link,
+            $author
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }

@@ -34,7 +34,7 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 
-	<label><b>Full Name</b></label>
+    <label><b>Full Name</b></label>
     <input type="text" placeholder="Enter Last Name" name="lastname" required>
     <span class="required">*</span>
 	
@@ -85,7 +85,7 @@
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="number" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
+    <input type="text" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
 
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
