@@ -161,6 +161,14 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
+    public function Get_DamLevel($damId) {
+        $stored_procedure="uspWEBGetDamLevel(?)";
+        $param=array(
+            $damId
+        );
+        
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);      
+    }
     public function Get_DamInfo($municipalId) {
         $stored_procedure="uspWEBGetDamInfoParam(?)";
         $param=array(
@@ -174,7 +182,20 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
 
-    public function Login($email, $password){
+    public function  Get_State(){
+    $stored_procedure="uspWEBGetState";
+    return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function update_municipality($municipalId, $damId, $stateId, $newName){
+        $stored_procedure="uspWEBUpdateMunicipality(?,?,?,?)";
+            $param=array(
+                $municipalId, $damId, $stateId, $newName
+                );
+                return DBhelper::sp_SelectWithParams($stored_procedure, $param);      
+    }
+
+        public function Login($email, $password){
         $stored_procedure="uspWEBLogin(?,?)";
         $param =array(
             $email,

@@ -32,7 +32,7 @@
 <input type="date" title="You cannot select a date later than today." name="readingDate" max="<?php echo date("Y-m-d")?>" required ><span class="required">*</span>
 
 <label> <strong>Reading:</strong></label><br>
-<input type="number" maxlength="5" id="reading" name="reading" required title="Must be a 5 numbers field">
+<input type="number" max="99999" id="reading" name="reading" required title="Must be a 5 numbers field">
 <p class="error"><?php 
 if(isset($isReadingValid)!=NULL){
     if(isset($message)){

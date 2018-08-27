@@ -54,12 +54,31 @@ switch ($action){
         //Admin Update Municipality
     case 'updateMunicipality-page':
         $municipalId= filter_input(INPUT_POST, 'municipalityId');
-        $municipalName= filter_input(INPUT_POST, 'municipalName');
+        $municipalName=filter_input(INPUT_POST,'municipalName');
+         
         $dams=$dataAceess->Get_Dams();
         $state=$dataAceess->Get_State();
+        $municipalities=$dataAceess->Get_Municipality();
+  
+         if (isset($municipalId)) {
         $damInfo=$dataAceess->Get_DamInfo($municipalId);
+        }
+        
         include '../Resources/View/EditMunicipality.php';
         break;
+        
+    case 'updateMunicipality':
+        
+        
+//                $damId= filter_input(INPUT_POST, 'dams');
+//                $damLevel=$dataAceess->Get_DamLevel($damId);
+                
+                
+                
+                                $municipalId= filter_input(INPUT_POST, 'municipalitySrch');
+                $damInfo=$dataAceess->Get_DamInfo($municipalId);
+                include '../Resources/View/EditMunicipality.php';
+                break;
         
     case 'reading_page' :
         $feedback=null;

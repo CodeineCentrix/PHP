@@ -20,8 +20,8 @@
 
 <table name="General">
 <tr>
-<th></th><th>Name</th><th>Dam Level</th><th>Municipality</th><th>State</th><th>Min</th><th>Max</th><th>Price</th>
-<!--<th>update</th>-->
+<th></th><th>Main Dam</th><th>Dam Level</th><th>Municipality</th><th>State</th><th>Min</th><th>Max</th><th>Price</th>
+<th>update</th>
 </tr>
  <?php foreach ($damInfo as $dam): ?>
 <tr>
@@ -34,9 +34,16 @@
 <td><input type="text" name="min" value="<?php echo $dam[4];?>"></td>
 <td><input type="text" name="max" value="<?php echo $dam[5];?>"></td>
 <td><input type="text" name="price" value="<?php echo $dam[6];?>"></td>
-<!--<td><img src="../Resources/Images/pencil-edit-button.png"</td>-->
-  <?php endforeach; ?>
+
+<td><form method="post" action="../Controller/MainController.php?action=updateMunicipality-page">
+        <input type="hidden" name="municipalityId" value="<?php echo $dam[7];?>">
+        <input type="hidden" name="municipalName" value="<?php echo "$dam[2]";?>">
+        <input type="image" src="../Resources/Images/pencil-edit-button.png">
+    </form>
+</td>
 </tr>
+  <?php endforeach; ?>
+
 </table>
 </form>   
 
