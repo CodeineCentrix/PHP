@@ -613,7 +613,10 @@ switch ($action){
                  $return_data = json_encode($return_data);
                  echo $return_data;
             break;
-    
+    case'user_reports':
+        $context = 'Reports';
+         include '../Resources/View/reports.php';
+        break;
     default :
         include '../Resources/View/page_not_found.php';
         break;
