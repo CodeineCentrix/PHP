@@ -262,4 +262,48 @@ class DBAccess {
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
+    
+     public function LoginAdmin($email, $password){
+        $stored_procedure="uspWEBLoginAdmin(?,?)";
+        $param =array(
+            $email,
+            $password
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function getAdminOverviewData() {
+         $stored_procedure ="uspWEBAdminStatsHomePage()";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function UpdateResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
+         $stored_procedure ="uspWEBUpdateResident(?,?,?,?,?,?,?,?)";
+        $param = array(
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+     public function UpdateMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
+        $stored_procedure ="uspWEBUpdateMainResident (?,?,?,?,?,?,?,?)";
+        $param = array(
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+}
 }

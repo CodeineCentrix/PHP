@@ -345,28 +345,18 @@ div.link_con:nth-of-type(4) {
 .tray{
     position: absolute;
     bottom: 30px;
-    right: 80px;
-    box-shadow: 5px 5px 5px white;
+    right: 5px;
+    /*box-shadow: 5px 5px 5px white;*/
     width: 10%;
     overflow: hidden;
 }
 
 .tray_item{
-    background-color: white;
-    border-radius: 40%;
-    width: 50%;
-    margin: auto;
-    padding: 5px;
     overflow: hidden;
-    margin-bottom: 35px;
-    cursor: pointer; 
- display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    float: right;
 }
 
 .tray_item img{
@@ -383,15 +373,15 @@ div.link_con:nth-of-type(4) {
 .info_text{
     display: none;
     position: fixed;
-    top: 20%;
-    left: 20%;
+    top: 40%;
+    left: 30%;
     color: white;
-    padding: 5px;
+    padding: 60px;
     border-style: solid;
     border-color: white;
     overflow: hidden;
     z-index: 200;
-    background-color:  gainsboro;
+    background-color:  black;
 }
 
 .info_text p{

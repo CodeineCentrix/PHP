@@ -35,9 +35,9 @@
     <body>
         <!-- Floating action buttons-->
         <div class="tray">
-            <div class=" info tray_item"><img src="https://png.icons8.com/ios/50/000000/info.png"></div>
-            <div class="tray_item" title="Login"><img src="https://png.icons8.com/ios/50/000000/login-rounded-right-filled.png"></div>
-            <div class="tray_item" title="Register"><img src="https://png.icons8.com/ios/50/000000/edit-user-male-filled.png"></div>
+            <div><img class="info" src="../Resources/Images/info.png" width="80px"></div>
+            <a href="?action=login_page"> <div class="" title="Login"><img src="../Resources/Images/login_1.png" width="80px"></div></a>
+            <a href="?action=register_page"><div class="" title="Register"><img src="../Resources/Images/registers.png" width="80px"></div></a>
         </div>
         <div class="content_holder">
  <div class="fullscreen-bg">

@@ -1,12 +1,12 @@
 <html>
 <head>
-<!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="boot_test.css" rel="stylesheet">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="test_boot.js"></script>
-<link rel="stylesheet" href="myStyles.css" type="text/css"/>
+<link href="../Resources/Stylesheets/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="../Resources/Stylesheets/boot_test.css" rel="stylesheet">
+<link href="../Resources/Stylesheets/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css">
+<link rel="stylesheet" href="../Resources/Stylesheets/general.css" type="text/css">
+<script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
+<script src="../Resources/Scripts/centrixScript.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
@@ -15,36 +15,41 @@
 		<span class="login_region"> 
     	<div class="modal-dialog">
 			<div class="modal-content">
-				<div style="background-color: 330066;" class="modal-header" align="center">
-					<img  class="" id="img_logo" src="companylogo.png">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
+				<div style="background-color:#264d73;" class="modal-header" align="center">
+					<img  class="" id="img_logo" src="../Resources/Images/companylogo.png">
+					
 				</div>
                 
                 <!-- Begin # DIV Form -->
                 <div id="div-forms">
                 
                     <!-- Begin # Login Form -->
-                    <form id="login-form">
+                    <form id="login-form" action="MainController.php?action=login" method="post">
 		                <div class="modal-body">
 				    		<br><div id="div-login-msg">
-                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <div id="icon-login-msg" class="fa fa-info-circle"></div>
                                 <span id="text-login-msg">Type in your username &amp; password to login</span>
                             </div><br><br>
-							<label>Email</label><br>
-				    		<input id="login_username" class="form-control" type="text" name= "email" placeholder="Enter Email Address" required>
-							<br>
-							<label>Password</label>
-				    		<input id="login_password" class="form-control" name="password" type="password" placeholder="Password" required>
-        		    	</div>
-						<img class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
-				        <div class="modal-footer">
+                        <?php  
+                         if($user_details===FALSE): ?>
+                        <p class="error">   <?php echo "Password or username incorrect, please try again.";?> </p>
+                        <?php elseif($user_details==1):?>
+                        <p class="error"><?php echo "Please login, to continue your activity";?></p>
+                        <?php endif;?>
+                        
+                                <label>Email</label><br>
+                        <input  class="form-control" type="email" name= "email" placeholder="Enter Email Address" required>
+                                <br>
+                                <label>Password</label>
+                                <input class="form-control" id="psw" name="password" type="password" placeholder="Password" required>
+                                </div>
+                        <img class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
+                        <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                <button type="submit" class="registerbtn">Login</button>
                             </div>
-				    	    <div>
-                                <i id="login_register_btn" href="blah" type="button" class="btn btn-link">Register</i>
+                            <div>
+                                <a href="?action=register_page"><i id="login_register_btn"  type="button" class="btn btn-link">Register</i></a>
                             </div>
 				        </div>
                     </form>

@@ -5,6 +5,14 @@
  *  NB don't forget to reference it in your application. 
  */
 
+function ShowPassword() {
+    var x = document.getElementById("psw");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
 function isMainResident(){
     document.getElementById('main_resident').style.display = "block";
     }

@@ -28,7 +28,7 @@ switch ($action){
     case 'login_page':
         $context = "Login";
         $user_details= NULL;
-        include '../Resources/View/log_in.php';
+        include '../Resources/View/login_V2.php';
         break;
     
     case 'register_page':
@@ -37,7 +37,7 @@ switch ($action){
         $suburbs=$dataAceess->Get_Suburbs();
         $feedback =0;
         $exists = FALSE;
-        include '../Resources/View/register_1.php';
+        include '../Resources/View/register.php';
         break;
     
     //Admin page on general content
@@ -106,17 +106,34 @@ switch ($action){
             break;
 
     // End Page displaying/ request  section 
+        
+    case 'admin_dashboard':
+        $admin_overview = $dataAceess->getAdminOverviewData();
+        $action = 'admin_dashboard';
+        include '../Admin/blank.php';
+        break;
     
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
         $user_details = $dataAceess->Login($email, $password);
         if($user_details==NULL){
+            $admin_details = $dataAceess->LoginAdmin($email, $password);
+            if($admin_details!=NULL){
+                $admin_overview = $dataAceess->getAdminOverviewData();
+                //The person is an admin, send directly to admin page
+                $_SESSION["AdminID"] = $admin_details[0][0];
+                $_SESSION["Password"]  = $admin_details[0][1];
+                $_SESSION["Username"]  = $admin_details[0][2];
+                $action="admin_dashboard";
+                include '../Admin/blank.php';
+            }else{
             $user_details= FALSE;
             $context="Log in";
-            include '../Resources/View/log_in.php';
+            include '../Resources/View/login_V2.php';
+            }
         }else{
-          
+            
             $_SESSION["email"] = $user_details[0][2];
             $PersonID = $user_details[0][0] ;
             $MainResidentID = $user_details[0][7] ;
@@ -134,13 +151,41 @@ switch ($action){
             $_SESSION["StreetName"] =$user_details[0][10] ;
             $_SESSION["SurburbID"] =$user_details[0][11] ;
             $_SESSION["NumberOfResidents"] = $user_details[0][12];
+             $_SESSION["CityID"] = $user_details[0][13];
             $context="Welcome to Driplit";
             include '../Resources/View/LandingPage.php';
 
         }
         
         break;
-        
+    case 'edit_profile_page':
+        $context ="Edit Profile";
+        $feedback = NULL;
+        $exists= NULL;
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        include '../Resources/View/edit_profile.php';
+        break;
+   
+    case'edit_profile':
+        $context="Register";
+         $fullname = filter_input(INPUT_POST, 'lastname');       
+         $email = filter_input(INPUT_POST, 'email');
+         $password = filter_input(INPUT_POST, 'psw');
+         $deleted = 0;
+         $resType=filter_input(INPUT_POST,'ResType');       
+         $houseNum=filter_input(INPUT_POST,'housenumber');  
+         $street=filter_input(INPUT_POST, 'streetname');
+         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
+         $residentNo=filter_input(INPUT_POST,'residents');
+         if ($resType=="mainRes") {
+             $feedback = $dataAceess-> UpdateMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         } else {
+             $feedback = $dataAceess->UpdateResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         }
+         $exists = NULL;
+         include '../Resources/View/edit_profile.php';
+       break;
    
     case 'register_resident':
         $context="Register";
@@ -148,8 +193,7 @@ switch ($action){
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
-         $resType=filter_input(INPUT_POST,'ResType');
-         
+         $resType=filter_input(INPUT_POST,'ResType');       
          $houseNum=filter_input(INPUT_POST,'housenumber');  
          $street=filter_input(INPUT_POST, 'streetname');
          $sSuburb= filter_input(INPUT_POST, 'Suburbs');
@@ -163,13 +207,13 @@ switch ($action){
          } else {
              $feedback = $dataAceess->RegisterResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
          }
-           include '../Resources/View/register_1.php';
+           include '../Resources/View/register.php';
          } else {
             $exists = TRUE;
             $feedback = -1;
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
-        include '../Resources/View/register_1.php';
+        include '../Resources/View/register.php';
          }
         break;
    

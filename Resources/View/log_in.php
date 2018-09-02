@@ -23,6 +23,7 @@
     <?php elseif($user_details==1):?>
     <p class="error"><?php echo "Please login, to continue your activity";?></p>
     <?php endif;?>
+    
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required" autofocus>*</span>
 

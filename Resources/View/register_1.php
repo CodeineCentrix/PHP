@@ -39,7 +39,7 @@
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
+    <input type="email" placeholder="Enter Email" name="email" required readonly>
     <?php if($exists == TRUE):?>
     <label id="res3">
     <img src="../Resources/Images/information.PNG">The entered email <?php echo "'$email'"; ?> already exists. Try: 
@@ -47,6 +47,7 @@
     
     <?php endif;?>
   <span class="required" autofocus >*</span>
+  
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
 	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
@@ -135,6 +136,6 @@ Reports and Recording Meter Readings.</p>
 
 </form>
 
-  <script src="../Resources/Scripts/Scripts.js"></script>
+  
 </body>
 </html>
