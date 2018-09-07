@@ -161,6 +161,24 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
+    public function Add_Dam($damName, $damLevel){
+        $stored_procedure="uspWEBInsertDam(?,?)";
+        $param=array($damName, $damLevel);
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+            
+    public function Update_Dam($damId, $damName, $damLevel){
+        $stored_procedure="uspWEBEditDam(?,?,?)";
+        $param=array($damId,$damName, $damLevel);
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+     
+    public function Delete_Dam($damId){
+        $stored_procedure="uspWEBDeleteDam(?)";
+        $param=array($damId);
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+
     public function Get_DamLevel($damId) {
         $stored_procedure="uspWEBGetDamLevel(?)";
         $param=array(
@@ -181,7 +199,14 @@ class DBAccess {
         $stored_procedure="uspWEBDamInformation";
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
-
+    
+    public  function Add_RateCharge($pice,$min,$stateId,$municipalId,$max){
+         $stored_procedure="uspWEBAddRateCharge(?,?,?,?,?)";
+         $param=array($pice,$min,$stateId,$municipalId,$max);
+         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+         
+    }
+    
     public function  Get_State(){
     $stored_procedure="uspWEBGetState";
     return DBhelper::sp_SelectStatement($stored_procedure);
@@ -192,10 +217,16 @@ class DBAccess {
             $param=array(
                 $municipalId, $damId, $stateId, $newName
                 );
-                return DBhelper::sp_SelectWithParams($stored_procedure, $param);      
+                return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);      
+    }
+    
+    public function update_damLevel($damId, $damLevel){
+        $stored_procedure="uspWEBUpdateDamLevel(?,?)";
+        $param=array($damId, $damLevel);
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
 
-        public function Login($email, $password){
+    public function Login($email, $password){
         $stored_procedure="uspWEBLogin(?,?)";
         $param =array(
             $email,

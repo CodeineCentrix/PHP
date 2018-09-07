@@ -40,19 +40,21 @@ switch ($action){
         include '../Resources/View/register_1.php';
         break;
     
-    //Admin page on general content
+    //Admin page view municipalities
     case 'dams-content':
        $municipalities=$dataAceess->Get_Municipality();
+       $damInfo=$dataAceess->Get_DamInformation();
+
        $municipalId= filter_input(INPUT_POST, 'municipalitySrch');
         if (isset($municipalId)) {
         $damInfo=$dataAceess->Get_DamInfo($municipalId);}
-        else{
-        $damInfo=$dataAceess->Get_DamInformation();}
+      
         include '../Resources/View/adminViewMunicipalities.php';
         break;
         
-        //Admin Update Municipality
+        //Admin Update Municipality page
     case 'updateMunicipality-page':
+        $update=0;
         $municipalId= filter_input(INPUT_POST, 'municipalityId');
         $municipalName=filter_input(INPUT_POST,'municipalName');
          
@@ -63,23 +65,88 @@ switch ($action){
          if (isset($municipalId)) {
         $damInfo=$dataAceess->Get_DamInfo($municipalId);
         }
-        
         include '../Resources/View/EditMunicipality.php';
         break;
         
+        //actual update
     case 'updateMunicipality':
-        
-        
-//                $damId= filter_input(INPUT_POST, 'dams');
-//                $damLevel=$dataAceess->Get_DamLevel($damId);
+            $muniId = filter_input(INPUT_POST, 'municipalitySrch');
+            $name=filter_input(INPUT_POST, 'municipalName');
+            $damId= filter_input(INPUT_POST, 'dams');
+            $state=filter_input(INPUT_POST, 'state');
+            $damLevel=filter_input(INPUT_POST, 'damLevel');
+            $update=$dataAceess->update_municipality($muniId,$damId,$state,$name);
+            $updateDam=$dataAceess->update_damLevel($damId, $damLevel);
+                    include '../Resources/View/EditMunicipality.php';
+                    break;
                 
-                
-                
-                                $municipalId= filter_input(INPUT_POST, 'municipalitySrch');
-                $damInfo=$dataAceess->Get_DamInfo($municipalId);
-                include '../Resources/View/EditMunicipality.php';
-                break;
+        //Admin View Dams page
+    case 'view-dams':
+        $dams= $dataAceess->Get_Dams();
+        include '../Resources/View/ViewDams.php';
+        break;
+    
+    case 'updateDam':
+         $damLevel=filter_input(INPUT_POST, 'damLevel');
+         $damId= filter_input(INPUT_POST, 'dams');
+         $updateDam=$dataAceess->update_damLevel($damId, $damLevel);
+         include '../Resources/View/ViewDams.php';
+         break;
+     
+    case 'delete-dam':
+        $damId= filter_input(INPUT_POST, 'damId');
+        $result= $dataAceess->Delete_Dam($damId);
+        $dams= $dataAceess->Get_Dams();
+        include '../Resources/View/ViewDams.php';
+        break;
+    
+    case 'add-dam':
+         $damLevel=filter_input(INPUT_POST, 'damLevel');
+         $damName= filter_input(INPUT_POST, 'damName');
+         $addDam=$dataAceess->Add_Dam($damName, $damLevel);
+                 $dams= $dataAceess->Get_Dams();
+
+         include '../Resources/View/ViewDams.php';
+         break;
         
+      case 'updateStandAloneDam-page':
+                   $damId= filter_input(INPUT_POST, 'damId');
+                   $damName=filter_input(INPUT_POST,'damName');
+                   $damLevel=filter_input(INPUT_POST, 'damLevel');
+         include '../Resources/View/edit-dams.php';
+         break;
+     
+     case 'updateStandAloneDam':
+         $damLevel=filter_input(INPUT_POST, 'damLevel');
+         $damId= filter_input(INPUT_POST, 'damId');
+         $damName=filter_input(INPUT_POST,'damName');
+         $updateDam=$dataAceess->Update_Dam($damId,$damName, $damLevel);
+         $dams= $dataAceess->Get_Dams();
+
+         include '../Resources/View/ViewDams.php';
+         break;
+         
+    case 'addRateCharge-page':
+        $municipalities=$dataAceess->Get_Municipality(); 
+        $state=$dataAceess->Get_State();
+        include '../Resources/View/rate-charge.php';
+        break;
+    
+    case 'addRate':
+        $muniId= filter_input(INPUT_POST, 'municipalId');
+        $stateId=filter_input(INPUT_POST, 'state');
+       $rates=array();
+        for ($i=0;$i<3;$i++) {
+         $min1=filter_input(INPUT_POST, 'min1'.$i);
+        $max1=filter_input(INPUT_POST, 'max1'.$i);
+        $pice=filter_input(INPUT_POST,'price'.$i);
+        $result=$dataAceess->Add_RateCharge($pice, $min1, $stateId, $muniId, $max1);
+        }
+       $municipalities=$dataAceess->Get_Municipality(); 
+        $state=$dataAceess->Get_State();
+        include '../Resources/View/rate-charge.php';
+        break;
+     
     case 'reading_page' :
         $feedback=null;
         $context="Add a reading";

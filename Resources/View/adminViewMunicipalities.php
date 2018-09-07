@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="MainRes">
-<h1>Update Dam Info</h1>
+<h1>Update Municipality Information</h1>
 <form method="POST" action="MainController.php?action=dams-content">
     <!--have to search by municipality because we working with one main dam per municipality-->
     <label>Municipality:</label>
