@@ -844,3 +844,16 @@ Begin section for header....
     padding: 10px;
     
 }
+
+/*Reports section*/
+.reports{
+    overflow: hidden;
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+}
+
+.reports h3{
+    text-align: center;
+}
+/*End Reports section*/
