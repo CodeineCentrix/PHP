@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
     $( document ).ready(function() {
-        $('.info_text').hide();
+      //  $('.info_text').hide();
         
         $( ".info" ).mouseover(function() {
         $('.info_text').show();
@@ -35,9 +35,9 @@
     <body>
         <!-- Floating action buttons-->
         <div class="tray">
-            <div class=" info tray_item"><img src="https://png.icons8.com/ios/50/000000/info.png"></div>
-            <div class="tray_item" title="Login"><img src="https://png.icons8.com/ios/50/000000/login-rounded-right-filled.png"></div>
-            <div class="tray_item" title="Register"><img src="https://png.icons8.com/ios/50/000000/edit-user-male-filled.png"></div>
+            <div><img class="info" src="../Resources/Images/info.png" width="80px"></div>
+            <a href="?action=login_page"> <div class="" title="Login"><img src="../Resources/Images/login_1.png" width="80px"></div></a>
+            <a href="?action=register_page"><div class="" title="Register"><img src="../Resources/Images/registers.png" width="80px"></div></a>
         </div>
         <div class="content_holder">
  <div class="fullscreen-bg">
@@ -46,19 +46,17 @@
    
 <?php include '../Resources/View/header.php';?>
 
-            
-
-            <div class="middlise" style="padding: 0; height: 100% !important;">
-                <div style="width: 100%;" class="middlise">
-                    
-                    <ul style="padding:0;" class="greetText">
+            <div class="content_holder">
+                 <div class="container">
+                    <div class="seperator">   
+                    <ul class="greetText">
                         <p><li>W  A  T  E  R</li></p>
                          <p><li>I  S</li></p>
                          <p><li>L  I  F  E</li></p>
                     </ul>
-                        
-    <div class="middlise">               
-        <svg version="1.1" id="Layer_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    </div>
+                     <div class="seperator">       
+                      <svg version="1.1" id="Layer_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="200px" height="200px" viewBox="0 0 141.667 126.334" enable-background="new 0 0 141.667 126.334"
          xml:space="preserve">
                 <g>
@@ -72,20 +70,16 @@
                 </g>
                 </g>
         </svg>
-    </div>              
-                    
-                
-                
-                
+                     </div>    
+                </div>
             </div>
-            <br><br><br><br>
-            <div class="info_text">
+  
+            
+           <div class="info_text">
             <strong> <p>This Water management web application is designed for individuals/businesses/homeowners<br>
 	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
 	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
         water consumption within your household and more importantly raise awareness.</p></strong>
-            </div>
-            <br>
-        </div>            
+            </div>        
     </body>
 </html>

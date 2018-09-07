@@ -34,12 +34,12 @@
     <p>Please fill in this form to create an account.</p>
     <hr>
 
-	<label><b>Full Name</b></label>
+    <label><b>Full Name</b></label>
     <input type="text" placeholder="Enter Last Name" name="lastname" required>
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
+    <input type="email" placeholder="Enter Email" name="email" required readonly>
     <?php if($exists == TRUE):?>
     <label id="res3">
     <img src="../Resources/Images/information.PNG">The entered email <?php echo "'$email'"; ?> already exists. Try: 
@@ -47,6 +47,7 @@
     
     <?php endif;?>
   <span class="required" autofocus >*</span>
+  
     <label for="psw"><b>Password</b></label>
 	<input type="password" placeholder="Enter Password" name="psw" id="psw"  required 
 	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
@@ -85,7 +86,7 @@
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="number" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
+    <input type="text" placeholder="Enter House Number" name="housenumber" required><span class="required">*</span>
 
    <label><b>Street Name</b></label>
     <input type="text" placeholder="Enter Street Name" name="streetname" required>
@@ -135,6 +136,6 @@ Reports and Recording Meter Readings.</p>
 
 </form>
 
-  <script src="../Resources/Scripts/Scripts.js"></script>
+  
 </body>
 </html>

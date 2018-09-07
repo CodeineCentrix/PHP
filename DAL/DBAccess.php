@@ -22,8 +22,7 @@ class DBAccess {
         $stored_procedure ="uspWEBViewNews(?, ?) ";
         $param = array(
              $to,
-             $from
-                
+             $from               
         );        
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
@@ -301,8 +300,8 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    function AddNewsArticle($pic_name,$pic_link,$admin_id,$article_title,$art_desc,$date_posted,$article_body_link) {
-        $stored_procedure ="uspWEBAddNewsArticle(?,?,?,?,?,?,?)";
+    function AddNewsArticle($pic_name,$pic_link,$admin_id,$article_title,$art_desc,$date_posted,$article_body_link, $author) {
+        $stored_procedure ="uspWEBAddNewsArticle(?,?,?,?,?,?,?,?)";
         $param = array(
             $pic_name,
             $pic_link,
@@ -310,8 +309,53 @@ class DBAccess {
             $article_title,
             $art_desc,
             $date_posted,
-            $article_body_link
+            $article_body_link,
+            $author
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
+    
+     public function LoginAdmin($email, $password){
+        $stored_procedure="uspWEBLoginAdmin(?,?)";
+        $param =array(
+            $email,
+            $password
+        );
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+    
+    public function getAdminOverviewData() {
+         $stored_procedure ="uspWEBAdminStatsHomePage()";
+        return DBhelper::sp_SelectStatement($stored_procedure);
+    }
+    
+    public function UpdateResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
+         $stored_procedure ="uspWEBUpdateResident(?,?,?,?,?,?,?,?)";
+        $param = array(
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+    
+     public function UpdateMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
+        $stored_procedure ="uspWEBUpdateMainResident (?,?,?,?,?,?,?,?)";
+        $param = array(
+           $fullname,          
+           $email,
+           $password,
+           $deleted,
+           $houseNumber,
+           $streetName,
+           $surburbID,
+           $numberOfResidents
+        );
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+}
 }

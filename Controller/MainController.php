@@ -28,7 +28,7 @@ switch ($action){
     case 'login_page':
         $context = "Login";
         $user_details= NULL;
-        include '../Resources/View/log_in.php';
+        include '../Resources/View/login_V2.php';
         break;
     
     case 'register_page':
@@ -37,7 +37,7 @@ switch ($action){
         $suburbs=$dataAceess->Get_Suburbs();
         $feedback =0;
         $exists = FALSE;
-        include '../Resources/View/register_1.php';
+        include '../Resources/View/register.php';
         break;
     
     //Admin page view municipalities
@@ -192,17 +192,34 @@ switch ($action){
             break;
 
     // End Page displaying/ request  section 
+        
+    case 'admin_dashboard':
+        $admin_overview = $dataAceess->getAdminOverviewData();
+        $action = 'admin_dashboard';
+        include '../Admin/blank.php';
+        break;
     
     case 'login':
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
         $user_details = $dataAceess->Login($email, $password);
         if($user_details==NULL){
+            $admin_details = $dataAceess->LoginAdmin($email, $password);
+            if($admin_details!=NULL){
+                $admin_overview = $dataAceess->getAdminOverviewData();
+                //The person is an admin, send directly to admin page
+                $_SESSION["AdminID"] = $admin_details[0][0];
+                $_SESSION["Password"]  = $admin_details[0][1];
+                $_SESSION["Username"]  = $admin_details[0][2];
+                $action="admin_dashboard";
+                include '../Admin/blank.php';
+            }else{
             $user_details= FALSE;
             $context="Log in";
-            include '../Resources/View/log_in.php';
+            include '../Resources/View/login_V2.php';
+            }
         }else{
-          
+            
             $_SESSION["email"] = $user_details[0][2];
             $PersonID = $user_details[0][0] ;
             $MainResidentID = $user_details[0][7] ;
@@ -220,13 +237,41 @@ switch ($action){
             $_SESSION["StreetName"] =$user_details[0][10] ;
             $_SESSION["SurburbID"] =$user_details[0][11] ;
             $_SESSION["NumberOfResidents"] = $user_details[0][12];
+             $_SESSION["CityID"] = $user_details[0][13];
             $context="Welcome to Driplit";
             include '../Resources/View/LandingPage.php';
 
         }
         
         break;
-        
+    case 'edit_profile_page':
+        $context ="Edit Profile";
+        $feedback = NULL;
+        $exists= NULL;
+        $cities= $dataAceess->Get_Cities();
+        $suburbs=$dataAceess->Get_Suburbs();
+        include '../Resources/View/edit_profile.php';
+        break;
+   
+    case'edit_profile':
+        $context="Register";
+         $fullname = filter_input(INPUT_POST, 'lastname');       
+         $email = filter_input(INPUT_POST, 'email');
+         $password = filter_input(INPUT_POST, 'psw');
+         $deleted = 0;
+         $resType=filter_input(INPUT_POST,'ResType');       
+         $houseNum=filter_input(INPUT_POST,'housenumber');  
+         $street=filter_input(INPUT_POST, 'streetname');
+         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
+         $residentNo=filter_input(INPUT_POST,'residents');
+         if ($resType=="mainRes") {
+             $feedback = $dataAceess-> UpdateMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         } else {
+             $feedback = $dataAceess->UpdateResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
+         }
+         $exists = NULL;
+         include '../Resources/View/edit_profile.php';
+       break;
    
     case 'register_resident':
         $context="Register";
@@ -234,8 +279,7 @@ switch ($action){
          $email = filter_input(INPUT_POST, 'email');
          $password = filter_input(INPUT_POST, 'psw');
          $deleted = 0;
-         $resType=filter_input(INPUT_POST,'ResType');
-         
+         $resType=filter_input(INPUT_POST,'ResType');       
          $houseNum=filter_input(INPUT_POST,'housenumber');  
          $street=filter_input(INPUT_POST, 'streetname');
          $sSuburb= filter_input(INPUT_POST, 'Suburbs');
@@ -249,13 +293,13 @@ switch ($action){
          } else {
              $feedback = $dataAceess->RegisterResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
          }
-           include '../Resources/View/register_1.php';
+           include '../Resources/View/register.php';
          } else {
             $exists = TRUE;
             $feedback = -1;
         $cities= $dataAceess->Get_Cities();
         $suburbs=$dataAceess->Get_Suburbs();
-        include '../Resources/View/register_1.php';
+        include '../Resources/View/register.php';
          }
         break;
    
@@ -277,7 +321,7 @@ switch ($action){
         
     /*View  tricks*/
     case 'tips':
-         $context="Tips & Tricks";
+         $context="Tips & Tricks";        
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
@@ -552,19 +596,19 @@ switch ($action){
         case'news_page':
             include '../Admin/blank.php';
             break;
+        
         case'add_article':
             //get posted data
-            $article_title = filter_input(INPUT_POST, 'temp');
-            $article_author = filter_input(INPUT_POST, 'temp');
-            $article_image = filter_input(INPUT_POST, 'temp');
-            $article_body = filter_input(INPUT_POST, 'temp');
+            $article_title = filter_input(INPUT_POST, 'article_title');
+            $article_author = filter_input(INPUT_POST, 'article_author');
+            $article_body = filter_input(INPUT_POST, 'article_body');
             $current_timestamp = date('Y-m-d_His');
             //Save image first
-            $upFile = '../Resources/ArticleImages/'.$current_timestamp.$_FILES['prodImg']['name'];
+            $upFile = '../Resources/ArticleImages/'.$_FILES['fp_article_image']['name'];
             $saved = FALSE;
 		if(is_uploaded_file($_FILES['fp_article_image']['tmp_name'])) {
 		 if(!move_uploaded_file($_FILES['fp_article_image']['tmp_name'], $upFile)) {
-		 echo 'Problem could not move file to destination. Please check again later. <a href="index.php">Please go back.</a>';
+		 echo 'Problem could not move file to destination. Please check again later.';
 		 exit;
 		 }
 		 else{
@@ -574,7 +618,7 @@ switch ($action){
                  $imageDirectory = $upFile;
             //Save text file
             if($saved===TRUE){
-                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'txt';
+                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'.txt';
                 $myfile = fopen($article_up, "w") or die("Authorization issues have caused this crash");
 		fwrite($myfile, $article_body);
 		fclose($myfile);
@@ -582,10 +626,83 @@ switch ($action){
             
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
-            $successfully_added = $dataAceess->AddNewsArticle($pic_name, $pic_link, $admin_id, $article_title, $art_desc, $date_posted, $article_body_link);
+            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
+            $action = 'news_page';
+            include '../Admin/blank.php';
             break;
-    
-    
+            
+            case'get_articles':
+             
+            $from = 0;
+                $page = filter_input(INPUT_POST, 'page');
+                if ($page != 1){ 
+                    $from = ($page-1) * 4;                   
+                }
+                 else{
+                     $from=0;                     
+                 }                
+            $total_records_count = $dataAceess->AllNewsRecords();
+            $news = $dataAceess->get_news_items(4, $from);
+                $numPage = ceil($total_records_count[0][0]/4);
+                $drawNews = "";
+                $i= 0;
+                $article_body = NULL;
+                foreach($news as $value){
+                    if(isset($value[8])){
+                    $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
+                    $article_body = fread($article_link, filesize($value[8]));
+                    fclose($article_link);
+                    }
+                $drawNews .= "<div class='news_item center_tag'>"
+                        . "<div class='news_item_image'>"
+                        ."<img style='object-fit: contain; height:inherit; width: 100%;' src='$value[7]' alt='$value[6]'>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>$value[9]</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$article_body</div>"  
+                        . "<input type='button' class='registerbtn' value='Read or Hide' id='btnRead' onclick=\"ReadOrShowItem('".'A'.$i."')\"/>"
+                        . "</div>" 
+                        . "</div>"; 
+                  $i++;
+                }
+                if(count($news)<0){
+                    $drawNews = "Oops, we are out of these";
+                }
+                $return_data = array('numPage' => $numPage,
+                    'content' => utf8_encode($drawNews)
+                    );
+                $return_data = json_encode($return_data);
+                echo $return_data;
+                break;
+            
+            case 'tip_trick':
+                $from = 0;
+                $page = filter_input(INPUT_POST, 'page');
+                if ($page != 1){ 
+                    $from = ($page-1) * 4;                   
+                }
+                 else{
+                     $from=0;                     
+                 }
+                 $total_records_count = $dataAceess->AllTipsRecords();
+                 $tips = $dataAceess->View_Tips($from, 4);
+                 $drawHTML= "";
+                 foreach ($tips as $value) {
+                    $drawHTML.="<div class='tipscontainer'>"
+                             . "<img src='../Resources/Images/head.png' alt='Avatar' style='width:90px'>"
+                             . "<p><span>$value[0]</span><span style='font-size:small' title='Tip Category'>$value[3]</span><span name='date' class='date'>"
+                             . "<i>".date_format($value[2], 'jS, F Y')."</i></span></p>"
+                             . "<p>$value[1]</p>"
+                             . "</div>";                    
+                 }
+                 if(isset($news)){
+                     $drawHTML= "Looks as if you've reached the end of our collection";
+                 }
+                 $numPage = ceil(($total_records_count[0][0]/4));
+                 $return_data = array("numPage"=> $numPage, "content"=>$drawHTML);
+                 $return_data = json_encode($return_data);
+                 echo $return_data;
+            break;
+    case'user_reports':
+        $context = 'Reports';
+         include '../Resources/View/reports.php';
+        break;
     default :
         include '../Resources/View/page_not_found.php';
         break;

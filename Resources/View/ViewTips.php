@@ -2,10 +2,17 @@
 <html>
 <head>
     <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-
+#pagination_t div { display: inline-block; margin-right: 5px; margin-top: 5px }
+#pagination_t .cell a { border-radius: 3px; font-size: 11px; color: #333; padding: 8px; text-decoration:none; border: 1px solid #d3d3d3; background-color: #f8f8f8; }
+#pagination_t .cell a:hover { border: 1px solid #c6c6c6; background-color: #f0f0f0;  }
+#pagination_t .cell_active span { border-radius: 3px; font-size: 11px; color: #333; padding: 8px; border: 1px solid #c6c6c6; background-color: #e9e9e9; }
+#pagination_t .cell_disabled span { border-radius: 3px; font-size: 11px; color: #777777; padding: 8px; border: 1px solid #dddddd; background-color: #ffffff; }	
 </style>
+ <script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
+<script src="../Resources/Scripts/centrixScript.js"></script>
 </head>
 <body>
  <?php include '../Resources/View/header.php'; ?>
@@ -28,40 +35,20 @@
  <?php endif;?>
 
 <div class="tips_holder">
-<h2>Top Water Saving Tips &amp; Tricks</h2>
-    
-     <?php $count_id =0;
-            foreach ($tips as $value): ?>
-   <div class="tipscontainer">
-  <img src="../Resources/Images/head.png" alt="Avatar" style="width:90px">
-  <p><span><?php echo "$value[0]"?></span><span style="font-size:small" title="Tip Category"><?php echo "$value[3]"?></span><span name="date" class="date"><i><?php $dateAsString = date_format($value[2], 'jS, F Y');
-                        echo $dateAsString;?></i></span></p>
-  <p><?php echo "$value[1]"?></p>
+<h2>Latest Water Saving Tips &amp; Tricks</h2>
+
+  <!--Tip and tricks content --> 
+    <div id="tiptrickregion">
+
   </div>
-<?php endforeach; ?> 
-<!--prev next buttons-->
- <div class="pgn_holder center_tag">
-            <?php if($previous>=0)/*if(1==1)*/: ?>
-        <a href="<?php echo "../Controller/MainController.php?action=tips&from=$previous&to=3";?>" class="news_prev">
-            <span class="img_prev"><img src="../Resources/Images/prev.png"></span>Previous</a>
-        <?php  endif;?>
-            
-            <?php if($from<$total_records) /*if(1==1)*/: ?>
-                <a href="<?php echo "../Controller/MainController.php?action=tips&to=$to&from=$from&records=$total_records";?>" class="news_next">
-                    <span class="img_next"> <label>next</label><img  src="../Resources/Images/next.png"></span></a>
-            <?php endif; ?>
-        </div>
-<!--end of buttons-->
- <?php if ($tips==NULL):?>
-         <div class="news_none center_tag">
-            <div class="center_tag">
-                <img src="../Resources/Images/nerd.png">               
+  
+<!-- tip trick pagination content -->
+        <div style="width:100%; margin: auto;padding: 15px; overflow: hidden; padding-left: 35%;">
+            <div id="pagination_t" style="width:100%; margin: auto;padding: 15px; overflow: hidden;">
+                <a href="#" id="1"></a>
             </div>
-            <h1>Looks as if you've ran out Tips & Tricks to read, <br>remember to share your personal favorite water saving tips.</h1>
-            <a a href='../Controller/MainController.php'>Other cool things to do?</a>
         </div>
-   
-        <?php endif;?>
+
 
 <form action="../Controller/MainController.php?action=post_tip" method="post">
 

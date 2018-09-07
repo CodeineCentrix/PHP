@@ -23,6 +23,7 @@
     <?php elseif($user_details==1):?>
     <p class="error"><?php echo "Please login, to continue your activity";?></p>
     <?php endif;?>
+    
     <label><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required><span class="required" autofocus>*</span>
 
@@ -36,7 +37,7 @@
       <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
 
    <div class="container signin">
-       <a href="MainController.php?action=register_resident">Register?</a>
+       <a href="MainController.php?action=register_page">Register?</a>
 <!--    <button type="button" class="cancelbtn">Cancel</button> <span>&nbsp;&nbsp;&nbsp;&nbsp;Forgot <a href="#">Username/Password? </a></span>-->
   </div>
     </div>
