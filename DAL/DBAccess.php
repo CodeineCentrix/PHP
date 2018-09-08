@@ -306,4 +306,22 @@ class DBAccess {
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
 }
+
+    public function reports_pdf_data($House_id, $from_date, $to_date) {
+    $stored_procedure ="uspWEBPDFRateData(?,?,?)";
+    $params = array(
+        $House_id,
+        $from_date,
+        $to_date
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
+
+    public function reports_pdf_rates($city_id) {
+    $stored_procedure ="uspWEBPDFRates(?)";
+    $params = array(
+     $city_id   
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
 }

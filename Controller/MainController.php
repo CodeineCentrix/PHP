@@ -617,6 +617,14 @@ switch ($action){
         $context = 'Reports';
          include '../Resources/View/reports.php';
         break;
+    
+    case 'reports_graph':
+        
+        break;
+    
+    case 'reports_pdf':
+        
+        break;
     default :
         include '../Resources/View/page_not_found.php';
         break;

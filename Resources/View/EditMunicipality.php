@@ -11,9 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <label>Select Municipality to edit below:</label><br>
-           <?php foreach ($municipalities as $municipality):?>
-        {
+           <?php //foreach ($municipalities as $municipality):?>
         
-           }
     </body>
 </html>
