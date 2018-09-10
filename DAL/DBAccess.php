@@ -324,4 +324,14 @@ class DBAccess {
     );
     return DBhelper::sp_SelectWithParams($stored_procedure, $params);
 }
+
+public function reports_pdf_opening_amount($date, $house_id) {
+    //This will give me the last recorded meter reading and also, the last 
+    $stored_procedure ="uspWEBPDFOpeningAmount(?,?)";
+    $params = array(
+     $date,
+     $house_id
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
 }
