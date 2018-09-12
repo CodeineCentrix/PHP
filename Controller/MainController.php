@@ -168,22 +168,27 @@ switch ($action){
         break;
    
     case'edit_profile':
-        $context="Register";
-         $fullname = filter_input(INPUT_POST, 'lastname');       
-         $email = filter_input(INPUT_POST, 'email');
-         $password = filter_input(INPUT_POST, 'psw');
-         $deleted = 0;
-         $resType=filter_input(INPUT_POST,'ResType');       
-         $houseNum=filter_input(INPUT_POST,'housenumber');  
-         $street=filter_input(INPUT_POST, 'streetname');
-         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
-         $residentNo=filter_input(INPUT_POST,'residents');
-         if ($resType=="mainRes") {
-             $feedback = $dataAceess-> UpdateMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
-         } else {
-             $feedback = $dataAceess->UpdateResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
-         }
-         $exists = NULL;
+        $context="Edit Profile";
+        $fullname = filer_input(INPUT_POST, 'lastname');
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'psw');
+        $city = filter_input(INPUT_POST, 'Cities');
+        $suburb = filter_input(INPUT_POST, 'Suburbs');
+        $house_number = filter_input(INPUT_POST, 'housenumber');
+        $street_name = filter_input(INPUT_POST, 'streetname');
+        $isMainResident = filter_input(INPUT_POST, 'ResType');
+        $number_of_residents = filter_input(INPUT_POST, 'residents');
+        
+        //Update the users details anyway....
+        //-- TODO modify update residence stored procedure and method name ->
+        
+        
+        //Then check if the user would like to change their address too and change it.
+        
+        //Check if they'd like a normal residence or main residence kinda thing
+        
+        //Add accordingly... 
+        $exists = NULL;
          include '../Resources/View/edit_profile.php';
        break;
    

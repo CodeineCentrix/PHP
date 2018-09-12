@@ -133,4 +133,12 @@ $('#pagination_t ').on('click', 'a', function(e) { // When click on a 'a' elemen
 $("#pagination_t a").trigger('click'); // When page is loaded we trigger a click 
 });
 
+function UnblockAddresses(){
+    document.getElementById("cities").disabled = false;
+    document.getElementById("suburbs").disabled = false;
+    document.getElementById("houseNUm").disabled = false;
+    document.getElementById("ResType").disabled = false;
+    document.getElementById("res").disabled = false;
+}
+
 
