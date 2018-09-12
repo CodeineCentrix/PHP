@@ -334,4 +334,14 @@ public function reports_pdf_opening_amount($date, $house_id) {
     );
     return DBhelper::sp_SelectWithParams($stored_procedure, $params);
 }
+
+public function check_main_residence($house_number, $street_name, $suburb_id) {
+    $stored_procedure ="uspWEBCheckMainResident(?,?,?)";
+    $params = array(
+     $house_number, 
+        $street_name, 
+        $suburb_id
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
 }

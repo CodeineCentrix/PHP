@@ -73,27 +73,27 @@ and open the template in the editor.
 
 	<br>
         <label>Check to change address
-            <input type="checkbox" name="change_address" onclick="UnblockAddresses()"> </label><br>
+            <input type="checkbox" name="change_address" id="changeAdd" onclick="UnblockAddresses()"> </label><br>
             <span class="error">Note: Changing addresses will revoke rights and all data related to your current house. </span><br>
 <!--  </select><span class="required">*</span>-->
 	<label><b>City</b></label>
-        <select name="Cities" disabled id="cities" onclick="ComparePassword()">
+        <select name="Cities" disabled id="cities" onclick="ComparePassword()" onblur="CheckMainResidence()">
        <?php foreach ($cities as $city): ?>
        <option value="<?php echo "$city[0]"; ?>"  <?php if(trim($_SESSION["CityID"])===trim($city[0])){echo 'selected';} ?> > <?php echo"$city[1]";?> </option>  
   <?php endforeach; ?>
 </select><span class="required">*</span>
 	<label><b>Suburb</b></label>
-        <select name="Suburbs" id="suburbs" disabled><span class="required">*</span>
+<select name="Suburbs" id="suburbs" disabled onblur="CheckMainResidence()"><span class="required">*</span>
      <?php foreach ($suburbs as $suburb):?>
      <option value="<?php echo "$suburb[0]";?>" <?php if(trim($_SESSION["SurburbID"])===trim($suburb[0])){echo 'selected';} ?> > <?php echo "$suburb[1]"?> </option>
   <?php endforeach; ?>
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="text" id="houseNUm" disabled placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo $_SESSION["HouseNumber"] ;} ?>"><span class="required" >*</span>
+    <input onblur="CheckMainResidence()" type="text" id="houseNUm" disabled placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo $_SESSION["HouseNumber"] ;} ?>"><span class="required" >*</span>
 
    <label><b>Street Name</b></label>
-    <input type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo $_SESSION["StreetName"] ;} ?>" required>
+   <input onblur="CheckMainResidence()" id="strName" type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo $_SESSION["StreetName"] ;} ?>" required>
 	<br>
        
   
@@ -107,7 +107,7 @@ and open the template in the editor.
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
   <input type="radio" disabled id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()" required> Main Resident<br><br>
- 
+  <p id="who" class="error"></p>
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
 <label><b>Number of Residents</b></label>
@@ -121,7 +121,7 @@ and open the template in the editor.
        recording water meter readings and thus need not fill the form to follow. On this site
        you have access to full utilities accept for: Adding Resident under yourself, Viewing Water Usage 
 Reports and Recording Meter Readings.</p>
-  <input type="radio" disabled name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
+  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
   <input type="submit" class="registerbtn" id="registerbtn" value="Update Profile">

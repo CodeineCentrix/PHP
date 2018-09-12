@@ -623,13 +623,25 @@ switch ($action){
          include '../Resources/View/reports.php';
         break;
     
-    case 'reports_graph':
-        
+    case 'check_main_resident':
+        $house_number = filter_input(INPUT_POST, 'house_num'); 
+        $street_name = filter_input(INPUT_POST, 'street_name'); 
+        $suburb_id = filter_input(INPUT_POST, 'suburb_id');
+        $main_resident = $dataAceess->check_main_residence($house_number, $street_name, $suburb_id);
+       // $main_resident = $dataAceess->check_main_residence("81", "Mzwazwas", "5000");
+        $person = NULL;
+       if(count($main_resident)<1 ){
+           $found = FALSE;
+       }else{
+          $found = TRUE;
+          $person = $main_resident[0][0];
+       }
+       
+        $return_data = array("valid"=> $found, "resident"=> $person);
+        $return_data = json_encode($return_data);
+        echo $return_data;
         break;
     
-    case 'reports_pdf':
-        
-        break;
     default :
         include '../Resources/View/page_not_found.php';
         break;

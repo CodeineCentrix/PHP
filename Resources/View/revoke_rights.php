@@ -29,7 +29,7 @@ and open the template in the editor.
                 <?php endforeach;?>
             </select> 
             <input type="submit" value="Revoke Resident Rights">
-            <br> <label>We found <?php echo count($roomies); ?> revoke-able person(s).</label>
+            <br> <label>We found <?php echo count($roomies)-1; ?> revoke-able person(s).</label>
             <input type="hidden" id="person_name" name="txtperson_name">
             </form>
             <?php if(isset($moved)):?>

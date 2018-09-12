@@ -52,3 +52,6 @@ Fix the login and allow for usernames to be lowercase too.
 Fix the house address part and allow for text to be added, E.g: 220B Mandla Street
 Recreate Home page and divert from using conflicting colors.  
 Once you've added a meter reading direct to the view readings page
+
+BUGS: 
+Water charges once you reach the area statistics page. 
