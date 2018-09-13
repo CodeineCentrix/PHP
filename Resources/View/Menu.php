@@ -1,5 +1,5 @@
 
-   <div  class="card">
+   <div  class="card <?php if(isset($guider)){echo 'clicked';}?>">
   <svg class="icon-menu" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 250 250">
   <title>Menu</title>
   <g>

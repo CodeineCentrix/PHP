@@ -277,32 +277,28 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
-    public function UpdateResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
-         $stored_procedure ="uspWEBUpdateResident(?,?,?,?,?,?,?,?)";
+    function UpdateResidentHouse($email,$HouseNumber,$StreetName ,$SuburbID ,$NumberOfResidents,$mainResident ) {
+        $stored_procedure ="uspWEBUpdateResidentHouse(?,?,?,?,?,?)";
         $param = array(
-           $fullname,          
            $email,
-           $password,
-           $deleted,
-           $houseNumber,
-           $streetName,
-           $surburbID,
-           $numberOfResidents
+           $HouseNumber,
+           $StreetName,
+           $SuburbID,
+           $NumberOfResidents,
+           $mainResident
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-     public function UpdateMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
-        $stored_procedure ="uspWEBUpdateMainResident (?,?,?,?,?,?,?,?)";
+     public function UpdateResident($fullname,  $email, $password, $street_name,$street_update=1 ) {
+        $stored_procedure ="uspWEBUpdateResident (?,?,?,?,?)";
         $param = array(
            $fullname,          
            $email,
            $password,
-           $deleted,
-           $houseNumber,
-           $streetName,
-           $surburbID,
-           $numberOfResidents
+           $street_name,
+           $street_update
+          
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
 }
@@ -344,4 +340,5 @@ public function check_main_residence($house_number, $street_name, $suburb_id) {
     );
     return DBhelper::sp_SelectWithParams($stored_procedure, $params);
 }
+
 }

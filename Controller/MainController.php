@@ -130,6 +130,7 @@ switch ($action){
             }else{
             $user_details= FALSE;
             $context="Log in";
+            
             include '../Resources/View/login_V2.php';
             }
         }else{
@@ -153,6 +154,7 @@ switch ($action){
             $_SESSION["NumberOfResidents"] = $user_details[0][12];
              $_SESSION["CityID"] = $user_details[0][13];
             $context="Welcome to Driplit";
+            $guider = TRUE;
             include '../Resources/View/LandingPage.php';
 
         }
@@ -169,7 +171,7 @@ switch ($action){
    
     case'edit_profile':
         $context="Edit Profile";
-        $fullname = filer_input(INPUT_POST, 'lastname');
+        $fullname = filter_input(INPUT_POST, 'lastname');
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'psw');
         $city = filter_input(INPUT_POST, 'Cities');
@@ -178,16 +180,21 @@ switch ($action){
         $street_name = filter_input(INPUT_POST, 'streetname');
         $isMainResident = filter_input(INPUT_POST, 'ResType');
         $number_of_residents = filter_input(INPUT_POST, 'residents');
-        
-        //Update the users details anyway....
-        //-- TODO modify update residence stored procedure and method name ->
-        
-        
-        //Then check if the user would like to change their address too and change it.
-        
-        //Check if they'd like a normal residence or main residence kinda thing
-        
-        //Add accordingly... 
+        $change_address = filter_input(INPUT_POST, 'change_address');
+            if(!isset($change_address)){
+             $eddited = $dataAceess->UpdateResident($fullname, $email, $password, $street_name, 1);
+            }else{
+              $eddited = $dataAceess->UpdateResident($fullname, $email, $password, $street_name, 0);
+              if(isset($isMainResident)){
+                  $house_added = $dataAceess ->UpdateResidentHouse($email, $house_number, $street_name, $suburb, $NumberOfResidents, 1);
+                  $feedback = $house_added;
+              }else{
+                  $house_added = $dataAceess ->UpdateResidentHouse($email, $house_number, $street_name, $suburb, $NumberOfResidents, 0);
+                  $feedback = $house_added;
+              }
+              
+            }
+          $feedback = $eddited;
         $exists = NULL;
          include '../Resources/View/edit_profile.php';
        break;

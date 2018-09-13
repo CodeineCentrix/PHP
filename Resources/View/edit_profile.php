@@ -26,8 +26,8 @@ and open the template in the editor.
        <!--    <span class="close">&times;</span>-->
                <div class="mid">
                <img src="../Resources/Images/success.png">
-           <strong><h3 class="modalText">Update Successful</h3></strong>
-               <div class="btnProceed"><a href= "../Controller/MainController.php?action=login_page">OK</a></div>
+           <strong><h3 class="modalText">Update Successful - Changes will be reflected upon next login.</h3></strong>
+               <div class="btnProceed"><a href= "../Controller/MainController.php?action=edit_profile_page">OK</a></div>
                </div>
          </div>
 
@@ -53,8 +53,7 @@ and open the template in the editor.
   
     <label for="psw"><b>Old Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" id="psw"  required value="<?php if(isset($_SESSION["UserPassword"])){ echo trim($_SESSION["UserPassword"]) ;} ?>"
-	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-	title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+	>
 	<div id="message">
   <h4>Password must contain the following:</h4>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -90,10 +89,10 @@ and open the template in the editor.
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input onblur="CheckMainResidence()" type="text" id="houseNUm" disabled placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo $_SESSION["HouseNumber"] ;} ?>"><span class="required" >*</span>
+    <input onblur="CheckMainResidence()" type="text" id="houseNUm" disabled placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo trim($_SESSION["HouseNumber"]) ;} ?>"><span class="required" >*</span>
 
    <label><b>Street Name</b></label>
-   <input onblur="CheckMainResidence()" id="strName" type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo $_SESSION["StreetName"] ;} ?>" required>
+   <input onblur="CheckMainResidence()" id="strName" type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo trim($_SESSION["StreetName"]) ;} ?>" required>
 	<br>
        
   
