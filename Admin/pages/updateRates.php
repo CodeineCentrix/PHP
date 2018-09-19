@@ -17,14 +17,16 @@ and open the template in the editor.
            <h2>Update Rates for state</h2>
            <table>
     <tr><th>Min</th><th>Max</th><th>Price</th></tr>
+    <?php $count = 0; ?>
                         <?php foreach ( $rate as $rates):?>                                               
                         <tr>
-                            <td><input type="number" step="any"  name="min" value="<?php echo $rates[1] ;?>"></td>
-                            <td><input type="number" step="any" name="max" value="<?php echo $rates[2] ;?>"></td>
-                            <td><input type="number" step="any"  name="price" value="<?php echo $rates[0] ;?>"></td>
+                            <td><input type="number" step="any"  name="min<?php echo $count;?>" value="<?php echo $rates[1] ;?>"></td>
+                            <td><input type="number" step="any" name="max<?php echo $count;?>" value="<?php echo $rates[2] ;?>"></td>
+                            <td><input type="number" step="any"  name="price<?php echo $count;?>" value="<?php echo $rates[0] ;?>"></td>
                             
                             
-                        </tr>                       
+                        </tr> 
+                        <?php $count++; ?>
                         <?php endforeach;?>
                         <tr><td><input type="hidden" name="muniId" value="<?php echo $muniId;?>">
                                 <input type="hidden" name="stateId" value="<?php echo $stateId;?>"></td>

@@ -17,6 +17,7 @@
         <link href="../Admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
         <link href="../Admin/dist/css/sb-admin-2.css" rel="stylesheet">
         <link href="../Admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
         <script src="../Admin/js/widgEditor.js"></script>      
         <link rel="stylesheet" href="../Admin/css/widgEditor.css">
 </head>
@@ -103,6 +104,60 @@
                 <?php include 'pages/news.html'; ?>
               <?php elseif($action=='admin_dashboard'): ?>
                 <?php include 'pages/homepage.php'; ?>
+                
+                <?php elseif($action=='dams-content'): ?>
+                <?php include 'pages/adminViewMunicipalities.php'; ?>
+                
+                <?php elseif($action=='add-municipality-page'): ?>
+                <?php include 'pages/add-municipality.php'; ?>
+                
+                <?php elseif($action=='add-municipality'): ?>
+                <?php include 'pages/adminViewMunicipalities.php'; ?>
+                
+                <?php elseif($action=='updateMunicipality-page'): ?>
+                <?php include 'pages/EditMunicipality.php'; ?>
+                
+                <?php elseif($action=='updateMunicipality'): ?>
+                <?php include 'pages/adminViewMunicipalities.php'; ?>
+                
+                <?php elseif($action=='view-dams'): ?>
+                <?php include 'pages/ViewDams.php'; ?>
+                
+                <?php elseif($action=='updateDam'): ?>
+                <?php include 'pages/ViewDams.php'; ?>
+                
+                <?php elseif($action=='delete-dam'): ?>
+                <?php include 'pages/ViewDams.php'; ?>
+                
+                <?php elseif($action=='add-dam'): ?>
+                <?php include 'pages/ViewDams.php'; ?>
+                
+                <?php elseif($action=='updateStandAloneDam-page'): ?>
+                <?php include 'pages/edit-dams.php'; ?>
+                
+                <?php elseif($action=='updateStandAloneDam'): ?>
+                <?php include 'pages/ViewDams.php'; ?>
+                
+                <?php elseif($action=='addRateCharge-page'): ?>
+                <?php include 'pages/Add_rateCharge.php'; ?>
+                
+                <?php elseif($action=='addRate'): ?>
+                <?php include 'pages/Add_rateCharge.php'; ?>
+                
+                <?php elseif($action=='searchRate-page'): ?>
+                <?php include 'pages/ViewRateCharge.php'; ?>
+                
+                <?php elseif($action=='edit-rateCharge-page'): ?>
+                <?php include 'pages/updateRates.php'; ?>
+                
+                <?php elseif($action=='edit-rateCharge'): ?>
+                <?php include 'pages/ViewRateCharge.php'; ?>
+                
+                <?php elseif($action=='unapprovedTips-page'): ?>
+                <?php include 'pages/unapprovedTips.php'; ?>
+                
+                  <?php elseif($action=='approve-tips'): ?>
+                <?php include 'pages/unapprovedTips.php'; ?>
             <?php endif;?>
             </div>
             <!-- /.container-fluid -->
@@ -112,6 +167,7 @@
     </div>
     <!-- /#wrapper -->
 
+     <script src="../Resources/Scripts/Scripts.js"></script>
     <!-- jQuery -->
     <script src="../Admin/vendor/jquery/jquery.min.js"></script>
 

@@ -1,26 +1,21 @@
-<html>
-<head>
-    <title>General Content</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body class="MainRes">
-<h1>View Municipality Information</h1>
+
+<div>
+<h3>View Municipality Information</h3>
 <form method="POST" action="MainController.php?action=dams-content">
     <!--have to search by municipality because we working with one main dam per municipality-->
     <label>Municipality:</label>
     <select style="width: 20%" name="municipalitySrch">
-        <?php foreach ($municipalities as $municipality):?>
+    <?php foreach ($municipalities as $municipality):?>
         <option value="<?php echo "$municipality[0]";?>"> <?php echo "$municipality[3]";?></option>
     <?php endforeach; ?>
     </select>
     
     <input type="submit" value="Search" style="width: 10%">
     <br>
+</form>
 <table name="General">
 <tr>
-<th>Municipality</th><th>Main Dam</th><th>Dam Level</th><th>State</th><th>update</th>
+    <th>Municipality</th><th>Main Dam</th><th>Dam Level</th><th>State</th><th> </th>
 </tr>
  <?php foreach ($damInfo as $dam): ?>
 <tr>
@@ -41,10 +36,5 @@
   <?php endforeach; ?>
 
 </table>
-</form>   
-
-
-
-
-</body>
-</html>
+ <a href="?action=add-municipality-page">Add a municipality</a>
+</div>
