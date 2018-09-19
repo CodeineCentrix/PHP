@@ -357,33 +357,68 @@ class DBAccess {
         return DBhelper::sp_SelectStatement($stored_procedure);
     }
     
-    public function UpdateResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ){
-         $stored_procedure ="uspWEBUpdateResident(?,?,?,?,?,?,?,?)";
+    function UpdateResidentHouse($email,$HouseNumber,$StreetName ,$SuburbID ,$NumberOfResidents,$mainResident ) {
+        $stored_procedure ="uspWEBUpdateResidentHouse(?,?,?,?,?,?)";
         $param = array(
-           $fullname,          
            $email,
-           $password,
-           $deleted,
-           $houseNumber,
-           $streetName,
-           $surburbID,
-           $numberOfResidents
+           $HouseNumber,
+           $StreetName,
+           $SuburbID,
+           $NumberOfResidents,
+           $mainResident
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-     public function UpdateMainResident($fullname,  $email, $password, $deleted=0, $houseNumber, $streetName, $surburbID, $numberOfResidents=1 ) {
-        $stored_procedure ="uspWEBUpdateMainResident (?,?,?,?,?,?,?,?)";
+     public function UpdateResident($fullname,  $email, $password, $street_name,$street_update=1 ) {
+        $stored_procedure ="uspWEBUpdateResident (?,?,?,?,?)";
         $param = array(
            $fullname,          
            $email,
            $password,
-           $deleted,
-           $houseNumber,
-           $streetName,
-           $surburbID,
-           $numberOfResidents
+           $street_name,
+           $street_update
+          
         );
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
 }
+
+    public function reports_pdf_data($House_id, $from_date, $to_date) {
+    $stored_procedure ="uspWEBPDFRateData(?,?,?)";
+    $params = array(
+        $House_id,
+        $from_date,
+        $to_date
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
+
+    public function reports_pdf_rates($city_id) {
+    $stored_procedure ="uspWEBPDFRates(?)";
+    $params = array(
+     $city_id   
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
+
+public function reports_pdf_opening_amount($date, $house_id) {
+    //This will give me the last recorded meter reading and also, the last 
+    $stored_procedure ="uspWEBPDFOpeningAmount(?,?)";
+    $params = array(
+     $date,
+     $house_id
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
+
+public function check_main_residence($house_number, $street_name, $suburb_id) {
+    $stored_procedure ="uspWEBCheckMainResident(?,?,?)";
+    $params = array(
+     $house_number, 
+        $street_name, 
+        $suburb_id
+    );
+    return DBhelper::sp_SelectWithParams($stored_procedure, $params);
+}
+
 }

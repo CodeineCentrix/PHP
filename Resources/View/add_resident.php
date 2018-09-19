@@ -22,6 +22,7 @@ and open the template in the editor.
               <br>
                 <input type="submit" value="Add Resident">
                  </form>
+                <?php if (isset($add_results)): ?>
                 <?php if($add_results===FALSE):?>
                 <p class="error">Oops, we can't find that account... Try: Re-typing the email address if you're sure your Resident is registered<br>
                    or inviting your Resident below: </p>
@@ -30,9 +31,10 @@ and open the template in the editor.
                <?php elseif($add_results===0):?>
                <p class="error">Error occured, please try again at a later stage.</p>
                 <?php endif;?>
+               
                 </div>
                 </div>
-            
+            <?php endif; ?>
                 
                 
             <div class="add_res_content">

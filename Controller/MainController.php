@@ -287,6 +287,7 @@ break;
             }else{
             $user_details= FALSE;
             $context="Log in";
+            
             include '../Resources/View/login_V2.php';
             }
         }else{
@@ -310,6 +311,7 @@ break;
             $_SESSION["NumberOfResidents"] = $user_details[0][12];
              $_SESSION["CityID"] = $user_details[0][13];
             $context="Welcome to Driplit";
+            $guider = TRUE;
             include '../Resources/View/LandingPage.php';
 
         }
@@ -325,22 +327,32 @@ break;
         break;
    
     case'edit_profile':
-        $context="Register";
-         $fullname = filter_input(INPUT_POST, 'lastname');       
-         $email = filter_input(INPUT_POST, 'email');
-         $password = filter_input(INPUT_POST, 'psw');
-         $deleted = 0;
-         $resType=filter_input(INPUT_POST,'ResType');       
-         $houseNum=filter_input(INPUT_POST,'housenumber');  
-         $street=filter_input(INPUT_POST, 'streetname');
-         $sSuburb= filter_input(INPUT_POST, 'Suburbs');
-         $residentNo=filter_input(INPUT_POST,'residents');
-         if ($resType=="mainRes") {
-             $feedback = $dataAceess-> UpdateMainResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
-         } else {
-             $feedback = $dataAceess->UpdateResident($fullname, $email, $password,$deleted,$houseNum,$street,$sSuburb,$residentNo);
-         }
-         $exists = NULL;
+        $context="Edit Profile";
+        $fullname = filter_input(INPUT_POST, 'lastname');
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'psw');
+        $city = filter_input(INPUT_POST, 'Cities');
+        $suburb = filter_input(INPUT_POST, 'Suburbs');
+        $house_number = filter_input(INPUT_POST, 'housenumber');
+        $street_name = filter_input(INPUT_POST, 'streetname');
+        $isMainResident = filter_input(INPUT_POST, 'ResType');
+        $number_of_residents = filter_input(INPUT_POST, 'residents');
+        $change_address = filter_input(INPUT_POST, 'change_address');
+            if(!isset($change_address)){
+             $eddited = $dataAceess->UpdateResident($fullname, $email, $password, $street_name, 1);
+            }else{
+              $eddited = $dataAceess->UpdateResident($fullname, $email, $password, $street_name, 0);
+              if(isset($isMainResident)){
+                  $house_added = $dataAceess ->UpdateResidentHouse($email, $house_number, $street_name, $suburb, $NumberOfResidents, 1);
+                  $feedback = $house_added;
+              }else{
+                  $house_added = $dataAceess ->UpdateResidentHouse($email, $house_number, $street_name, $suburb, $NumberOfResidents, 0);
+                  $feedback = $house_added;
+              }
+              
+            }
+          $feedback = $eddited;
+        $exists = NULL;
          include '../Resources/View/edit_profile.php';
        break;
    
@@ -774,6 +786,26 @@ break;
         $context = 'Reports';
          include '../Resources/View/reports.php';
         break;
+    
+    case 'check_main_resident':
+        $house_number = filter_input(INPUT_POST, 'house_num'); 
+        $street_name = filter_input(INPUT_POST, 'street_name'); 
+        $suburb_id = filter_input(INPUT_POST, 'suburb_id');
+        $main_resident = $dataAceess->check_main_residence($house_number, $street_name, $suburb_id);
+       // $main_resident = $dataAceess->check_main_residence("81", "Mzwazwas", "5000");
+        $person = NULL;
+       if(count($main_resident)<1 ){
+           $found = FALSE;
+       }else{
+          $found = TRUE;
+          $person = $main_resident[0][0];
+       }
+       
+        $return_data = array("valid"=> $found, "resident"=> $person);
+        $return_data = json_encode($return_data);
+        echo $return_data;
+        break;
+    
     default :
         include '../Resources/View/page_not_found.php';
         break;

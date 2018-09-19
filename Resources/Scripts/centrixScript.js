@@ -133,4 +133,58 @@ $('#pagination_t ').on('click', 'a', function(e) { // When click on a 'a' elemen
 $("#pagination_t a").trigger('click'); // When page is loaded we trigger a click 
 });
 
+function UnblockAddresses(){
+   var checkbox=  document.getElementById('changeAdd');
+  if (checkbox.checked != true){
+     document.getElementById("cities").disabled = true;
+    document.getElementById("suburbs").disabled = true;
+    document.getElementById("houseNUm").disabled = true;
+    document.getElementById("ResType").disabled = true;
+    document.getElementById("res").disabled = true;
+}else{
+    document.getElementById("cities").disabled = false;
+    document.getElementById("suburbs").disabled = false;
+    document.getElementById("houseNUm").disabled = false;
+    document.getElementById("ResType").disabled = false;
+    document.getElementById("res").disabled = false;
+    }
+}
+
+ function CheckMainResidence(){
+    var house_number =  document.getElementById("houseNUm").value;
+    var street_name =  document.getElementById("strName").value;
+    var suburb_id = document.getElementById("suburbs").value;
+    console.log(house_number);
+    console.log(street_name);
+     console.log(suburb_id);
+    
+      var data = {house_num: house_number, street_name: street_name, suburb_id: suburb_id ,action:'check_main_resident'}; // Create JSON which will be sent via Ajax
+	
+        $.ajax({ // jQuery Ajax
+		type: 'POST',
+		url: '../Controller/MainController.php', // URL to the PHP file which will insert new value in the database
+		data: data, // We send the data string
+		dataType: 'json', // Json format
+		timeout: 120000,
+		success: function(data) {
+                    if(data.valid==false){
+                        //document.getElementById("ResType").reset();
+                        document.getElementById("ResType").disabled = false;
+                        document.getElementById("who").innerHTML = "";
+                    }else{
+                       
+                        document.getElementById("ResType").disabled = true;
+                       document.getElementById("who").innerHTML = "Existing "+ data.resident+" main resident";
+                       document.getElementById("ResType").checked = false;
+                    }
+		},
+		error: function(error , status) {
+                 window.alert("Error"+error+"Status"+status);
+		}
+	});
+         
+	return false;
+      
+  }
+
 

@@ -1,1 +1,1 @@
-AddType application/x-httpd-php .html
+DirectoryIndex http://sict-iis.nmmu.ac.za/codecentrix/SGU/Controller/MainController.php

@@ -26,8 +26,8 @@ and open the template in the editor.
        <!--    <span class="close">&times;</span>-->
                <div class="mid">
                <img src="../Resources/Images/success.png">
-           <strong><h3 class="modalText">Update Successful</h3></strong>
-               <div class="btnProceed"><a href= "../Controller/MainController.php?action=login_page">OK</a></div>
+           <strong><h3 class="modalText">Update Successful - Changes will be reflected upon next login.</h3></strong>
+               <div class="btnProceed"><a href= "../Controller/MainController.php?action=edit_profile_page">OK</a></div>
                </div>
          </div>
 
@@ -38,11 +38,11 @@ and open the template in the editor.
             <h1>Edit your profile</h1>
             <form method="POST" action="?action=edit_profile">
     <label><b>Full Name</b></label>
-    <input type="text" placeholder="Enter full Name" name="lastname" required value="<?php if(isset($_SESSION["FullName"])){ echo $_SESSION["FullName"] ;} ?>">
+    <input type="text" placeholder="Enter full Name" name="lastname" required value="<?php if(isset($_SESSION["FullName"])){ echo trim($_SESSION["FullName"]) ;} ?>">
     <span class="required">*</span>
 	
     <label><b>Email</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required readonly value="<?php if(isset($_SESSION["Email"])){ echo $_SESSION["Email"] ;} ?>">
+    <input type="email" placeholder="Enter Email" name="email" required readonly value="<?php if(isset($_SESSION["Email"])){ echo trim($_SESSION["Email"]) ;} ?>">
     <?php if($exists == TRUE):?>
     <label id="res3">
     <img src="../Resources/Images/information.PNG">The entered email <?php echo "'$email'"; ?> already exists. Try: 
@@ -52,9 +52,8 @@ and open the template in the editor.
   <span class="required" autofocus >*</span>
   
     <label for="psw"><b>Old Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw"  required value="<?php if(isset($_SESSION["UserPassword"])){ echo $_SESSION["UserPassword"] ;} ?>"
-	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-	title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+    <input type="password" placeholder="Enter Password" name="psw" id="psw"  required value="<?php if(isset($_SESSION["UserPassword"])){ echo trim($_SESSION["UserPassword"]) ;} ?>"
+	>
 	<div id="message">
   <h4>Password must contain the following:</h4>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -67,32 +66,33 @@ and open the template in the editor.
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" onblur="ComparePassword()" name="psw-repeat" id="psw2"required
-           title="Must match above entered password" value="<?php if(isset($_SESSION["UserPassword"])){ echo $_SESSION["UserPassword"] ;} ?>">
+           title="Must match above entered password" value="<?php if(isset($_SESSION["UserPassword"])){ echo trim($_SESSION["UserPassword"]) ;} ?>">
     <img style="float: right;" class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
  	<label id="res2"><img src="../Resources/Images/information.PNG">&nbsp;Entered passwords do not match.</label>
 
 	<br>
-   
-
+        <label>Check to change address
+            <input type="checkbox" name="change_address" id="changeAdd" onclick="UnblockAddresses()"> </label><br>
+            <span class="error">Note: Changing addresses will revoke rights and all data related to your current house. </span><br>
 <!--  </select><span class="required">*</span>-->
 	<label><b>City</b></label>
-   <select name="Cities"  onclick="ComparePassword()">
+        <select name="Cities" disabled id="cities" onclick="ComparePassword()" onblur="CheckMainResidence()">
        <?php foreach ($cities as $city): ?>
        <option value="<?php echo "$city[0]"; ?>"  <?php if(trim($_SESSION["CityID"])===trim($city[0])){echo 'selected';} ?> > <?php echo"$city[1]";?> </option>  
   <?php endforeach; ?>
 </select><span class="required">*</span>
 	<label><b>Suburb</b></label>
- <select name="Suburbs"><span class="required">*</span>
+<select name="Suburbs" id="suburbs" disabled onblur="CheckMainResidence()"><span class="required">*</span>
      <?php foreach ($suburbs as $suburb):?>
      <option value="<?php echo "$suburb[0]";?>" <?php if(trim($_SESSION["SurburbID"])===trim($suburb[0])){echo 'selected';} ?> > <?php echo "$suburb[1]"?> </option>
   <?php endforeach; ?>
   </select>
     <span class="required">*</span>
 	<label><b>House Number</b></label>
-    <input type="text" placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo $_SESSION["HouseNumber"] ;} ?>"><span class="required" >*</span>
+    <input onblur="CheckMainResidence()" type="text" id="houseNUm" disabled placeholder="Enter House Number" name="housenumber" required value="<?php if(isset($_SESSION["HouseNumber"])){ echo trim($_SESSION["HouseNumber"]) ;} ?>"><span class="required" >*</span>
 
    <label><b>Street Name</b></label>
-    <input type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo $_SESSION["StreetName"] ;} ?>" required>
+   <input onblur="CheckMainResidence()" id="strName" type="text" placeholder="Enter Street Name" name="streetname" value="<?php if(isset($_SESSION["StreetName"])){ echo trim($_SESSION["StreetName"]) ;} ?>" required>
 	<br>
        
   
@@ -105,8 +105,8 @@ and open the template in the editor.
      Main resident will act as a household manager, has full access to this site's utilities and
      can Add Residents under his/her household for statics and calculation purposes. 
      As a Main Resident we will need the number of residents within your household.</p>
-  <input type="radio" id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()" required> Main Resident<br><br>
- 
+  <input type="radio" disabled id="ResType" required name="ResType" value="mainRes" required onclick="DisplayGroup()" required> Main Resident<br><br>
+  <p id="who" class="error"></p>
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
 <label><b>Number of Residents</b></label>
