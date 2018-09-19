@@ -205,12 +205,28 @@ class DBAccess {
          return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
          
     }
-    
+    public function SearchRateCharge ($muniId, $stateId){
+        $stored_procedure="uspWEBGetRateCharge(?,?)";
+        $param=array($muniId, $stateId);
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
+    }
+            
+    public function Update_RateCharge($min, $max, $price,$muniId,$stateId){
+        $stored_procedure="uspWEBUpdateRateCharge(?,?,?,?,?)";
+         $param=array($min, $max, $price,$muniId,$stateId);
+         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+
     public function  Get_State(){
     $stored_procedure="uspWEBGetState";
     return DBhelper::sp_SelectStatement($stored_procedure);
     }
-    
+    public function Add_Municipality($damId,$state,$name,$damLevel){
+        $stored_procedure="uspWEBAddMunicipality(?,?,?,?)";
+        $param=array($damId,$state,$name,$damLevel);
+        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+
     public function update_municipality($municipalId, $damId, $stateId, $newName){
         $stored_procedure="uspWEBUpdateMunicipality(?,?,?,?)";
             $param=array(
@@ -223,6 +239,18 @@ class DBAccess {
         $stored_procedure="uspWEBUpdateDamLevel(?,?)";
         $param=array($damId, $damLevel);
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+    }
+
+    public function Get_UnapprovedTips(){
+        $stored_procedure="uspWEBGetUnapprovedTips";
+            return DBhelper::sp_SelectStatement($stored_procedure);
+
+    }
+    public function Approve_Tip($tipId){
+       $stored_procedure="uspWEBApproveTip(?)"; 
+       $param =array($tipId);
+               return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+
     }
 
     public function Login($email, $password){

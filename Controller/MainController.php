@@ -51,6 +51,27 @@ switch ($action){
       
         include '../Resources/View/adminViewMunicipalities.php';
         break;
+    case 'add-municipality-page':
+        $dams=$dataAceess->Get_Dams();
+        $state=$dataAceess->Get_State();
+        include '../Resources/View/add-municipality.php';
+
+        break;
+    
+    
+    case 'add-municipality':
+            $name=filter_input(INPUT_POST, 'muniName');
+            $damId= filter_input(INPUT_POST, 'dams');
+            $stateId=filter_input(INPUT_POST, 'state');
+            $damLevel=filter_input(INPUT_POST, 'damLevel');
+            
+            $municipality=$dataAceess->Add_Municipality($damId, $stateId, $name, $damLevel);
+                    
+       $damInfo=$dataAceess->Get_DamInformation();
+
+            include '../Resources/View/adminViewMunicipalities.php';
+
+        break;
         
         //Admin Update Municipality page
     case 'updateMunicipality-page':
@@ -64,6 +85,8 @@ switch ($action){
   
          if (isset($municipalId)) {
         $damInfo=$dataAceess->Get_DamInfo($municipalId);
+        $municipalities=$dataAceess->Get_Municipality();
+
         }
         include '../Resources/View/EditMunicipality.php';
         break;
@@ -77,7 +100,10 @@ switch ($action){
             $damLevel=filter_input(INPUT_POST, 'damLevel');
             $update=$dataAceess->update_municipality($muniId,$damId,$state,$name);
             $updateDam=$dataAceess->update_damLevel($damId, $damLevel);
-                    include '../Resources/View/EditMunicipality.php';
+       $damInfo=$dataAceess->Get_DamInformation();
+        $municipalities=$dataAceess->Get_Municipality();
+
+            include '../Resources/View/adminViewMunicipalities.php';
                     break;
                 
         //Admin View Dams page
@@ -129,14 +155,14 @@ switch ($action){
     case 'addRateCharge-page':
         $municipalities=$dataAceess->Get_Municipality(); 
         $state=$dataAceess->Get_State();
-        include '../Resources/View/rate-charge.php';
+        include '../Resources/View/Add_rateCharge.php';
         break;
     
     case 'addRate':
         $muniId= filter_input(INPUT_POST, 'municipalId');
         $stateId=filter_input(INPUT_POST, 'state');
-       $rates=array();
-        for ($i=0;$i<3;$i++) {
+       
+        for ($i=0;$i<4;$i++) {
          $min1=filter_input(INPUT_POST, 'min1'.$i);
         $max1=filter_input(INPUT_POST, 'max1'.$i);
         $pice=filter_input(INPUT_POST,'price'.$i);
@@ -144,9 +170,54 @@ switch ($action){
         }
        $municipalities=$dataAceess->Get_Municipality(); 
         $state=$dataAceess->Get_State();
-        include '../Resources/View/rate-charge.php';
+        include '../Resources/View/Add_rateCharge.php';
         break;
      
+    case 'searchRate-page':
+        $municipalities=$dataAceess->Get_Municipality(); 
+        $state=$dataAceess->Get_State();
+
+       
+                include '../Resources/View/ViewRateCharge.php';
+                break;
+
+    case 'edit-rateCharge-page':
+                $muniId= filter_input(INPUT_POST, 'muniId');
+                $stateId= filter_input(INPUT_POST, 'stateId');
+         $rate=$dataAceess->SearchRateCharge($muniId,$stateId);
+                         include '../Resources/View/updateRates.php';
+
+break;
+    case 'edit-rateCharge':
+         $muniId= filter_input(INPUT_POST, 'muniId');
+         $stateId= filter_input(INPUT_POST, 'stateId');
+         for ($i=0;$i<4;$i++) {
+
+        $min=filter_input(INPUT_POST, 'min');
+        $max=filter_input(INPUT_POST, 'max');
+        $price=filter_input(INPUT_POST,'price');
+         $rateCharge=$dataAceess->Update_RateCharge($min, $max, $price, $muniId,$stateId);
+         
+         }
+          $municipalities=$dataAceess->Get_Municipality(); 
+        $state=$dataAceess->Get_State();
+                        include '../Resources/View/ViewRateCharge.php';
+
+        break;
+        
+    case 'unapprovedTips-page':   
+        $unapprovedTips=$dataAceess->Get_UnapprovedTips();
+        include '../Resources/View/unapprovedTips.php';
+        break;
+    
+    case 'approve-tips':
+        $tipId= filter_input(INPUT_POST, 'tipId');
+        $approve=$dataAceess->Approve_Tip($tipId);
+        $unapprovedTips=$dataAceess->Get_UnapprovedTips();
+        include '../Resources/View/unapprovedTips.php';
+
+        break;
+                
     case 'reading_page' :
         $feedback=null;
         $context="Add a reading";

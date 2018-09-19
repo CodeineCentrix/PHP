@@ -29,7 +29,7 @@ and open the template in the editor.
             <?php endforeach;?>
                     </select></td></tr>
                      <tr><th>Min</th><th>Max</th><th>Price</th></tr>
-                    <?php for($i=0;$i<3;$i++):?>                                               
+                    <?php for($i=0;$i<4;$i++):?>                                               
                         <tr>
                             <td><input type="number" step="any" name="min1<?php echo $i;?>"></td>
                             <td><input type="number" step="any" name="max1<?php echo $i;?>" ></td>
@@ -39,6 +39,8 @@ and open the template in the editor.
                         <tr><td td colspan="3"><input type="submit" value="Add Rate Charge"></td></tr>
                             
                     </table>
+                
+                
         </form>
             
     </body>

@@ -51,14 +51,13 @@ and open the template in the editor.
             <?php endforeach;?>
                 </select></td></tr>
             
-            </table>
            
-           <?php else:?>
+<!--           <?php else:?>
                     <h1> Update Municipality Information</h1>
 
         
-            <!--If content manager did not select edit municipality from view municipalities load a 
-            municipality combo box so she can select the municipality she wants to edit -->
+            If content manager did not select edit municipality from view municipalities load a 
+            municipality combo box so she can select the municipality she wants to edit 
             <table>
             <tr><td>
                     <label>Municipality:</label></td>
@@ -94,9 +93,11 @@ and open the template in the editor.
    
         </table>
                      <?php endif;?>
-            <br>
+            <br>-->
                 
-        <input type="submit" value="Save Changes">
+<tr><td colspan="2"> <input type="submit" value="Save Changes"><td></tr>
+                    </table>
+
         </form>
       <?php if($update >0):?>
  <!-- The Modal -->
