@@ -97,7 +97,7 @@
                         </li>
                         
                         <li>
-                            <a href="."><i class="fa fa-cog fa-fw"></i>Reports</a>
+                            <a href="?action=city_usage"><i class="fa fa-cog fa-fw"></i>City Usage</a>
                         </li>
                     </ul>
                 </div>
@@ -178,6 +178,9 @@
                 
                   <?php elseif($action=='approve-tips'): ?>
                 <?php include 'pages/unapprovedTips.php'; ?>
+                
+                <?php elseif($action=='city_usage'): ?>
+                <?php include 'pages/reports.php'; ?>
             <?php endif;?>
             </div>
             <!-- /.container-fluid -->

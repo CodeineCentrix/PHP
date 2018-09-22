@@ -303,11 +303,12 @@ class DBAccess {
         return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
     
-    function ValidateReadingValue($house_id, $date) {
-        $stored_procedure = "uspWEBValReading(?,?)";
+    function ValidateReadingValue($house_id, $date, $reading) {
+        $stored_procedure = "uspWEBValReading(?,?,?)";
         $param = array(
             $house_id,
-            $date
+            $date,
+            $reading
         );
          return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
@@ -431,7 +432,7 @@ function remove_article($article_id) {
     $params = array(
         $article_id
     );
-    DBhelper::sp_NonQueryStatementsParams($procedure, $params);
+  return  DBhelper::sp_NonQueryStatementsParams($procedure, $params);
 }
 
 function reject_tips_tricks($tip_id) {
@@ -439,6 +440,15 @@ function reject_tips_tricks($tip_id) {
     $params = array(
         $tip_id
     );
-    DBhelper::sp_NonQueryStatementsParams($procedure, $params);
+  return  DBhelper::sp_NonQueryStatementsParams($procedure, $params);
 }
+
+function usage_by_city($city_id) {
+    $procedure = "uspWEBUsagePerArea(?)";
+    $params = array(
+        $city_id
+    );
+    return DBhelper::sp_SelectWithParams($procedure,$params);
+}
+
 }

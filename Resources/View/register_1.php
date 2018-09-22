@@ -74,7 +74,7 @@
   </select><span class="required">*</span>
 	<label><b>City</b></label>
    <select name="Cities"  onclick="ComparePassword()">
-       <?php foreach ($cities as $city): ?>
+<?php foreach ($cities as $city): ?>
        <option value="<?php echo "$city[0]"; ?>"> <?php echo"$city[1]";?> </option>  
   <?php endforeach; ?>
 </select><span class="required">*</span>

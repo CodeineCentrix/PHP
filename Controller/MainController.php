@@ -435,14 +435,25 @@ switch ($action){
         $date_recorded = filter_input(INPUT_POST, 'readingDate');
         $reading = filter_input(INPUT_POST, 'reading');
         if(isset($date_recorded)!=NULL && isset($reading)!=NULL){
-        $isReadingValid = $dataAceess->ValidateReadingValue($house_id, $date_recorded);
-        if($reading >= $isReadingValid[0][0]){
-        $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+            $reading = (int) $reading;
+          //  die("House ID ->".$house_id." Date Recordered -> ".$date_recorded."  Meter Reading ->  ".$reading);
+        $isReadingValid = $dataAceess->ValidateReadingValue($house_id, $date_recorded, $reading);
+      //die(print_r($isReadingValid));
+        if($isReadingValid[0][0]===0 && ($isReadingValid[0][1] ===0||$isReadingValid[0][1]===NULL )){
+           //Send 
+             $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+       } elseif($isReadingValid[0][1] === 0 && ($isReadingValid[0][0] === 0 ||$isReadingValid[0][0] ===NULL )){
+           //Send 
+            $feedback = $dataAceess->meter_readings( $date_recorded, $pic,$house_id,$reading);
+       }elseif($isReadingValid[0][0]===1){
+           $isReadingValid = 2;
+           $message = "Too small";
+       }elseif ($isReadingValid[0][1] ===1) {
+           $isReadingValid =3;
+               $message = "Too big";     
+        }
         
-        }else{
-           $isReadingValid = $isReadingValid[0][0];
-              $message = "The reading for $date_recorded as $reading is too low for the date... Lowest = $isReadingValid";
-        }}
+        }
         $context="Add Meter Reading";
         include '../Resources/View/RecordReadings.php';
         } else {
@@ -820,6 +831,13 @@ switch ($action){
         $return_data = array("valid"=> $found, "resident"=> $person);
         $return_data = json_encode($return_data);
         echo $return_data;
+        break;
+        
+    case 'city_usage':
+        $user_city = filter_input(INPUT_POST, 'cities');
+        $city_data = $dataAceess->usage_by_city($user_city);
+         $cities= $dataAceess->Get_Cities();
+         include '../Admin/blank.php';
         break;
     
     default :

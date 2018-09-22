@@ -58,24 +58,15 @@ and open the template in the editor.
           $dateAsString = date_format($value[0], 'd M');
                 echo $dateAsString;         
           ?>',
-          
-          
-            <?php 
-             if($count===-1){
-          if(!isset($opening_balance)){
-          $todays = $value[1];
-          $yesterdays = $value[1];
-          echo $todays- $yesterdays;
-          }else{
-              echo $value[1] - $opening_balance;
-          }
-            }else{
-          $todays = $value[1];        
-          $yesterdays = $readings[$count][1];
-          echo $todays- $yesterdays;
-            }
-            $count++;
-            ?>],
+
+            <?php
+        if ($value[2]==NULL) {
+            echo 0;
+        }else{
+            echo $value[2];
+            
+        }
+      ?>],
           
           
           

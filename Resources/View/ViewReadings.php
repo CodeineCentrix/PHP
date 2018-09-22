@@ -63,22 +63,12 @@ and open the template in the editor.
       </td>
       <td><?php echo $value[1];?></td>
       <td><?php
-      
-      if($count===-1){
-          if(!isset($opening_balance)){
-          $todays = $value[1];
-          $yesterdays = $value[1];
-          echo $todays- $yesterdays;
-          }else{
-              echo $value[1] - $opening_balance;
-          }
-      }else{
-          $todays = $value[1];        
-          $yesterdays = $readings[$count][1];
-          $amount+= $todays- $yesterdays;
-          echo $todays- $yesterdays;
-      }
-      
+        if ($value[2]==NULL) {
+            echo 0;
+        }else{
+            echo $value[2];
+            $amount += $value[2];
+        }
       ?></td>
   </tr>
   <?php $count++;endforeach;?>
