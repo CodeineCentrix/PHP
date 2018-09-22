@@ -1,20 +1,7 @@
- <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-         <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>View Rate Charge</title>
-    </head>
-    <body>
-        <h2>View Rate Charge</h2>
-                     <form action="../Controller/MainController.php?action=edit-rateCharge-page" method="post"> 
+
+     <h1 style="text-align: center;">View Rate Charge</h1> <hr>
+     <div style="margin: auto; width: 50%;padding: 80px;">
+    <form action="../Controller/MainController.php?action=edit-rateCharge-page" method="post"> 
 
             <table>
                 <tr><th>Municipality</th><th>State</th>
@@ -31,7 +18,6 @@ and open the template in the editor.
                 </select></td>
             <td>  <input type="submit" value="Search"></td></tr>
             </table>
-                         </form>                      
-    </body>
-             <script src="../Resources/Scripts/Scripts.js">
-</html>
+    </form> 
+         <a href="?action=addRateCharge-page">Add rate</a>
+    </div>

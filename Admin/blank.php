@@ -65,7 +65,7 @@
                         </li>
                        
                         <li>
-                            <a href="."><i class="fa fa-cog fa-fw"></i>Manage Tips&Tricks</a>
+                            <a href="?action=unapprovedTips-page"><i class="fa fa-cog fa-fw"></i>Manage Tips&Tricks</a>
                         </li>
                         
                         <li>
@@ -73,7 +73,27 @@
                         </li>
                         
                         <li>
-                            <a href="."><i class="fa fa-cog fa-fw"></i>Manage Geographics</a>
+                            <a href="?action=add-municipality-page"><i class="fa fa-cog fa-fw"></i>Add Municipalities</a>
+                        </li>
+                        
+                        <li>
+                            <a href="?action=updateMunicipality"><i class="fa fa-cog fa-fw"></i>Update Municipalities</a>
+                        </li>
+                        
+                        <li>
+                            <a href="?action=view-dams"><i class="fa fa-cog fa-fw"></i>Manage Dams</a>
+                        </li>
+                        
+                        <li>
+                            <a href="."><i class="fa fa-cog fa-fw"></i>Add Dams(Missing) </a>
+                        </li>
+                        
+                        <li>
+                            <a href="?action=addRateCharge-page"><i class="fa fa-cog fa-fw"></i>Add Water Rates </a>
+                        </li>
+                        
+                        <li>
+                            <a href="?action=searchRate-page"><i class="fa fa-cog fa-fw"></i>Search Water Rates </a>
                         </li>
                         
                         <li>
@@ -101,7 +121,7 @@
            
               ?>
              <?php if($action == 'news_page'): ?>
-                <?php include 'pages/news.html'; ?>
+                <?php include 'pages/news.php'; ?>
               <?php elseif($action=='admin_dashboard'): ?>
                 <?php include 'pages/homepage.php'; ?>
                 
@@ -179,7 +199,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../Admin/dist/js/sb-admin-2.js"></script>
-
+    
 </body>
 
 </html>

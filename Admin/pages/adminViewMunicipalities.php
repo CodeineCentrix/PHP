@@ -1,6 +1,5 @@
-
-<div>
-<h3>View Municipality Information</h3>
+<h1 style="text-align: center;">View Municipality Information</h1> <hr>
+<div style="margin: auto; width: 70%; padding: 80px;">
 <form method="POST" action="MainController.php?action=dams-content">
     <!--have to search by municipality because we working with one main dam per municipality-->
     <label>Municipality:</label>

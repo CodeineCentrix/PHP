@@ -1,6 +1,7 @@
-<div>
+
     <h1 style="text-align: center;">Edit <?php echo $municipalName; ?> municipality info</h1> <hr>
-        <form method="post" action="../Controller/MainController.php?action=updateMunicipality">           
+    <div style="margin: auto; width: 60%;padding: 80px;"> 
+    <form method="post" action="../Controller/MainController.php?action=updateMunicipality">           
                 <input type="hidden" name="municipalitySrch" value="<?php echo $municipalId;?>">
             <table>
              <tr><td>  <label>Municipality Name:</label></td>

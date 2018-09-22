@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-         <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </script>
-        <title>Add Rate Charge</title>
-    </head>
-    <body>
-        <h2>Add Rate Charge</h2>
+
+      <h1 style="text-align: center;">Add Rate Charge</h1> <hr>
+      <div style="margin: auto; width: 60%;padding: 50px;">
             <form action="../Controller/MainController.php?action=addRate" method="post">
             <table>
                 <tr><th>Municipality</th><th>State</th></tr>
@@ -29,7 +16,7 @@ and open the template in the editor.
             <?php endforeach;?>
                     </select></td></tr>
                      <tr><th>Min</th><th>Max</th><th>Price</th></tr>
-                    <?php for($i=0;$i<4;$i++):?>                                               
+                    <?php for($i=0;$i<3;$i++):?>                                               
                         <tr>
                             <td><input type="number" step="any" name="min1<?php echo $i;?>"></td>
                             <td><input type="number" step="any" name="max1<?php echo $i;?>" ></td>
@@ -42,7 +29,5 @@ and open the template in the editor.
                 
                 
         </form>
-            
-    </body>
-             <script src="../Resources/Scripts/Scripts.js">
-</html>
+          <a href="?action=searchRate-page">Search Rates</a>
+        </div>

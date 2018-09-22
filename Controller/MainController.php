@@ -161,7 +161,7 @@ switch ($action){
         $muniId= filter_input(INPUT_POST, 'municipalId');
         $stateId=filter_input(INPUT_POST, 'state');
        
-        for ($i=0;$i<4;$i++) {
+        for ($i=0;$i<3;$i++) {
          $min1=filter_input(INPUT_POST, 'min1'.$i);
         $max1=filter_input(INPUT_POST, 'max1'.$i);
         $pice=filter_input(INPUT_POST,'price'.$i);
@@ -213,6 +213,12 @@ switch ($action){
         $approve=$dataAceess->Approve_Tip($tipId);
         $unapprovedTips=$dataAceess->Get_UnapprovedTips();
         include '../Admin/blank.php';
+        break;
+    
+    case'rej_tips':
+        $tipId= filter_input(INPUT_POST, 'tipId');
+        $rejected = $dataAceess->reject_tips_tricks($tipId);
+        header("Location: MainController.php?action=unapprovedTips-page");
         break;
                 
     case 'reading_page' :
@@ -674,6 +680,8 @@ switch ($action){
         break;
         
         case'news_page':
+            $saved = filter_input(INPUT_POST, 'saved');
+            $removable = $dataAceess->get_removable_articles();
             include '../Admin/blank.php';
             break;
         
@@ -707,9 +715,20 @@ switch ($action){
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
             $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
-            $action = 'news_page';
-            include '../Admin/blank.php';
+            //$action = 'news_page';
+           // include '../Admin/blank.php';
+            header("Location: MainController.php?action=news_page&saved=11");
             break;
+            
+            case'del_article':
+                $article_id = filter_input(INPUT_POST, 'art_id');
+                $art_body = filter_input(INPUT_POST, 'art_bdy');
+                $art_img = filter_input(INPUT_POST, 'art_pic');
+                $del = $dataAceess->remove_article($article_id);
+                unlink($art_body);
+                unlink($art_img);
+                header("Location: MainController.php?action=news_page");
+                break;
             
             case'get_articles':
              

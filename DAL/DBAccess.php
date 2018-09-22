@@ -421,4 +421,24 @@ public function check_main_residence($house_number, $street_name, $suburb_id) {
     return DBhelper::sp_SelectWithParams($stored_procedure, $params);
 }
 
+function get_removable_articles() {
+  $procedure = "uspWEBAllArticlesDEL"; 
+  return DBhelper::sp_SelectStatement($procedure);
+}
+
+function remove_article($article_id) {
+    $procedure = "uspWEBDelArticle(?)";
+    $params = array(
+        $article_id
+    );
+    DBhelper::sp_NonQueryStatementsParams($procedure, $params);
+}
+
+function reject_tips_tricks($tip_id) {
+    $procedure = "uspWEBRejectTip(?)";
+    $params = array(
+        $tip_id
+    );
+    DBhelper::sp_NonQueryStatementsParams($procedure, $params);
+}
 }
