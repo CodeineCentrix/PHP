@@ -40,7 +40,7 @@ and open the template in the editor.
         ' ',
         'Report Date:'+ dateTime,
          ' ',
-         '<?php echo "320 Vredendale Street"; ?>',
+         '<?php echo $_SESSION["HouseNumber"]." ".$_SESSION["StreetName"]; ?>',
          '<?php echo "Summerstrand"; ?>',
          '<?php echo "Port Elizabeth";?>',
          '<?php echo "0061";?>',
@@ -56,11 +56,16 @@ and open the template in the editor.
             
 
           [ {text :'Date', bold: true}, {text :'Usage Recorded', bold: true}, {text:'Litres Used', bold: true}, {text:'Cost Occured', bold:true} ],
-          <?php ?>
-          [ '<?php echo "2018/09/02"; ?>', '<?php echo "1256";?>', '<?php echo "0"?>', 'R<?php echo "0" ?>' ],
-          <?php ?>
+          <?php 
+          $totalOne = 0;
+          $totalTwo =0;
+          $totalThree = 0;
+          foreach ($lines as $invoice): ?>
+          [ '<?php echo "$invoice[0]"; ?>', '<?php echo "$invoice[1]";?>', '<?php echo "$invoice[2]"; ?>', 'R<?php echo "$invoice[3]"; ?>' ],
+          <?php $totalOne += $invoice[1]; $totalTwo += $invoice[2]; $totalThree += $invoice[3] ?>
+          <?php endforeach; ?>
           
-          [{text :'Totals', bold: true},{text:'<?php echo "1300";?>', bold:true},{text:'<?php echo "44";?>', bold:true},{text:'<?php echo "R7,50"; ?>', bold:true}]
+          [{text :'Totals', bold: true},{text:'<?php echo "$totalOne";?>', bold:true},{text:'<?php echo "$totalTwo";?>', bold:true},{text:'<?php echo "R $totalThree"; ?>', bold:true}]
         
           
         ]
@@ -82,6 +87,8 @@ pdfMake.createPdf(dd).download('Pricing Report.pdf');
     
     <script>
         //Uses this script to determine which document to download and print
-        //getMyPricingReport();
+       <?php if(isset($lines)&& isset($start_date)&& isset($end_date)): ?>
+        getMyPricingReport();
+        <?php endif; ?>
     </script>
 </html>

@@ -840,6 +840,14 @@ switch ($action){
          include '../Admin/blank.php';
         break;
     
+    case 'invoicer':
+        $start_date = filter_input(INPUT_POST, '');
+        $end_date = filter_input(INPUT_POST, '');
+        $house_id = filter_input(INPUT_SESSION, '');
+        $lines = $dataAceess->pdf_invoicer($end_date, $start_date, $house_id);
+        include '../Resources/View/reports.php';
+    break;
+    
     default :
         include '../Resources/View/page_not_found.php';
         break;

@@ -451,4 +451,13 @@ function usage_by_city($city_id) {
     return DBhelper::sp_SelectWithParams($procedure,$params);
 }
 
+function pdf_invoicer($closing_date, $starting_date, $house_id) {
+    $procedure = "uspWEBPDFOpeningAmount(?,?,?)";
+    $params = array(
+        $closing_date,
+        $starting_date,
+        $house_id
+    );
+    return DBhelper::sp_SelectWithParams($procedure,$params);
+}
 }
