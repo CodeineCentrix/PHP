@@ -85,7 +85,7 @@
                         </li>
                         
                         <li>
-                            <a href="."><i class="fa fa-cog fa-fw"></i>Add Dams(Missing) </a>
+                            <a href="?action=view-dams"><i class="fa fa-cog fa-fw"></i>Add Dams</a>
                         </li>
                         
                         <li>

@@ -121,6 +121,13 @@ switch ($action){
     case 'delete-dam':
         $damId= filter_input(INPUT_POST, 'damId');
         $result= $dataAceess->Delete_Dam($damId);
+        if (empty($result)) {
+            $validity = 1;
+            //die("Value is nnull");
+        }else{
+            $validity = 2;
+           //  die($validity);
+        }
         $dams= $dataAceess->Get_Dams();
         include '../Admin/blank.php';
         break;
@@ -129,7 +136,7 @@ switch ($action){
          $damLevel=filter_input(INPUT_POST, 'damLevel');
          $damName= filter_input(INPUT_POST, 'damName');
          $addDam=$dataAceess->Add_Dam($damName, $damLevel);
-                 $dams= $dataAceess->Get_Dams();
+        $dams= $dataAceess->Get_Dams();
 
         include '../Admin/blank.php';
         break;
@@ -190,12 +197,12 @@ switch ($action){
     case 'edit-rateCharge':
          $muniId= filter_input(INPUT_POST, 'muniId');
          $stateId= filter_input(INPUT_POST, 'stateId');
-         for ($i=0;$i<4;$i++) {
+         for ($i=0;$i<3;$i++) {
 
         $min=filter_input(INPUT_POST, 'min'.$i);
         $max=filter_input(INPUT_POST, 'max'.$i);
         $price=filter_input(INPUT_POST,'price'.$i);
-         $rateCharge=$dataAceess->Update_RateCharge($min, $max, $price, $muniId,$stateId);
+         $rateCharge=$dataAceess->Update_RateCharge($min, $max, $price, $muniId,$stateId, ($_POST['rateID'][$i]));
          
          }
           $municipalities=$dataAceess->Get_Municipality(); 
@@ -745,7 +752,7 @@ switch ($action){
              
             $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
-                if ($page != 1){ 
+                if ($page > 1){ 
                     $from = ($page-1) * 4;                   
                 }
                  else{
@@ -759,9 +766,11 @@ switch ($action){
                 $article_body = NULL;
                 foreach($news as $value){
                     if(isset($value[8])){
-                    $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
-                    $article_body = fread($article_link, filesize($value[8]));
-                    fclose($article_link);
+						$path = "../../MobileConnectionString/article2018-09-25_222439.txt";
+              //      $article_link = fopen($path,"r") or die("Isssue oppening directory");
+                    //$article_body = fread($article_link, filesize($path));
+                    $article_body = readfile("\MobileConnectionString/article2018-09-25_222439.txt");
+                   // fclose($article_link);
                     }
                 $drawNews .= "<div class='news_item center_tag'>"
                         . "<div class='news_item_image'>"

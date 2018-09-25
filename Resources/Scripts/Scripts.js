@@ -135,4 +135,8 @@ var p3=document.getElementById("res2");
  }
   }
   
+  function AddDam(){
+      document.getElementById('addDamTable').style.display = "block";
+  }
+  
  

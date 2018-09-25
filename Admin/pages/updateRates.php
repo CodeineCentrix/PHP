@@ -11,7 +11,7 @@
                             <td><input type="number" step="any"  name="min<?php echo $count;?>" value="<?php echo $rates[1] ;?>"></td>
                             <td><input type="number" step="any" name="max<?php echo $count;?>" value="<?php echo $rates[2] ;?>"></td>
                             <td><input type="number" step="any"  name="price<?php echo $count;?>" value="<?php echo $rates[0] ;?>"></td>
-                            
+                            <input type="hidden" name="rateID[]" value="<?php echo $rates[3];?>">
                             
                         </tr> 
                         <?php $count++; ?>
