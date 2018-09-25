@@ -60,6 +60,11 @@
            <i class="icon fa "><a href="../Controller/MainController.php?action=water_usage"><img src="https://png.icons8.com/ios/50/000000/plumbing-filled.png"></a></i>
         <p class="para">VIEW WATER USAGE</p>
       </div>
+       
+       <div class="link_con">
+           <i class="icon fa "><a href="../Controller/MainController.php?action=user_reports"><img src="../Resources/Images/pdf.png"></a></i>
+        <p class="para">Get Custom Billing</p>
+      </div>
        <?php 
       // session_start();
        if(isset($_SESSION["email"])):?>

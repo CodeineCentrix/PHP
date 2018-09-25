@@ -460,4 +460,12 @@ function pdf_invoicer($closing_date, $starting_date, $house_id) {
     );
     return DBhelper::sp_SelectWithParams($procedure,$params);
 }
+
+function get_pdf_address($house_id) {
+    $procedure = "uspWEBPDFUserAddress(?)";
+    $params = array(
+        $house_id
+    );
+    return DBhelper::sp_SelectWithParams($procedure, $params);
+}
 }

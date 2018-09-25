@@ -2,6 +2,7 @@
 <div style="margin: auto; width: 40%; padding: 50px;">
        
         <form action="../Controller/MainController.php?action=add-municipality" method="post">
+            
          <table>
             <tr><td>
                     <label>Municipality:</label></td>

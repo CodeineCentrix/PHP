@@ -121,9 +121,7 @@ switch ($action){
     case 'delete-dam':
         $damId= filter_input(INPUT_POST, 'damId');
         $result= $dataAceess->Delete_Dam($damId);
-        if (empty($result)) {
-            $validity = 1;
-            //die("Value is nnull");
+        if ( empty($result)) {
         }else{
             $validity = 2;
            //  die($validity);
@@ -225,7 +223,9 @@ switch ($action){
     case'rej_tips':
         $tipId= filter_input(INPUT_POST, 'tipId');
         $rejected = $dataAceess->reject_tips_tricks($tipId);
-        header("Location: MainController.php?action=unapprovedTips-page");
+        $unapprovedTips=$dataAceess->Get_UnapprovedTips();
+        include '../Admin/blank.php';
+      //  header("Location: MainController.php?action=unapprovedTips-page");
         break;
                 
     case 'reading_page' :
@@ -822,7 +822,8 @@ switch ($action){
         $context = 'Reports';
     $min_date = filter_input(INPUT_POST, 'min_date');
     $max_date = filter_input(INPUT_POST, 'max_date');
-    $house_id = 3;
+    $house_id = $_SESSION["HouseID"];
+    $address = $dataAceess->get_pdf_address($house_id);   
     if(isset($min_date)&& isset($max_date)){
        
         $lines = $dataAceess->pdf_invoicer($max_date, $min_date, $house_id);

@@ -58,10 +58,10 @@ and open the template in the editor.
         ' ',
         'Report Date:'+ dateTime,
          ' ',
-         '<?php //echo $_SESSION["HouseNumber"]." ".$_SESSION["StreetName"]; ?>',
-         '<?php echo "Summerstrand"; ?>',
-         '<?php echo "Port Elizabeth";?>',
-         '<?php echo "0061";?>',
+         '<?php echo $address[0][0]." ".trim($address[0][1]); ?>',
+         '<?php echo $address[0][2]; ?>',
+         '<?php echo $address[0][3];?>',
+         '<?php echo $address[0][4];?>',
          ' ',
 		{
 		  table: {

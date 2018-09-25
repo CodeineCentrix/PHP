@@ -1,5 +1,11 @@
 <div style="width: 100%;">
     <h1 style="text-align: center;">Approve a tip&trick</h1> <hr><br>
+    
+   <?php if (isset($approve)>0):?>
+    <p class="warning-green">Tip Approved</p>
+    <?php elseif(isset($rejected)>0):?>
+        <p class="warning-red">Tip Rejected</p>
+    <?php endif;?>
     <table class="table table-bordered" style="width: 80%;">
         <thead><th>Tip</th><th>Approve</th><th>Reject</th></thead>
     <tbody>

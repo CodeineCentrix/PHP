@@ -1,9 +1,9 @@
 
     <h1 style="text-align: center;">View Dams Information</h1> <hr>
     <div>
-       <?php if(!empty($validity) && isset($validity) === 1):?>
+       <?php if(empty($validity) && empty($result) && $action == "delete-dam"):?>
         <p class="warning-red">This dam is a main dam and cannot be deleted, rather update the municipality dam then attempt deleting the dam again.</p>
-        <?php elseif (!empty($validity)&& isset($validity)===2):?>
+        <?php elseif ( isset($validity)>0):?>
         <p class="warning-green">Dam Deleted</p>
         <?php endif; ?>
         <table  class="table table-bordered"  name="General" style="width: 50%">
