@@ -811,8 +811,16 @@ switch ($action){
             break;
     case'user_reports':
         $context = 'Reports';
-         include '../Resources/View/reports.php';
-        break;
+    $min_date = filter_input(INPUT_POST, 'min_date');
+    $max_date = filter_input(INPUT_POST, 'max_date');
+    $house_id = 3;
+    if(isset($min_date)&& isset($max_date)){
+       
+        $lines = $dataAceess->pdf_invoicer($max_date, $min_date, $house_id);
+        $visited = true;
+    }
+    include '../Resources/View/reports.php';
+    break;
     
     case 'check_main_resident':
         $house_number = filter_input(INPUT_POST, 'house_num'); 

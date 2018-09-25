@@ -18,8 +18,26 @@ and open the template in the editor.
         </div>
         
         <div class="reports">
-            <h1>Pick the documents you would like to download</h1>
-            <h3>Documents auto-download and take up to 30 seconds</h3>
+            <h1>Download a monthly invoice of your water usage</h1>
+            <h3>Documents auto-download and take up to 30 seconds and are partially accurate</h3>
+            <div class="date_wrapper">
+                <div class="date_control_wrapper">
+                <form action="MainController.php?action=user_reports" method="POST">
+                <h3>Pick the dates you'd like to see a statement off </h3>
+
+                <div class="date_control" required>     <span class="required">*</span><label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
+
+                <div class="date_control" required><span class="required">*</span> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
+                <div class="button_wrapper"> <input type="submit" value="Download PDF"></div>
+            </form>
+                    <?php if(isset($visited)):?>
+                    
+                    <p>Document is downloading, please wait...</p>
+                    <?php else:?>
+                    <p>Once you pick dates and click download button, the document will download</p>
+                    <?php endif;?>
+            </div>
+        </div>
         </div>
     </body>
     
@@ -40,7 +58,7 @@ and open the template in the editor.
         ' ',
         'Report Date:'+ dateTime,
          ' ',
-         '<?php echo $_SESSION["HouseNumber"]." ".$_SESSION["StreetName"]; ?>',
+         '<?php //echo $_SESSION["HouseNumber"]." ".$_SESSION["StreetName"]; ?>',
          '<?php echo "Summerstrand"; ?>',
          '<?php echo "Port Elizabeth";?>',
          '<?php echo "0061";?>',
@@ -61,7 +79,7 @@ and open the template in the editor.
           $totalTwo =0;
           $totalThree = 0;
           foreach ($lines as $invoice): ?>
-          [ '<?php echo "$invoice[0]"; ?>', '<?php echo "$invoice[1]";?>', '<?php echo "$invoice[2]"; ?>', 'R<?php echo "$invoice[3]"; ?>' ],
+          [ '<?php echo date_format($invoice[0], 'jS, F Y'); ?>', '<?php echo "$invoice[1]";?>', '<?php echo "$invoice[2]"; ?>', 'R<?php echo "$invoice[3]"; ?>' ],
           <?php $totalOne += $invoice[1]; $totalTwo += $invoice[2]; $totalThree += $invoice[3] ?>
           <?php endforeach; ?>
           
@@ -77,18 +95,18 @@ and open the template in the editor.
 	]
 
 	
-}
+};
 
 pdfMake.createPdf(dd).download('Pricing Report.pdf');
         }
         
         
-    </script>
-    
-    <script>
-        //Uses this script to determine which document to download and print
-       <?php if(isset($lines)&& isset($start_date)&& isset($end_date)): ?>
+        
+        <?php if(isset($visited)): ?>
         getMyPricingReport();
         <?php endif; ?>
+        
     </script>
+    
+    
 </html>
