@@ -225,7 +225,9 @@ switch ($action){
     case'rej_tips':
         $tipId= filter_input(INPUT_POST, 'tipId');
         $rejected = $dataAceess->reject_tips_tricks($tipId);
-        header("Location: MainController.php?action=unapprovedTips-page");
+        $unapprovedTips=$dataAceess->Get_UnapprovedTips();
+        include '../Admin/blank.php';
+      //  header("Location: MainController.php?action=unapprovedTips-page");
         break;
                 
     case 'reading_page' :

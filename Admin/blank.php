@@ -179,6 +179,9 @@
                   <?php elseif($action=='approve-tips'): ?>
                 <?php include 'pages/unapprovedTips.php'; ?>
                 
+                <?php elseif($action=='rej_tips'): ?>
+                <?php include 'pages/unapprovedTips.php'; ?>
+                
                 <?php elseif($action=='city_usage'): ?>
                 <?php include 'pages/reports.php'; ?>
             <?php endif;?>

@@ -20,7 +20,7 @@
                 </select></td></tr>
             
              <tr><td>Dam Level:</td>
-                 <td><input type="text" name="damLevel" value="<?php echo $damInfo[0][1];?>"></td></tr>
+                 <td><input type="text" name="damLevel" ></td></tr>
 
              <tr><td>State:</td>
                 <td><select name="state" id="state">
