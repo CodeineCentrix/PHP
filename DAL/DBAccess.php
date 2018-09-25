@@ -207,13 +207,13 @@ class DBAccess {
     }
     public function SearchRateCharge ($muniId, $stateId){
         $stored_procedure="uspWEBGetRateCharge(?,?)";
-        $param=array($muniId, $stateId);
+        $param=array($muniId, $stateId, );
         return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
             
-    public function Update_RateCharge($min, $max, $price,$muniId,$stateId){
-        $stored_procedure="uspWEBUpdateRateCharge(?,?,?,?,?)";
-         $param=array($min, $max, $price,$muniId,$stateId);
+    public function Update_RateCharge($min, $max, $price,$muniId,$stateId, $rateID){
+        $stored_procedure="uspWEBUpdateRateCharge(?,?,?,?,?,?)";
+         $param=array($min, $max, $price,$muniId,$stateId, $rateID);
          return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
     }
 

@@ -10,7 +10,7 @@
     </select>
     
     <input type="submit" value="Search" style="width: 10%">
-    <br>
+    <br><br><br>
 </form>
 <table name="General">
 <tr>

@@ -121,6 +121,13 @@ switch ($action){
     case 'delete-dam':
         $damId= filter_input(INPUT_POST, 'damId');
         $result= $dataAceess->Delete_Dam($damId);
+        if (empty($result)) {
+            $validity = 1;
+            //die("Value is nnull");
+        }else{
+            $validity = 2;
+           //  die($validity);
+        }
         $dams= $dataAceess->Get_Dams();
         include '../Admin/blank.php';
         break;
@@ -129,7 +136,7 @@ switch ($action){
          $damLevel=filter_input(INPUT_POST, 'damLevel');
          $damName= filter_input(INPUT_POST, 'damName');
          $addDam=$dataAceess->Add_Dam($damName, $damLevel);
-                 $dams= $dataAceess->Get_Dams();
+        $dams= $dataAceess->Get_Dams();
 
         include '../Admin/blank.php';
         break;
@@ -190,12 +197,12 @@ switch ($action){
     case 'edit-rateCharge':
          $muniId= filter_input(INPUT_POST, 'muniId');
          $stateId= filter_input(INPUT_POST, 'stateId');
-         for ($i=0;$i<4;$i++) {
+         for ($i=0;$i<3;$i++) {
 
         $min=filter_input(INPUT_POST, 'min'.$i);
         $max=filter_input(INPUT_POST, 'max'.$i);
         $price=filter_input(INPUT_POST,'price'.$i);
-         $rateCharge=$dataAceess->Update_RateCharge($min, $max, $price, $muniId,$stateId);
+         $rateCharge=$dataAceess->Update_RateCharge($min, $max, $price, $muniId,$stateId, ($_POST['rateID'][$i]));
          
          }
           $municipalities=$dataAceess->Get_Municipality(); 
@@ -703,7 +710,7 @@ switch ($action){
             $article_body = filter_input(INPUT_POST, 'article_body');
             $current_timestamp = date('Y-m-d_His');
             //Save image first
-            $upFile = '../Resources/ArticleImages/'.$_FILES['fp_article_image']['name'];
+            $upFile = '../../MobileConnectionString/news_images/'.$_FILES['fp_article_image']['name'];
             $saved = FALSE;
 		if(is_uploaded_file($_FILES['fp_article_image']['tmp_name'])) {
 		 if(!move_uploaded_file($_FILES['fp_article_image']['tmp_name'], $upFile)) {
@@ -717,7 +724,7 @@ switch ($action){
                  $imageDirectory = $upFile;
             //Save text file
             if($saved===TRUE){
-                $article_up = '../Resources/ArticleNews/article'.$current_timestamp.'.txt';
+                $article_up = '../../MobileConnectionString/news_articles/article'.$current_timestamp.'.txt';
                 $myfile = fopen($article_up, "w") or die("Authorization issues have caused this crash");
 		fwrite($myfile, $article_body);
 		fclose($myfile);
@@ -745,11 +752,11 @@ switch ($action){
              
             $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
-                if ($page != 1){ 
+                if ($page > 1){ 
                     $from = ($page-1) * 4;                   
                 }
                  else{
-                     $from=0;                     
+                     $from=1;                     
                  }                
             $total_records_count = $dataAceess->AllNewsRecords();
             $news = $dataAceess->get_news_items(4, $from);
@@ -759,13 +766,15 @@ switch ($action){
                 $article_body = NULL;
                 foreach($news as $value){
                     if(isset($value[8])){
-                    $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
-                    $article_body = fread($article_link, filesize($value[8]));
-                    fclose($article_link);
+					$art_path = "http://sict-iis.nmmu.ac.za/codecentrix/MobileConnectionString/news_images/";
+                   // $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
+                    //$article_body = fread($article_link, filesize($value[8]));
+                   // fclose($article_link);
+				  $article_body = file_get_contents($value[8]);
                     }
                 $drawNews .= "<div class='news_item center_tag'>"
                         . "<div class='news_item_image'>"
-                        ."<img style='object-fit: contain; height:inherit; width: 100%;' src='$value[7]' alt='$value[6]'>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>$value[9]</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$article_body</div>"  
+                        ."<img style='object-fit: contain; height:inherit; width: 100%;' src='".$art_path.$value[7]."' alt='".$value[7]."'/>". "</div>". "<div class='news_item_details'>". "<div class='news_item_title'>". "<h3 class='news_title' style='font-size:30px;'>$value[0]</h3>". "</div>". "<div class='news_item_creds'>". "<label class='author'>".$value[9]."</label><br>". "<label class='news_date'>".date_format($value[4], 'jS, F Y')."</label><br><br>". "</div>". "</div>". "<div class='news_item_desc'>". "<div style='display: none; animation-name: slower; animation-duration: 5s;' id='A".$i."'>$article_body</div>"  
                         . "<input type='button' class='registerbtn' value='Read or Hide' id='btnRead' onclick=\"ReadOrShowItem('".'A'.$i."')\"/>"
                         . "</div>" 
                         . "</div>"; 
@@ -784,14 +793,14 @@ switch ($action){
             case 'tip_trick':
                 $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
-                if ($page != 1){ 
+                if ($page > 1){ 
                     $from = ($page-1) * 4;                   
                 }
                  else{
-                     $from=0;                     
+                     $from= 1;                     
                  }
                  $total_records_count = $dataAceess->AllTipsRecords();
-                 $tips = $dataAceess->View_Tips($from, 4);
+                 $tips = $dataAceess->View_Tips(1, 4);
                  $drawHTML= "";
                  foreach ($tips as $value) {
                     $drawHTML.="<div class='tipscontainer'>"

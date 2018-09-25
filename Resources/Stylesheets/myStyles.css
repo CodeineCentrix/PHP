@@ -414,6 +414,16 @@ float:right;
     background-color: #ffffcc;
     border-left: 6px solid #ffeb3b;
 }
+
+.warning-red{
+    background-color:  #ffcccc;
+   border-left: 6px solid red;
+}
+
+.warning-green{
+    background-color:  #d9f2d9;
+   border-left: 6px solid #39ac39;
+}
 #res2{
 display:none;
 color:red;

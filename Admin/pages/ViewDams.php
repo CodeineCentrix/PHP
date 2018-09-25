@@ -1,6 +1,11 @@
 
     <h1 style="text-align: center;">View Dams Information</h1> <hr>
     <div>
+       <?php if(!empty($validity) && isset($validity) === 1):?>
+        <p class="warning-red">This dam is a main dam and cannot be deleted, rather update the municipality dam then attempt deleting the dam again.</p>
+        <?php elseif (!empty($validity)&& isset($validity)===2):?>
+        <p class="warning-green">Dam Deleted</p>
+        <?php endif; ?>
         <table  class="table table-bordered"  name="General" style="width: 50%">
             <tr><th>Dam Name</th>
                 <th>Dam Level</th>
@@ -38,8 +43,8 @@
         <table id="addDamTable" style="display:none">
             <tr><td>Dam Name:</td><td><input required type="text" autofocus name="damName"</td></tr>
             <tr><td>Dam Level:</td><td><input required type="number" step="any" name="damLevel"></td></tr>
-                  
+            <tr><td><input type="submit" value="Add Dam"></td></tr>    
         </table>
         </form>
-        <a href="?action">Add a dam</a>
+        
 </div>
