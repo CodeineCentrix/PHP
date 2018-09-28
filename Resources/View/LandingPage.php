@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
         <script src="../Resources/Scripts/jquery.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,11 +35,12 @@
     </head>
     <body>
         <!-- Floating action buttons-->
-        <div class="tray">
+<!--        <div class="tray">
             <div><img class="info" src="../Resources/Images/info.png" width="80px"></div>
             <a href="?action=login_page"> <div class="" title="Login"><img src="../Resources/Images/login_1.png" width="80px"></div></a>
             <a href="?action=register_page"><div class="" title="Register"><img src="../Resources/Images/registers.png" width="80px"></div></a>
-        </div>
+        </div>-->
+        
         <div class="content_holder">
  <div class="fullscreen-bg">
 <img src="../Resources/Images/dropinhand.jpg" alt="Guy holding water" style="width:100%; height: 100%; opacity: 6;">
@@ -80,6 +82,32 @@
 	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
 	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
         water consumption within your household and more importantly raise awareness.</p></strong>
-            </div>        
-    </body>
+            </div>
+            <script src="../Resources/Scripts/toast.js"></script>
+            <div  id="l1" onclick="toast('l1', '5000')">You aren't logged in. Unregistered activities are on the menu bar(Top Left)</div>
+            <div id="l2" onclick="toast('l2', '5000')">You're logged in. The Menu options are on the Top left corner</div>
+            <script>
+                //Make the toast appear
+                <?php if(!isset($_SESSION['email'])):?>
+               document.getElementById('l1').click();
+               <?php else: ?>
+                document.getElementById('l2').click();   
+               <?php endif;?>
+               //Animate the menu to come in 
+               $('icon-menu').toggleClass('clicked');
+               $('menu').toggleClass('clicked');
+                $('.drawer').toggleClass('clicked');
+                $('.link_con').toggleClass('clicked');
+                $('.card').toggleClass('clicked');
+                
+                
+                //Make the hamburger icon appear as if they have just been clicked
+                
+                $('.line').toggleClass('active');
+                $('.line--2').toggleClass('clicked');
+                $('.line--1').toggleClass('clicked');
+                $('.line--3').toggleClass('clicked');
+            </script>
+             
+        </body>
 </html>

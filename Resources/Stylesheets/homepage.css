@@ -177,7 +177,7 @@ height: 100% !important;
   cursor: pointer;
   top: 1em;
   left: 1.2em;
-  width: 25px;
+  width: 80px;
   height: 25px;
   transition: left .2s linear;
 }
@@ -227,7 +227,7 @@ transform: rotate(45deg) translateY(0) translateX(0);
 .card {
   background: #E8E8E8; /*#1ad1fc;*/
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  width: 6%;
+  width: 9%;
   height: 100%;
   position: absolute;
   left: 0%;
@@ -301,8 +301,8 @@ div.link_con:nth-of-type(4) {
   font-weight: 700;
   color:  #1ad1fc;
   transition: all .2s ease-out;
-  opacity: 0;
-  transform: translateY(1em);
+  opacity: 1;
+  transform: translateY(0);
   margin: 0;
   margin-top: 3px;
   letter-spacing: .2px;
