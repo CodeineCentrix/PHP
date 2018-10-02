@@ -6,8 +6,10 @@
 <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css">
 <link rel="stylesheet" href="../Resources/Stylesheets/general.css" type="text/css">
 <script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
+<link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
 <script src="../Resources/Scripts/centrixScript.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<title>Login</title>
 </head>
 <body>
 
@@ -46,7 +48,7 @@
                         <img class="click" src="../Resources/Images/eye.png" alt="Show password"  title="Show password" onclick="ShowPassword()">
                         <div class="modal-footer">
                             <div>
-                                <button type="submit" class="registerbtn">Login</button>
+                                <button type="submit" class="registerbtn" id="loginbtn">Login</button> <a href="?action=">Cancel</a>
                             </div>
                             <div>
                                 <a href="?action=register_page"><i id="login_register_btn"  type="button" class="btn btn-link">Register</i></a>

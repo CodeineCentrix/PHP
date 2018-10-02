@@ -442,9 +442,10 @@ Begin section for header....
     font-family: "Century Gothic";
     font-size: 28px;
     text-align: center;
-    width: 50%;
+    width: 70%;
     float: left;
-    
+    border-bottom: 0;
+   
 }
 
 .header_info h1{

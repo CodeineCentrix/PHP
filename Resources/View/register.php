@@ -5,7 +5,8 @@
 <link href="../Resources/Stylesheets/boot_test.css" rel="stylesheet">
 <link rel="../Resources/Stylesheets/stylesheet" href="myStyles.css" type="text/css"/>
 <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
-
+<link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
+<title>Register</title>
 
 <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -106,7 +107,7 @@
 						   <label><b>Street Name</b></label>
 							<input type="text" placeholder="Enter Street Name" name="streetname" required>
 							<br>
-       
+                                                        <span class="required">*</span><label><b>Pick the type of resident you are</b></label><br>
   
 							<!--Accordion*/-->
 							<input type="button" value="Register As Main Resident?" class="accordion"/>
@@ -134,15 +135,13 @@
 							Reports and Recording Meter Readings.</p>
 							  <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
 							  </div> <br><br>
-							  <input type="reset" value="Clear Form">
-						 
-						<!-- Ommited filing in combo-box-->
-							
-        		    	</div>
+							 
+                                        </div>
+                        <br><label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label><br>
 				        <div class="modal-footer">
                             <div>
-                                <button type="submit" class="registerbtn" id="registerbtn">Register</button>
-                                <br><label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
+                                <button type="submit" class="registerbtn" id="registerbtn">Register</button>  <a href="?action=">Cancel</a>
+                                
                             </div>
 				    	    <div>
                                                 <a href="?action=login_page"><i id="login_register_btn"type="button" class="btn btn-link">I already have an account </i></a>

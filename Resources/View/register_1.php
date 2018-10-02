@@ -120,7 +120,7 @@ Reports and Recording Meter Readings.</p>
   <input type="radio" name="ResType" id="res" value="res" required onclick="DisplayGroup()" required> Resident<br>
   </div> <br><br>
   <input type="reset" value="Clear Form">
- <button type="submit" class="registerbtn" id="registerbtn">Register</button>
+ <button type="submit" class="registerbtn" id="registerbtn">Register</button> 
 <br>
     <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
 

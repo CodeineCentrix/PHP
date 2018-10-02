@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Water Usage</title>
+        <link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <style>
             html{
@@ -26,12 +27,13 @@ and open the template in the editor.
 
                 <div class="date_control" required>     <span class="required">*</span><label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
 
-                <div class="date_control" required><span class="required">*</span> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
+                <div class="date_control" required><span class="required">*</span> <label> Your end date: </label><br> <input type="date" name="max_date"></div><br>
+                <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
                 <div class="button_wrapper"> <input type="submit" value="Generate Graph"></div>
             </form>
             </div>
         </div>
-        
+            <p>The graph below, provided there are enough meter readings, gives a graphical overview of your water usage</p>
         <!-- The graph -->
         <div class="graph-wrapper">
             
@@ -103,9 +105,13 @@ and open the template in the editor.
     </div>
     <?php endif;?>
         </div>
-    <label class="required" style="font-size: small">All required fields marked with a red <strong>*</strong></label>
-
         </div>
+        <!-- snackbar -->
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action="></span>
+        <script src="../Resources/Scripts/snackbarlight.js"></script>
+        <script>
+        document.getElementById('hh').click();
+        </script>
 
     </body>
 </html>

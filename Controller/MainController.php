@@ -535,6 +535,7 @@ switch ($action){
         $catID=filter_input(INPUT_POST,'cat');
         $approved=0; //in stored procedure
         $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
+        $categories=$dataAceess->GetCategories();
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
