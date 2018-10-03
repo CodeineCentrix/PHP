@@ -294,6 +294,7 @@ class DBAccess {
     }
     
     public function AddResident($email, $houseID, $rights) {
+      //  die($email." - ".$houseID." - ".$rights);
         $stored_procedure = "uspWEBAddResidentToHouse(?,?,?)";
         $param = array(
             $email,
@@ -314,11 +315,13 @@ class DBAccess {
     }
     
     function getRoomies($main_resident_id) {
+    //    die(print_r($_SESSION));
+    //die($main_resident_id);   
         $stored_procedure ="uspWEBgetHouseResidents(?)";
         $param = array(
             $main_resident_id
         );
-        return DBhelper::sp_NonQueryStatementsParams($stored_procedure, $param);
+        return DBhelper::sp_SelectWithParams($stored_procedure, $param);
     }
     
     function revokeRoomiesRights($person_id){
@@ -468,4 +471,24 @@ function get_pdf_address($house_id) {
     );
     return DBhelper::sp_SelectWithParams($procedure, $params);
 }
+
+function get_email_add($my_email) {
+    $procedure = "uspWEBAddResToHouse(?)";
+    $params = array(
+        $my_email
+    );
+    return DBhelper::sp_SelectWithParams($procedure, $params);
+}
+
+function reading_preview($house_id, $start_date, $end_date) {
+   //die($house_id.' - '.$start_date.' - '.$end_date);
+    $procedure = "uspWEBPreviewReadings(?,?,?)";
+    $params = array(
+      $house_id,
+      $start_date,
+      $end_date
+    );
+    return DBhelper::sp_SelectWithParams($procedure, $params); 
+}
+
 }

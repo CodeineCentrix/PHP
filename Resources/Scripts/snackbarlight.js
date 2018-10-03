@@ -127,7 +127,7 @@ Snackbar.prototype = {
 	 */
 	getData: function() {
 		if (this.options.link !== false) {
-			return "<span>" + this.data + "</span><a href='" + this.options.url + "'>" + this.options.link + "</a>";
+			return "<span>" + this.data + "</span><a href='" + this.options.url + "' target='_blank'>" + this.options.link + "</a>";
 		}
 		return "<span>" + this.data + "</span>";
 	},

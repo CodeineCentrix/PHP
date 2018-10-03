@@ -74,35 +74,34 @@
       </div>
        <?php endif; ?>
        
-        <?php endif; ?>
+        
      <!-- Logged in registered main residents users options -->   
         <?php 
-        if(isset($_SESSION["Rights"])){
-          $rights = $_SESSION["Rights"];  
-        }else{
-          $rights = 0; 
-        }
-        
-        if((isset($_SESSION['MainResidentID'])|| $rights>0)||isset($MainResidentID)): ?>
+       $rights = filter_var($_SESSION['Rights']);
+        $person = filter_var($_SESSION['PersonID']);
+        $main_mem = filter_var($_SESSION['MainResidentID']);
+        if(($main_mem===$person) || $rights==="1" ): ?>
         <div class="link_con">
-            <i class="icon fa "><a href="../Controller/MainController.php?action=add_page"><img src="https://png.icons8.com/metro/50/000000/groups.png"></a></i>
-        <p class="para">ADD RESIDENT</p>
-      </div>
-
-     <div class="link_con">
          <i class="icon fa "><a href="../Controller/MainController.php?action=add_reading"><img src="https://png.icons8.com/ios/50/000000/edit-property-filled.png"></a></i>
         <p class="para">RECORD READINGS</p>
       </div>
+     <?php endif; ?>
      <?php 
-
-     if(isset($_SESSION['MainResidentID'])):?>
+ 
+     
+     if($main_mem=== $person):?>  
+      <div class="link_con">
+            <i class="icon fa "><a href="../Controller/MainController.php?action=add_page"><img src="https://png.icons8.com/metro/50/000000/groups.png"></a></i>
+        <p class="para">ADD RESIDENT</p>
+      </div>
+     
      <div class="link_con">
          <i class="icon fa "><a href="../Controller/MainController.php?action=revoke_page"><img src="https://png.icons8.com/ios/50/000000/user-rights-filled.png"></a></i>
         <p class="para">REVOKE RIGHTS</p>       
       </div>
-     <?php endif; ?>
+     
         <?php endif; ?>
-        
+        <?php endif; ?>
     </div>
 </div>
    </div>

@@ -8,6 +8,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Revoke </title>
+        <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
     </head>
     <body>
          
@@ -29,12 +32,10 @@ and open the template in the editor.
                 <?php endforeach;?>
             </select> 
             <input type="submit" value="Revoke Resident Rights">
-            <br> <label>We found <?php echo count($roomies)-1; ?> revoke-able person(s).</label>
+            <br> <label>We found <?php echo count($roomies); ?> revoke-able person(s).</label>
             <input type="hidden" id="person_name" name="txtperson_name">
             </form>
-            <?php if(isset($moved)):?>
-            <p><?php echo $moved; ?></p>
-            <?php endif;?>
+            
             </div>
         </div>
         
@@ -43,6 +44,14 @@ and open the template in the editor.
             document.getElementById("person_name"). value = el.options[el.selectedIndex].text;
             }
         </script>
+        
+        <?php if(isset($moved)):?>
+        <div  id="l1" onclick="toast('l1', '9000')"><?php echo $moved; ?></div>
+        <script src="../Resources/Scripts/toast.js"></script>      
+        <script>
+             document.getElementById('l1').click();
+        </script>
+        <?php endif;?>
         
     </body>
 </html>

@@ -119,7 +119,7 @@ $('#pagination_t ').on('click', 'a', function(e) { // When click on a 'a' elemen
 			else pagination += '<div class="cell"><a id="' + (parseInt(page) + 1) + '">Next</a></div><div class="cell"><a id="' + data.numPage + '">Last</span></a></div>';
 			
 			$('#pagination_t').html(pagination); // We update the pagination DIV
-                        location.href = "#tiptrickregion";
+                        location.href = "#rest";
 		},
 		error: function(error , status) {
                  window.alert("Error"+error+"Status"+status);

@@ -2,7 +2,10 @@
 <html>
 <head>
     <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
+    <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css" type="text/css"/>
+    <link rel="stylesheet" href="../Resources/Stylesheets/toast.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 #pagination_t div { display: inline-block; margin-right: 5px; margin-top: 5px }
@@ -18,29 +21,20 @@
  <?php include '../Resources/View/header.php'; ?>
 
     <?php if($postedTip >0):?>
- <!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-<!--    <span class="close">&times;</span>-->
-	<div class="mid">
-	<img src="../Resources/Images/success.png">
-    <strong><h3 class="modalText">Tip posted for evaluation</h3></strong>
-	<div class="btnProceed"><a href= "../Controller/MainController.php?action=tips">OK</a></div>
-	</div>
-  </div>
-
-</div>
+        <div  id="l1" onclick="toast('l1', '9000')">Your tip has been posted for evaluation</div>
+        <script src="../Resources/Scripts/toast.js"></script>
+        <script>
+         document.getElementById('l1').click();
+        </script>
  <?php endif;?>
+        
+ <div id="rest"></div>
+<div class="tips_holder" >
 
-<div class="tips_holder">
 <h2>Latest Water Saving Tips &amp; Tricks</h2>
-
+<div id="tiptrickregion"></div>
   <!--Tip and tricks content --> 
-    <div id="tiptrickregion">
-
-  </div>
+   
   
 <!-- tip trick pagination content -->
         <div style="width:100%; margin: auto;padding: 15px; overflow: hidden; padding-left: 35%;">
@@ -49,7 +43,7 @@
             </div>
         </div>
 
-
+<?php if(isset($_SESSION['email'])): ?>
 <form action="../Controller/MainController.php?action=post_tip" method="post">
 
     <div class="post_wrap">
@@ -68,8 +62,10 @@
 </div>
     </div>
           
-        </form>
-
+</form>
+<?php else: ?>
+<h1><a href="?action=login_page">Login</a> to post a trip &amp; trick</h1>
+<?php endif; ?>
 </div>     
     
 </body>

@@ -246,6 +246,7 @@ switch ($action){
           
     case 'view_readings_page':
         $context = "View Meter Readings";
+        
       $data_null=  CheckIfCookiesExists("HouseNumber","StreetName");
         if($data_null===FALSE){
         $readings= array();
@@ -265,6 +266,7 @@ switch ($action){
             $context="Add a Resident";
             $add_results = -1;
             $email_results = 0;
+            $users = $dataAceess->get_email_add($_SESSION['email']);
             include '../Resources/View/add_resident.php';
             break;
         
@@ -432,6 +434,7 @@ switch ($action){
        break; 
         
     case 'add_reading':
+         $readings= NULL;
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         if($data_null===FALSE){
             $house =array();
@@ -535,6 +538,7 @@ switch ($action){
         $catID=filter_input(INPUT_POST,'cat');
         $approved=0; //in stored procedure
         $postedTip=$dataAceess->Post_Tip($personID,$tip,$catID,$approved);
+        $categories=$dataAceess->GetCategories();
         $to = filter_input(INPUT_GET, 'to');
         $from = filter_input(INPUT_GET, 'from');
         if (!isset($to)&& !isset($from)) {
@@ -610,7 +614,7 @@ switch ($action){
     
     case'add_resident':
         $context="Add a Resident";
-        
+        $users = $dataAceess->get_email_add($_SESSION['email']);
         $email = filter_input(INPUT_POST,'email_add');
         $add_results = $dataAceess->check_user_existant($email);
         
@@ -641,6 +645,7 @@ switch ($action){
         $context="Add a Resident";
         $email = filter_input(INPUT_POST,'email_reg');
         $email_results = $dataAceess->check_user_existant($email);
+        $users = $dataAceess->get_email_add($_SESSION['email']);
         if($email_results==NULL){
             $null_exist = CheckIfCookiesExists("FullName");
             if($null_exist==FALSE){
@@ -677,7 +682,7 @@ switch ($action){
         
     case 'revoke_page':
         $context = "Revoke Rights";
-        $main_resident_id = $_SESSION["MainResidentID"];
+        $main_resident_id = filter_var( $_SESSION['MainResidentID']);
         $roomies = $dataAceess->getRoomies($main_resident_id);
         include '../Resources/View/revoke_rights.php';
         break;
@@ -687,7 +692,7 @@ switch ($action){
         $person_id = filter_input(INPUT_POST, 'cmbMates');
         $person_name = filter_input(INPUT_POST, 'txtperson_name');
         $is_removed = $dataAceess->revokeRoomiesRights($person_id);  
-        $main_resident_id = $_SESSION["MainResidentID"];
+        $main_resident_id = filter_var( $_SESSION['MainResidentID']);
         $roomies = $dataAceess->getRoomies($main_resident_id);
         if($is_removed ==TRUE){
             $moved = "Successfully removed ". $person_name;
@@ -704,7 +709,7 @@ switch ($action){
             break;
         
         case'add_article':
-            //get posted data
+           //get posted data
             $article_title = filter_input(INPUT_POST, 'article_title');
             $article_author = filter_input(INPUT_POST, 'article_author');
             $article_body = filter_input(INPUT_POST, 'article_body');
@@ -732,10 +737,20 @@ switch ($action){
             
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
-            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
+            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $_FILES['fp_article_image']['name'], NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
             //$action = 'news_page';
            // include '../Admin/blank.php';
             header("Location: MainController.php?action=news_page&saved=11");
+            break;
+            
+            case'del_article':
+                $article_id = filter_input(INPUT_POST, 'art_id');
+                $art_body = filter_input(INPUT_POST, 'art_bdy');
+                $art_img = filter_input(INPUT_POST, 'art_pic');
+                $del = $dataAceess->remove_article($article_id);
+                unlink($art_body);
+                unlink($art_img);
+                header("Location: MainController.php?action=news_page");
             break;
             
             case'del_article':
@@ -752,14 +767,17 @@ switch ($action){
              
             $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
-                if ($page > 1){ 
-                    $from = ($page-1) * 4;                   
+                if ($page >= 1){ 
+                    $from = ($page-1) * 4;
+					
                 }
                  else{
-                     $from=1;                     
+					// die("Died because entered negative");
+                     $from=0;                     
                  }                
             $total_records_count = $dataAceess->AllNewsRecords();
             $news = $dataAceess->get_news_items(4, $from);
+			//die(print_r($news));
                 $numPage = ceil($total_records_count[0][0]/4);
                 $drawNews = "";
                 $i= 0;
@@ -767,9 +785,7 @@ switch ($action){
                 foreach($news as $value){
                     if(isset($value[8])){
 					$art_path = "http://sict-iis.nmmu.ac.za/codecentrix/MobileConnectionString/news_images/";
-                   // $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
-                    //$article_body = fread($article_link, filesize($value[8]));
-                   // fclose($article_link);
+                  
 				  $article_body = file_get_contents($value[8]);
                     }
                 $drawNews .= "<div class='news_item center_tag'>"
@@ -800,7 +816,7 @@ switch ($action){
                      $from= 1;                     
                  }
                  $total_records_count = $dataAceess->AllTipsRecords();
-                 $tips = $dataAceess->View_Tips(1, 4);
+                 $tips = $dataAceess->View_Tips($from, 4);
                  $drawHTML= "";
                  foreach ($tips as $value) {
                     $drawHTML.="<div class='tipscontainer'>"
@@ -865,6 +881,17 @@ switch ($action){
         $lines = $dataAceess->pdf_invoicer($end_date, $start_date, $house_id);
         include '../Resources/View/reports.php';
     break;
+    
+    case 'preview_readings':
+     $context = "Add Meter Reading";
+    $house[0] = $_SESSION['HouseNumber'];
+    $house[1] = $_SESSION['StreetName'];
+    $start_date = filter_input(INPUT_POST, 'str_date');
+    $end_date = filter_input(INPUT_POST, 'end_date');
+    $house_id = filter_var($_SESSION['HouseID']);
+   $readings = $dataAceess ->reading_preview($house_id, $start_date, $end_date);
+   include '../Resources/View/RecordReadings.php';
+      break;
     
     default :
         include '../Resources/View/page_not_found.php';

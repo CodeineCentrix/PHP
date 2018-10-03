@@ -4,7 +4,9 @@
         <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <script src="../Resources/Scripts/jquery.min.js"></script>
+        <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome to Droplit</title>
@@ -75,17 +77,15 @@
                      </div>    
                 </div>
             </div>
+            
+            <div class="info" onclick="showAboutUs()">
+                <i class="fa fa-info-circle"></i><span> INFO </span><i class="fas fa-greater-than"></i>
+            </div>
   
             
-           <div class="info_text">
-            <strong> <p>This Water management web application is designed for individuals/businesses/homeowners<br>
-	who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
-	DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
-        water consumption within your household and more importantly raise awareness.</p></strong>
-            </div>
             <script src="../Resources/Scripts/toast.js"></script>
-            <div  id="l1" onclick="toast('l1', '5000')">You aren't logged in. Unregistered activities are on the menu bar(Top Left)</div>
-            <div id="l2" onclick="toast('l2', '5000')">You're logged in. The Menu options are on the Top left corner</div>
+            <div  id="l1" onclick="toast('l1', '9000')">You aren't logged in. Unregistered activities are on the menu bar(Top Left)</div>
+            <div id="l2" onclick="toast('l2', '9000')">You're logged in. The Menu options are on the Top left corner</div>
             <script>
                 //Make the toast appear
                 <?php if(!isset($_SESSION['email'])):?>
@@ -107,7 +107,40 @@
                 $('.line--2').toggleClass('clicked');
                 $('.line--1').toggleClass('clicked');
                 $('.line--3').toggleClass('clicked');
+                
+              
+                
+                function showAboutUs(){
+                  var modal = document.getElementById('myModal');
+                  modal.style.display = "block";
+                }
+                
+                function hideAboutUs(){
+                   var modal = document.getElementById('myModal');
+                  modal.style.display = "none";  
+                }
+                
+                
             </script>
              
+            <!--About us? Who are we?-->
+            <div id="myModal" class="modal-home">
+
+            <!-- Modal content -->
+            <div class="modal-home-content">
+                <span class="close-home" onclick="hideAboutUs()">&times;</span>
+              <h1>What is Droplit all about?</h1>
+              <h3>Droplit is a very intelligent system that was created and designed during one of the worst drought period</h3>
+              <p>This Water management web application is designed for individuals/businesses/homeowners<br>
+                who wish to play their role in saving water, given the crisis we're facing of water shortages.<br>
+                DripLit will inform you of your city's current water status, help you monitor, weigh, control <br>
+                water consumption within your household and more importantly raise awareness.</p>
+              
+              <p>Get started by registering your home and home residents, input your water usage and experience a whole new lifestyle of water saving! </p>
+             
+            </div>
+
+          </div>
+            
         </body>
 </html>

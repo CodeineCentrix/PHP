@@ -10,13 +10,22 @@ and open the template in the editor.
         <title>Driplit Reports</title>
         <script src="../Resources/Scripts/pdfmake.min.js"></script>
         <script src="../Resources/Scripts/vfs_fonts.js"></script>
+        <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">
     </head>
     <body>
         <div>
         <?php include '../Resources/View/header.php';?>
         </div>
-        
+        <div  id="l1" onclick="toast('l1', '9000')">Your document has started downloading.</div>
+        <script src="../Resources/Scripts/toast.js"></script>
+        <?php if(isset($visited)):?>
+        <script>
+             document.getElementById('l1').click();
+        </script>
+        <?php endif;?>
         <div class="reports">
             <h1>Download a monthly invoice of your water usage</h1>
             <h3>Documents auto-download and take up to 30 seconds and are partially accurate</h3>
@@ -25,17 +34,13 @@ and open the template in the editor.
                 <form action="MainController.php?action=user_reports" method="POST">
                 <h3>Pick the dates you'd like to see a statement off </h3>
 
-                <div class="date_control" required>     <span class="required">*</span><label>Your start date:  </label> <br>  <input type="date" name="min_date"> </div>
+                <div class="date_control" required>     <span class="required">*</span><label>Your start date:  </label> <br>  <input type="date" required name="min_date"> </div>
 
-                <div class="date_control" required><span class="required">*</span> <label> Your end date: </label><br> <input type="date" name="max_date"></div>
+                <div class="date_control" required><span class="required">*</span> <label> Your end date: </label><br> <input type="date" required name="max_date"></div>
                 <div class="button_wrapper"> <input type="submit" value="Download PDF"></div>
             </form>
-                    <?php if(isset($visited)):?>
                     
-                    <p>Document is downloading, please wait...</p>
-                    <?php else:?>
                     <p>Once you pick dates and click download button, the document will download</p>
-                    <?php endif;?>
             </div>
         </div>
         </div>
@@ -56,13 +61,17 @@ and open the template in the editor.
         ' ',
         { text:'Find your water pricing report below ', fontSize:20},
         ' ',
-        'Report Date:'+ dateTime,
+        'Report Date: '+ dateTime,
          ' ',
-         '<?php echo $address[0][0]." ".trim($address[0][1]); ?>',
+         ' ',
+         'For Address:',
+         '<?php echo trim($address[0][0])."  ".trim($address[0][1]); ?>',
          '<?php echo $address[0][2]; ?>',
          '<?php echo $address[0][3];?>',
          '<?php echo $address[0][4];?>',
          ' ',
+          'Showing Results from: <?php echo $min_date; ?> till <?php echo $max_date; ?>',
+          ' ',
 		{
 		  table: {
         // headers are automatically repeated if the table spans over multiple pages
@@ -79,11 +88,11 @@ and open the template in the editor.
           $totalTwo =0;
           $totalThree = 0;
           foreach ($lines as $invoice): ?>
-          [ '<?php echo date_format($invoice[0], 'jS, F Y'); ?>', '<?php echo "$invoice[1]";?>', '<?php echo "$invoice[2]"; ?>', 'R<?php echo "$invoice[3]"; ?>' ],
+          [ '<?php echo date_format($invoice[0], 'jS, F Y'); ?>', '<?php echo "$invoice[1]";?>', '<?php if(isset($invoice[2])){ echo "$invoice[2]";}else{echo 0;} ?>', 'R<?php if(isset($invoice[3])){echo number_format($invoice[3], 2, ',', ' ');}else{ echo 0;} ?>' ],
           <?php $totalOne += $invoice[1]; $totalTwo += $invoice[2]; $totalThree += $invoice[3] ?>
           <?php endforeach; ?>
           
-          [{text :'Totals', bold: true},{text:'<?php echo "$totalOne";?>', bold:true},{text:'<?php echo "$totalTwo";?>', bold:true},{text:'<?php echo "R $totalThree"; ?>', bold:true}]
+          [{text :'Totals', bold: true},{text:'<?php echo "$totalOne";?>', bold:true,  alignment : 'right'},{text:'<?php echo "$totalTwo";?>', bold:true, alignment : 'right'},{text:'<?php echo "R ".number_format($totalThree, 2, ',', ' '); ?>', bold:true,  alignment : 'right'}]
         
           
         ]
