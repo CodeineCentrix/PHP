@@ -476,3 +476,71 @@ cursor:pointer;
 }
 
 
+.accord {
+  width: 100%;
+  box-shadow: 0 1px 5px grey;
+  margin: 5% auto;
+  color: black;
+}
+.accord .title {
+  background-color: #fff;
+  color: grey;
+  padding: 5px;
+  margin: 35px;
+  border: 1px solid #484848;
+  font-weight: 300;
+  transition: all .25s ease;
+   float: left;
+   cursor: pointer;
+   width: 45%;
+}
+.accord .title:hover {
+  background-color: rgba(0, 0, 0, 0.005);
+ 
+}
+.accord .title h3 {
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: grey;
+  text-align: center;
+  padding: 5px;
+}
+
+.accord .fa{
+    float: right;
+}
+
+.accord .add-record{
+    margin: 20px;
+    width: 90%;
+    overflow: hidden;
+} 
+
+.accord .view_rec{
+    margin: auto;
+    width: 90%;
+    overflow: hidden;
+}
+
+.date-left{
+    width: 45%;
+    overflow: hidden;
+    float: left;
+}
+
+.date-right{
+    width: 45%;
+    overflow: hidden;
+    float: right;
+}
+
+.submit-area{
+    overflow: hidden;
+    width: 90%;
+}
+.work-area{
+    width: 80%;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px;
+}

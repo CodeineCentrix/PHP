@@ -246,6 +246,7 @@ switch ($action){
           
     case 'view_readings_page':
         $context = "View Meter Readings";
+        
       $data_null=  CheckIfCookiesExists("HouseNumber","StreetName");
         if($data_null===FALSE){
         $readings= array();
@@ -265,6 +266,7 @@ switch ($action){
             $context="Add a Resident";
             $add_results = -1;
             $email_results = 0;
+            $users = $dataAceess->get_email_add($_SESSION['email']);
             include '../Resources/View/add_resident.php';
             break;
         
@@ -432,6 +434,7 @@ switch ($action){
        break; 
         
     case 'add_reading':
+         $readings= NULL;
         $data_null = CheckIfCookiesExists("HouseNumber", "StreetName", "HouseID");
         if($data_null===FALSE){
             $house =array();
@@ -611,7 +614,7 @@ switch ($action){
     
     case'add_resident':
         $context="Add a Resident";
-        
+        $users = $dataAceess->get_email_add($_SESSION['email']);
         $email = filter_input(INPUT_POST,'email_add');
         $add_results = $dataAceess->check_user_existant($email);
         
@@ -642,6 +645,7 @@ switch ($action){
         $context="Add a Resident";
         $email = filter_input(INPUT_POST,'email_reg');
         $email_results = $dataAceess->check_user_existant($email);
+        $users = $dataAceess->get_email_add($_SESSION['email']);
         if($email_results==NULL){
             $null_exist = CheckIfCookiesExists("FullName");
             if($null_exist==FALSE){
@@ -678,7 +682,7 @@ switch ($action){
         
     case 'revoke_page':
         $context = "Revoke Rights";
-        $main_resident_id = $_SESSION["MainResidentID"];
+        $main_resident_id = filter_var( $_SESSION['MainResidentID']);
         $roomies = $dataAceess->getRoomies($main_resident_id);
         include '../Resources/View/revoke_rights.php';
         break;
@@ -688,7 +692,7 @@ switch ($action){
         $person_id = filter_input(INPUT_POST, 'cmbMates');
         $person_name = filter_input(INPUT_POST, 'txtperson_name');
         $is_removed = $dataAceess->revokeRoomiesRights($person_id);  
-        $main_resident_id = $_SESSION["MainResidentID"];
+        $main_resident_id = filter_var( $_SESSION['MainResidentID']);
         $roomies = $dataAceess->getRoomies($main_resident_id);
         if($is_removed ==TRUE){
             $moved = "Successfully removed ". $person_name;
@@ -866,6 +870,17 @@ switch ($action){
         $lines = $dataAceess->pdf_invoicer($end_date, $start_date, $house_id);
         include '../Resources/View/reports.php';
     break;
+    
+    case 'preview_readings':
+     $context = "Add Meter Reading";
+    $house[0] = $_SESSION['HouseNumber'];
+    $house[1] = $_SESSION['StreetName'];
+    $start_date = filter_input(INPUT_POST, 'str_date');
+    $end_date = filter_input(INPUT_POST, 'end_date');
+    $house_id = filter_var($_SESSION['HouseID']);
+   $readings = $dataAceess ->reading_preview($house_id, $start_date, $end_date);
+   include '../Resources/View/RecordReadings.php';
+      break;
     
     default :
         include '../Resources/View/page_not_found.php';
