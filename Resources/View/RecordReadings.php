@@ -15,6 +15,20 @@
 
 <body class="MainRes">
     <?php include '../Resources/View/header.php'; ?>
+
+    <div>
+        View my previous readings?
+        <div>
+            
+            <label>Choose start date</label><input type="date" name="fromDate"> 
+            <label>Choose end date</label><input type="date" name="toDate">
+            <table>
+                
+            </table>
+            
+        </div>
+    </div>
+
 <div class="MainRes">
 <main>
 
