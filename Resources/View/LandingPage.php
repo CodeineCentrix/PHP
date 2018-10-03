@@ -137,7 +137,7 @@
                 water consumption within your household and more importantly raise awareness.</p>
               
               <p>Get started by registering your home and home residents, input your water usage and experience a whole new lifestyle of water saving! </p>
-              
+              <?php print_r($_SESSION); ?>
             </div>
 
           </div>

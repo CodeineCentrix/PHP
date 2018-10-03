@@ -709,7 +709,7 @@ switch ($action){
             break;
         
         case'add_article':
-            //get posted data
+           //get posted data
             $article_title = filter_input(INPUT_POST, 'article_title');
             $article_author = filter_input(INPUT_POST, 'article_author');
             $article_body = filter_input(INPUT_POST, 'article_body');
@@ -737,10 +737,20 @@ switch ($action){
             
             //Then add to database if everything is successfull
             //Method needs actual parameters!!
-            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $imageDirectory, NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
+            $successfully_added = $dataAceess->AddNewsArticle("Article Image", $_FILES['fp_article_image']['name'], NULL, $article_title, "Water related articles", date('Y/m/d'),$article_up,$article_author);
             //$action = 'news_page';
            // include '../Admin/blank.php';
             header("Location: MainController.php?action=news_page&saved=11");
+            break;
+            
+            case'del_article':
+                $article_id = filter_input(INPUT_POST, 'art_id');
+                $art_body = filter_input(INPUT_POST, 'art_bdy');
+                $art_img = filter_input(INPUT_POST, 'art_pic');
+                $del = $dataAceess->remove_article($article_id);
+                unlink($art_body);
+                unlink($art_img);
+                header("Location: MainController.php?action=news_page");
             break;
             
             case'del_article':
@@ -757,14 +767,17 @@ switch ($action){
              
             $from = 0;
                 $page = filter_input(INPUT_POST, 'page');
-                if ($page > 1){ 
-                    $from = ($page-1) * 4;                   
+                if ($page >= 1){ 
+                    $from = ($page-1) * 4;
+					
                 }
                  else{
-                     $from=1;                     
+					// die("Died because entered negative");
+                     $from=0;                     
                  }                
             $total_records_count = $dataAceess->AllNewsRecords();
             $news = $dataAceess->get_news_items(4, $from);
+			//die(print_r($news));
                 $numPage = ceil($total_records_count[0][0]/4);
                 $drawNews = "";
                 $i= 0;
@@ -772,9 +785,7 @@ switch ($action){
                 foreach($news as $value){
                     if(isset($value[8])){
 					$art_path = "http://sict-iis.nmmu.ac.za/codecentrix/MobileConnectionString/news_images/";
-                   // $article_link = fopen($value[8],"r") or die("Isssue oppening directory");
-                    //$article_body = fread($article_link, filesize($value[8]));
-                   // fclose($article_link);
+                  
 				  $article_body = file_get_contents($value[8]);
                     }
                 $drawNews .= "<div class='news_item center_tag'>"
@@ -805,7 +816,7 @@ switch ($action){
                      $from= 1;                     
                  }
                  $total_records_count = $dataAceess->AllTipsRecords();
-                 $tips = $dataAceess->View_Tips(1, 4);
+                 $tips = $dataAceess->View_Tips($from, 4);
                  $drawHTML= "";
                  foreach ($tips as $value) {
                     $drawHTML.="<div class='tipscontainer'>"

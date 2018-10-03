@@ -10,6 +10,8 @@ and open the template in the editor.
         <title>Edit Profile</title>
         <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css" type="text/css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
+        <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
         <script src="../Resources/Scripts/jquery-3.3.1.min.js"></script>
         <script src="../Resources/Scripts/centrixScript.js"></script>
     </head>
@@ -18,20 +20,12 @@ and open the template in the editor.
             <?php include '../Resources/View/header.php';?>
         </div>
            <?php if($feedback >0):?>
-        <!-- The Modal -->
-       <div id="myModal" class="modal">
-
-         <!-- Modal content -->
-         <div class="modal-content">
-       <!--    <span class="close">&times;</span>-->
-               <div class="mid">
-               <img src="../Resources/Images/success.png">
-           <strong><h3 class="modalText">Update Successful - Changes will be reflected upon next login.</h3></strong>
-               <div class="btnProceed"><a href= "../Controller/MainController.php?action=edit_profile_page">OK</a></div>
-               </div>
-         </div>
-
-       </div>
+        <script src="../Resources/Scripts/toast.js"></script>
+            <div  id="l1" onclick="toast('l1', '9000')">Successfully Edited. Changes will reflect upon next login.</div>
+            <script>
+                document.getElementById('l1').click();
+            </script>
+            
         <?php endif;?>
 
         <div class="edit_profile">
@@ -110,7 +104,7 @@ and open the template in the editor.
  <div  id="MainResGrp" style="display:none">
 <span class="required">*</span>
 <label><b>Number of Residents</b></label>
-    <input type="number" min="1" placeholder="Enter Number of Residents incl yourself" id="resident" name="residents" value="<?php if(isset($_SESSION["NumberOfResidents"])){ echo $_SESSION["NumberOfResidents"] ;} ?>" >
+    <input type="number" min="1" placeholder="Enter Number of Residents incl yourself" id="resident" name="residents" value="" >
 	</div><!--end group-->
 </div>
 <input type="button" value="Become a Resident?" class="accordion">

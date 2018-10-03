@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css">
 <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
 <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
+<link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
 <title>Add Meter Readings</title>
@@ -15,6 +16,13 @@
 
 <body class="MainRes">
     <?php include '../Resources/View/header.php'; ?>
+    <!-- snackbar-->
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action="></span>
+        <script src="../Resources/Scripts/snackbarlight.js"></script>
+        <script>
+        document.getElementById('hh').click();
+        </script>
+        
 <div class="work-area">
 <h2 class="displayInfoToUser">Address<br><?php echo "$house[0]"." $house[1]"; ?></h2>
 
