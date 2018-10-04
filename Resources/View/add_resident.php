@@ -73,7 +73,7 @@ and open the template in the editor.
 
         </div>
         <!-- snackbar-->
-        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action="></span>
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help"></span>
         <script src="../Resources/Scripts/snackbarlight.js"></script>
         <script>
         document.getElementById('hh').click();

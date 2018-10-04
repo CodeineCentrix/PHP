@@ -12,9 +12,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>View Meter Readings</title>
-        
-        
-        <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
+  <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">      
+ <link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">       
+<link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body class="recordReadings" >
@@ -91,5 +91,12 @@ and open the template in the editor.
 </div> 
 <!--close box container div-->
     </form>
-        </body>
+        
+        <!-- snackbar-->
+       <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help&q=vMR"></span>
+       <script src="../Resources/Scripts/snackbarlight.js"></script>
+       <script>
+       document.getElementById('hh').click();
+       </script>
+</body>
 </html>

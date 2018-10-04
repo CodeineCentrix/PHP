@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Area Statistics </title>
+        <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
         <script src="../Resources/Scripts/jquery.min.js"></script>
         <link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">
         <script src="../Resources/Scripts/jquery.easypiechart.min.js"></script>
@@ -16,7 +17,7 @@ and open the template in the editor.
     <body>
      <?php include '../Resources/View/header.php'; ?>
         <!-- snackbar-->
-        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action="></span>
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help&q=stats"></span>
         <script src="../Resources/Scripts/snackbarlight.js"></script>
         <script>
         document.getElementById('hh').click();

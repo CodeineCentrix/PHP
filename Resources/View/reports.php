@@ -14,11 +14,20 @@ and open the template in the editor.
         <link rel="stylesheet" href="../Resources/Stylesheets/animate.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/toast.css">
         <link rel="stylesheet" href="../Resources/Stylesheets/general.css">
+         <link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">
     </head>
     <body>
         <div>
         <?php include '../Resources/View/header.php';?>
         </div>
+        <!-- snackbar -->
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help&q=Rep"></span>
+        <script src="../Resources/Scripts/snackbarlight.js"></script>
+        <script>
+        document.getElementById('hh').click();
+        </script>
+        
+        <!--End snackbar-->
         <div  id="l1" onclick="toast('l1', '9000')">Your document has started downloading.</div>
         <script src="../Resources/Scripts/toast.js"></script>
         <?php if(isset($visited)):?>

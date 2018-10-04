@@ -17,7 +17,7 @@
 <body class="MainRes">
     <?php include '../Resources/View/header.php'; ?>
     <!-- snackbar-->
-        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action="></span>
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help&q=RRe"></span>
         <script src="../Resources/Scripts/snackbarlight.js"></script>
         <script>
         document.getElementById('hh').click();

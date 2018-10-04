@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../Resources/Stylesheets/myStyles.css" type="text/css"/>
     <link rel="stylesheet" href="../Resources/Stylesheets/homepage.css" type="text/css"/>
     <link rel="stylesheet" href="../Resources/Stylesheets/toast.css" type="text/css"/>
+    <link rel="stylesheet" href="../Resources/Stylesheets/snackbarlight.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Resources/Images/companylogo.ico" type="image/gif">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,6 +68,11 @@
 <h1><a href="?action=login_page">Login</a> to post a trip &amp; trick</h1>
 <?php endif; ?>
 </div>     
-    
+    <!-- snackbar-->
+        <span id="hh" data-toggle=snackbar data-content="Need help understanding this page?" data-timeout="60000" data-link="Get Help" data-url="?action=help&q=tiptrick"></span>
+        <script src="../Resources/Scripts/snackbarlight.js"></script>
+        <script>
+        document.getElementById('hh').click();
+        </script>
 </body>
 </html>

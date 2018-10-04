@@ -29,7 +29,7 @@
         </div>
         
         <div class="grey">
-            <div id="meter_read">
+            <div id="RRe">
                 <h1>How to record meter readings</h1>
                 <p>Requirements</p>
                 <ul>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="white">
-            <div>
+            <div id="stats">
                 <h1>How to use and understand area statistics</h1>
                 <p>Requirements</p>
                 <ul>
@@ -94,7 +94,7 @@
         </div>
         
         <div class="grey">
-            <div>
+            <div id="Rep">
                 <h1>How to download your water usage PDF document(invoice)</h1>
                 <p>Requirements</p>
                 <ul>
@@ -119,7 +119,7 @@
         </div>
         
         <div class="white">
-            <div>
+            <div id="wuR">
                 <h1>How to view water usage report</h1>
                 <p>Requirements</p>
                 <ul>
@@ -139,7 +139,7 @@
         </div>
         
         <div class="grey">
-            <div>
+            <div id="vMR">
                 <h1>How to view recorded readings</h1>
                 <p>Requirements</p>
                 <ul>
@@ -158,7 +158,7 @@
         </div>
         
         <div class="white">
-            <div>
+            <div id="tiptrick">
                 <h1>How to post tips and tricks</h1>
                 <p>Requirements</p>
                 <ul>
@@ -176,5 +176,8 @@
             <p>This help topic is now concluded, you may return to the tab you had opened before reaching here if you got here using the context help or <a href="?action="> click here to return to main site</a> </p>
             </div>
         </div>
+        <script>
+            location.href = "#<?php echo $location; ?>";
+        </script>
     </body>
 </html>
