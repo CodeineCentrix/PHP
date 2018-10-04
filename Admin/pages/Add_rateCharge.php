@@ -15,12 +15,12 @@
                         <option  value="<?php echo $st[0]; ?>" ><?php echo $st[1];?></option>
             <?php endforeach;?>
                     </select></td></tr>
-                     <tr><th>Min</th><th>Max</th><th>Price</th></tr>
+                     <tr><th>Min(Kiloliters)</th><th>Max(Kiloliters)</th><th>Price(R)</th></tr>
                     <?php for($i=0;$i<3;$i++):?>                                               
                         <tr>
-                            <td><input type="number" step="any" name="min1<?php echo $i;?>"></td>
+                         <td><input type="number" step="any" name="min1<?php echo $i;?>"></td>
                             <td><input type="number" step="any" name="max1<?php echo $i;?>" ></td>
-                            <td><input type="number" step="any" name="price<?php echo $i;?>"></td>
+                           <td><input type="number" step="any" name="price<?php echo $i;?>"></td>
                         </tr>                       
                         <?php endfor;?>
                         <tr><td td colspan="3"><input type="submit" value="Add Rate Charge"></td></tr>

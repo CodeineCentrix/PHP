@@ -544,3 +544,7 @@ cursor:pointer;
     margin: auto;
     padding: 10px;
 }
+
+.n-allow:hover{
+    cursor: not-allowed;
+}

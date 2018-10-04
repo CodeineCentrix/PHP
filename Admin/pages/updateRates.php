@@ -4,7 +4,7 @@
         <form action="../Controller/MainController.php?action=edit-rateCharge" method="post">
            
            <table>
-    <tr><th>Min</th><th>Max</th><th>Price</th></tr>
+    <tr><th>Min(Kiloliters)</th><th>Max(Kiloliters)</th><th>Price(R)</th></tr>
     <?php $count = 0; ?>
                         <?php foreach ( $rate as $rates):?>                                               
                         <tr>
