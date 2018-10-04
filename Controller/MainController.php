@@ -892,6 +892,12 @@ switch ($action){
    $readings = $dataAceess ->reading_preview($house_id, $start_date, $end_date);
    include '../Resources/View/RecordReadings.php';
       break;
+  
+    case 'help':
+        $location = filter_input(INPUT_GET, 'q');
+        $context = "Help page";
+        include '../Resources/View/help.php';
+        break;
     
     default :
         include '../Resources/View/page_not_found.php';

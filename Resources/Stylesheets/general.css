@@ -858,3 +858,60 @@ Begin section for header....
     text-align: center;
 }
 /*End Reports section*/
+
+.hlp-font{
+    font-family: 'Gudea', sans-serif;
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
+    width: 80%;
+    
+}
+
+.middle{
+    overflow: hidden;
+    width: 60%;
+    margin: auto;
+    padding: 80px;
+}
+.middle img{
+    width: 100% !important;
+}
+.grey{
+    width: 100%;
+    overflow: hidden;
+    background: #D8D8D8;
+    
+}
+
+.white{
+    width: 100%;
+    overflow: hidden;
+    background: white;
+}
+
+.mid {
+    overflow: hidden;
+    width: 60%;
+    margin: auto;
+    padding: 80px;
+}
+
+.mid img{
+    max-width: 100%;
+    
+}
+
+.white div{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.grey div{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
+}
